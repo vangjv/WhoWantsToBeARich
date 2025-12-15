@@ -20,13 +20,13 @@
 
 **Purpose**: Project initialization and dependency installation
 
-- [ ] T001 Verify Angular CLI version 21+ and TypeScript 5.9+ installation
-- [ ] T002 Install @ngbracket/ngx-layout for flexbox directives in package.json
-- [ ] T003 [P] Install zod for schema validation in package.json
-- [ ] T004 [P] Verify Angular Material and CDK are installed in package.json
-- [ ] T005 [P] Verify TypeScript strict mode enabled in tsconfig.json
-- [ ] T006 [P] Create directory structure: src/app/models, src/app/services, src/app/host, src/app/seat, src/app/shared
-- [ ] T007 [P] Configure Angular Material custom theme in src/styles.scss with gold/blue dramatic palette
+- [X] T001 Verify Angular CLI version 21+ and TypeScript 5.9+ installation
+- [X] T002 Install @ngbracket/ngx-layout for flexbox directives in package.json
+- [X] T003 [P] Install zod for schema validation in package.json
+- [X] T004 [P] Verify Angular Material and CDK are installed in package.json
+- [X] T005 [P] Verify TypeScript strict mode enabled in tsconfig.json
+- [X] T006 [P] Create directory structure: src/app/models, src/app/services, src/app/host, src/app/seat, src/app/shared
+- [X] T007 [P] Configure Angular Material custom theme in src/styles.scss with gold/blue dramatic palette
 
 **Checkpoint**: Project structure ready, dependencies installed
 
@@ -40,47 +40,47 @@
 
 ### Core Type Definitions
 
-- [ ] T008 [P] Create ChoiceKey type ('A' | 'B' | 'C' | 'D') in src/app/models/choice-key.model.ts
-- [ ] T009 [P] Create Difficulty type ('easy' | 'medium' | 'hard') in src/app/models/choice-key.model.ts
-- [ ] T010 [P] Create LifelineType type ('fiftyFifty' | 'askAudience' | 'phoneFriend') in src/app/models/choice-key.model.ts
-- [ ] T011 [P] Create GamePhase enum (SETUP, QUESTION, FINAL_LOCKED, REVEAL, BETWEEN, ENDED) in src/app/models/game-phase.model.ts
+- [X] T008 [P] Create ChoiceKey type ('A' | 'B' | 'C' | 'D') in src/app/models/choice-key.model.ts
+- [X] T009 [P] Create Difficulty type ('easy' | 'medium' | 'hard') in src/app/models/choice-key.model.ts
+- [X] T010 [P] Create LifelineType type ('fiftyFifty' | 'askAudience' | 'phoneFriend') in src/app/models/choice-key.model.ts
+- [X] T011 [P] Create GamePhase enum (SETUP, QUESTION, FINAL_LOCKED, REVEAL, BETWEEN, ENDED) in src/app/models/game-phase.model.ts
 
 ### Question Models
 
-- [ ] T012 [P] Create Choice interface in src/app/models/question.model.ts
-- [ ] T013 [P] Create Question interface in src/app/models/question.model.ts
-- [ ] T014 [P] Create QuestionPack interface with validation rules in src/app/models/question.model.ts
+- [X] T012 [P] Create Choice interface in src/app/models/question.model.ts
+- [X] T013 [P] Create Question interface in src/app/models/question.model.ts
+- [X] T014 [P] Create QuestionPack interface with validation rules in src/app/models/question.model.ts
 
 ### Money Ladder Models
 
-- [ ] T015 [P] Create LadderLevel interface in src/app/models/money-ladder.model.ts
-- [ ] T016 [P] Create MoneyLadder interface in src/app/models/money-ladder.model.ts
-- [ ] T017 [P] Create createDefaultLadder() function with classic US Millionaire values in src/app/models/money-ladder.model.ts
+- [X] T015 [P] Create LadderLevel interface in src/app/models/money-ladder.model.ts
+- [X] T016 [P] Create MoneyLadder interface in src/app/models/money-ladder.model.ts
+- [X] T017 [P] Create createDefaultLadder() function with classic US Millionaire values in src/app/models/money-ladder.model.ts
 
 ### Lifeline Models
 
-- [ ] T018 [P] Create FiftyFiftyState interface in src/app/models/lifeline.model.ts
-- [ ] T019 [P] Create AskAudienceState and AudiencePercentages interfaces in src/app/models/lifeline.model.ts
-- [ ] T020 [P] Create PhoneFriendState interface in src/app/models/lifeline.model.ts
-- [ ] T021 [P] Create LifelineState interface and createDefaultLifelines() function in src/app/models/lifeline.model.ts
+- [X] T018 [P] Create FiftyFiftyState interface in src/app/models/lifeline.model.ts
+- [X] T019 [P] Create AskAudienceState and AudiencePercentages interfaces in src/app/models/lifeline.model.ts
+- [X] T020 [P] Create PhoneFriendState interface in src/app/models/lifeline.model.ts
+- [X] T021 [P] Create LifelineState interface and createDefaultLifelines() function in src/app/models/lifeline.model.ts
 
 ### Timer and State Models
 
-- [ ] T022 [P] Create TimerState interface in src/app/models/timer.model.ts
-- [ ] T023 Create GameState interface with all fields in src/app/models/game-state.model.ts
-- [ ] T024 Create createDefaultGameState() function in src/app/models/game-state.model.ts
-- [ ] T025 Create calculateWinnings() utility function in src/app/models/game-state.model.ts
+- [X] T022 [P] Create TimerState interface in src/app/models/timer.model.ts
+- [X] T023 Create GameState interface with all fields in src/app/models/game-state.model.ts
+- [X] T024 Create createDefaultGameState() function in src/app/models/game-state.model.ts
+- [X] T025 Create calculateWinnings() utility function in src/app/models/game-state.model.ts
 
 ### Sync Event Models
 
-- [ ] T026 [P] Create SyncEvent discriminated union type with 12 event types in src/app/models/sync-event.model.ts
+- [X] T026 [P] Create SyncEvent discriminated union type with 12 event types in src/app/models/sync-event.model.ts
 
 ### Core Services
 
-- [ ] T027 Create SyncService with BroadcastChannel in src/app/services/sync.service.ts
-- [ ] T028 Create GameStateService with state management and sync integration in src/app/services/game-state.service.ts
-- [ ] T029 [P] Create QuestionPackService with JSON import and Zod validation in src/app/services/question-pack.service.ts
-- [ ] T030 [P] Create LadderConfigService with localStorage persistence in src/app/services/ladder-config.service.ts
+- [X] T027 Create SyncService with BroadcastChannel in src/app/services/sync.service.ts
+- [X] T028 Create GameStateService with state management and sync integration in src/app/services/game-state.service.ts
+- [X] T029 [P] Create QuestionPackService with JSON import and Zod validation in src/app/services/question-pack.service.ts
+- [X] T030 [P] Create LadderConfigService with localStorage persistence in src/app/services/ladder-config.service.ts
 
 **Checkpoint**: Foundation ready - all models, types, and core services complete. User story implementation can now begin in parallel.
 
