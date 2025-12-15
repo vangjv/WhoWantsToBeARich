@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { z } from 'zod';
 import { QuestionPack, Question } from '../models/question.model';
 
@@ -68,6 +69,7 @@ export interface ValidationResult {
 })
 export class QuestionPackService {
   private packs: Map<string, QuestionPack> = new Map();
+  private packsSubject = new BehaviorSubject<QuestionPack[]>([]);
 
   /**
    * Import question pack from JSON with validation
@@ -128,6 +130,7 @@ export class QuestionPackService {
    */
   public savePack(pack: QuestionPack): void {
     this.packs.set(pack.id, pack);
+    this.updatePacksList();
     console.log(`[QuestionPackService] Saved pack: ${pack.name} (${pack.id})`);
   }
 
@@ -146,10 +149,35 @@ export class QuestionPackService {
   }
 
   /**
+   * Get available packs as Observable
+   */
+  public getAvailablePacks(): Observable<QuestionPack[]> {
+    return this.packsSubject.asObservable();
+  }
+
+  /**
+   * Import question pack from file (async)
+   */
+  public async importQuestionPack(file: File): Promise<QuestionPack> {
+    const result = await this.importPack(file);
+
+    if (!result.valid || !result.pack) {
+      throw new Error(result.errors.join('; '));
+    }
+
+    this.savePack(result.pack);
+    return result.pack;
+  }
+
+  /**
    * Delete question pack
    */
   public deletePack(id: string): boolean {
-    return this.packs.delete(id);
+    const deleted = this.packs.delete(id);
+    if (deleted) {
+      this.updatePacksList();
+    }
+    return deleted;
   }
 
   /**
@@ -157,6 +185,14 @@ export class QuestionPackService {
    */
   public clearAll(): void {
     this.packs.clear();
+    this.updatePacksList();
     console.log('[QuestionPackService] All packs cleared');
+  }
+
+  /**
+   * Update packs list subject
+   */
+  private updatePacksList(): void {
+    this.packsSubject.next(this.listPacks());
   }
 }

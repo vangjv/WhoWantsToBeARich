@@ -66,6 +66,15 @@ export class GameStateService {
   }
 
   /**
+   * Start a new game - combines setup and starts first question
+   */
+  public startGame(contestantName: string, questionPack: QuestionPack): void {
+    this.setupGame(contestantName, questionPack);
+    // Automatically start first question
+    setTimeout(() => this.startQuestion(), 100);
+  }
+
+  /**
    * Start a question at the current level
    */
   public startQuestion(): void {

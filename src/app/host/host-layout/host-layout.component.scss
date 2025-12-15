@@ -1,0 +1,64 @@
+.host-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #1a1a2e;
+  color: #ffffff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.host-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background: #16213e;
+  border-bottom: 2px solid #0f3460;
+
+  h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .open-display-btn {
+    min-width: 200px;
+  }
+}
+
+.host-main {
+  flex: 1;
+  overflow: auto;
+  padding: 24px;
+}
+
+.setup-phase {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.game-active {
+  display: grid;
+  grid-template-columns: 250px 1fr 300px;
+  gap: 24px;
+  height: 100%;
+}
+
+.left-panel,
+.center-panel,
+.right-panel {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.game-ended {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+
+  button {
+    margin-top: 24px;
+  }
+}

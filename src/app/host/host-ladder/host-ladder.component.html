@@ -1,0 +1,22 @@
+<mat-card class="ladder-card">
+  <mat-card-header>
+    <mat-card-title>Money Ladder</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="ladder-container">
+      <div
+        *ngFor="let level of getLadderLevels()"
+        class="ladder-level"
+        [class.current]="isCurrentLevel(level.levelNumber)"
+        [class.cleared]="isCleared(level.levelNumber)"
+        [class.safe-haven]="isSafeHaven(level.levelNumber)">
+
+        <span class="level-number">{{ level.levelNumber }}</span>
+        <span class="level-value">{{ formatValue(level.value) }}</span>
+
+        <span *ngIf="isSafeHaven(level.levelNumber)" class="safe-icon">🛡️</span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,58 @@
+<mat-card class="summary-card" *ngIf="gameState">
+  <mat-card-header>
+    <mat-card-title class="game-end-title">
+      {{ getGameEndMessage() }}
+    </mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="summary-grid">
+      <!-- Final Winnings -->
+      <div class="summary-item highlight">
+        <div class="summary-label">Final Winnings</div>
+        <div class="summary-value winnings">
+          {{ formatValue(gameState.finalWinnings) }}
+        </div>
+      </div>
+
+      <!-- Questions Cleared -->
+      <div class="summary-item">
+        <div class="summary-label">Questions Cleared</div>
+        <div class="summary-value">
+          {{ gameState.clearedLevel }} / 15
+        </div>
+      </div>
+
+      <!-- Lifelines Used -->
+      <div class="summary-item">
+        <div class="summary-label">Lifelines Used</div>
+        <div class="summary-value">
+          {{ getLifelinesUsedCount() }} / 3
+        </div>
+        <div class="lifeline-details">
+          <span *ngIf="gameState.lifelines.fiftyFifty.used" class="lifeline-badge">50:50</span>
+          <span *ngIf="gameState.lifelines.askAudience.used" class="lifeline-badge">Ask Audience</span>
+          <span *ngIf="gameState.lifelines.phoneFriend.used" class="lifeline-badge">Phone Friend</span>
+        </div>
+      </div>
+
+      <!-- Highest Safe Haven -->
+      <div class="summary-item">
+        <div class="summary-label">Highest Safe Haven</div>
+        <div class="summary-value">
+          <span *ngIf="getHighestSafeHaven() > 0">
+            Level {{ getHighestSafeHaven() }} ({{ formatValue(getSafeHavenValue()) }})
+          </span>
+          <span *ngIf="getHighestSafeHaven() === 0">
+            None reached
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Walk Away Message -->
+    <div *ngIf="gameState.walkAway" class="walk-away-message">
+      <p>Contestant chose to walk away with their winnings!</p>
+    </div>
+  </mat-card-content>
+</mat-card>

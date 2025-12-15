@@ -1,0 +1,53 @@
+<mat-card class="setup-card">
+  <mat-card-header>
+    <mat-card-title>Game Setup</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Contestant Name Input -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Contestant Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="contestantName"
+        placeholder="Enter contestant name"
+        maxlength="50">
+    </mat-form-field>
+
+    <!-- Question Pack Selection -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Question Pack</mat-label>
+      <mat-select [(ngModel)]="selectedPackId">
+        <mat-option *ngFor="let pack of availablePacks" [value]="pack.id">
+          {{ pack.name }} ({{ pack.questions.length }} questions)
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Import Question Pack -->
+    <div class="import-section">
+      <label for="file-input" class="import-label">Or import a new question pack:</label>
+      <input
+        type="file"
+        id="file-input"
+        accept=".json"
+        (change)="onFileSelect($event)"
+        class="file-input">
+
+      <div *ngIf="importError" class="error-message">
+        {{ importError }}
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="startGame()"
+      [disabled]="!canStartGame()"
+      class="start-button">
+      Start Game
+    </button>
+  </mat-card-actions>
+</mat-card>

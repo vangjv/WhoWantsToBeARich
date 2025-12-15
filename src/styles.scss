@@ -6,26 +6,20 @@
 // Include core Material styles
 @include mat.core();
 
-// Define custom Millionaire theme palette (gold/blue dramatic)
-$millionaire-primary: mat.define-palette(mat.$amber-palette, 700, 500, 900);
-$millionaire-accent: mat.define-palette(mat.$blue-palette, 900, 700, A700);
-$millionaire-warn: mat.define-palette(mat.$red-palette, 700);
+// Define custom Millionaire theme (gold/blue dramatic)
+$millionaire-primary: mat.m2-define-palette(mat.$m2-amber-palette, 700, 500, 900);
+$millionaire-accent: mat.m2-define-palette(mat.$m2-blue-palette, 900, 700, A700);
+$millionaire-warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
 
 // Create the theme
-$millionaire-theme: mat.define-light-theme((
+$millionaire-theme: mat.m2-define-light-theme((
   color: (
     primary: $millionaire-primary,
     accent: $millionaire-accent,
     warn: $millionaire-warn,
   ),
-  typography: mat.define-typography-config(
+  typography: mat.m2-define-typography-config(
     $font-family: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    $headline-1: mat.define-typography-level(48px, 56px, 700),
-    $headline-2: mat.define-typography-level(36px, 44px, 700),
-    $headline-3: mat.define-typography-level(28px, 36px, 600),
-    $headline-4: mat.define-typography-level(24px, 32px, 600),
-    $headline-5: mat.define-typography-level(20px, 28px, 600),
-    $headline-6: mat.define-typography-level(18px, 26px, 600),
   ),
   density: 0,
 ));

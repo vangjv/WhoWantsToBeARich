@@ -1,0 +1,139 @@
+.choices-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: 40px 1fr 32px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: #0f3460;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-height: 60px;
+
+  .choice-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .choice-text {
+    font-size: 16px;
+    line-height: 1.4;
+  }
+
+  .status-icon {
+    font-size: 24px;
+
+    &.correct {
+      color: #4caf50;
+    }
+
+    &.incorrect {
+      color: #f44336;
+    }
+
+    &.locked {
+      color: #ffd700;
+    }
+  }
+
+  // Clickable state
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  // Selected state
+  &.selected {
+    background: rgba(33, 150, 243, 0.3);
+    border-color: #2196f3;
+
+    .choice-key {
+      background: #2196f3;
+      color: #fff;
+    }
+  }
+
+  // Locked state
+  &.locked {
+    background: rgba(255, 215, 0, 0.2);
+    border-color: #ffd700;
+    box-shadow: 0 0 16px rgba(255, 215, 0, 0.4);
+
+    .choice-key {
+      background: #ffd700;
+      color: #000;
+    }
+  }
+
+  // Revealed correct state
+  &.revealed-correct {
+    background: rgba(76, 175, 80, 0.3);
+    border-color: #4caf50;
+    animation: pulse-correct 1s ease-in-out;
+
+    .choice-key {
+      background: #4caf50;
+      color: #fff;
+    }
+  }
+
+  // Revealed incorrect state
+  &.revealed-incorrect {
+    background: rgba(244, 67, 54, 0.3);
+    border-color: #f44336;
+    animation: pulse-incorrect 1s ease-in-out;
+
+    .choice-key {
+      background: #f44336;
+      color: #fff;
+    }
+  }
+
+  // Removed state (50:50)
+  &.removed {
+    opacity: 0.3;
+    pointer-events: none;
+    background: rgba(15, 52, 96, 0.5);
+
+    .choice-text {
+      text-decoration: line-through;
+    }
+  }
+}
+
+@keyframes pulse-correct {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(76, 175, 80, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);
+  }
+}
+
+@keyframes pulse-incorrect {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(244, 67, 54, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(244, 67, 54, 0.7);
+  }
+}

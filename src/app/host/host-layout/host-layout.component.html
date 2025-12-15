@@ -1,0 +1,40 @@
+<div class="host-layout">
+  <header class="host-header">
+    <h1>Host Control Panel - Who Wants to Be a Millionaire</h1>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="openSeatDisplay()"
+      class="open-display-btn">
+      Open Contestant Display
+    </button>
+  </header>
+
+  <div class="host-main" *ngIf="gameState">
+    <!-- Setup Phase -->
+    <div *ngIf="gameState.phase === GamePhase.SETUP" class="setup-phase">
+      <app-game-setup></app-game-setup>
+    </div>
+
+    <!-- Game Active Phase -->
+    <div *ngIf="gameState.phase !== GamePhase.SETUP && gameState.phase !== GamePhase.ENDED" class="game-active">
+      <div class="left-panel">
+        <app-host-ladder></app-host-ladder>
+      </div>
+
+      <div class="center-panel">
+        <app-question-control></app-question-control>
+      </div>
+
+      <div class="right-panel">
+        <app-admin-panel></app-admin-panel>
+      </div>
+    </div>
+
+    <!-- Game Ended Phase -->
+    <div *ngIf="gameState.phase === GamePhase.ENDED" class="game-ended">
+      <app-game-end-summary [gameState]="gameState"></app-game-end-summary>
+      <button mat-raised-button color="accent" (click)="resetGame()">Start New Game</button>
+    </div>
+  </div>
+</div>

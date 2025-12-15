@@ -1,0 +1,14 @@
+<div class="choices-container">
+  <div
+    *ngFor="let choice of choices"
+    [class]="getChoiceClass(choice)"
+    (click)="onChoiceClick(choice)">
+
+    <span class="choice-key">{{ choice.key }}</span>
+    <span class="choice-text">{{ choice.text }}</span>
+
+    <span *ngIf="isRevealedCorrect(choice.key)" class="status-icon correct">✓</span>
+    <span *ngIf="isRevealedIncorrect(choice.key)" class="status-icon incorrect">✗</span>
+    <span *ngIf="isLocked(choice.key)" class="status-icon locked">🔒</span>
+  </div>
+</div>

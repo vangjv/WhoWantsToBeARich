@@ -101,31 +101,31 @@
 
 ### Host UI Components for User Story 1
 
-- [ ] T031 [P] [US1] Create HostLayoutComponent as route component for /host in src/app/host/host-layout/host-layout.component.ts
-- [ ] T032 [P] [US1] Create GameSetupComponent with contestant name input, pack selector, Start Game button in src/app/host/game-setup/game-setup.component.ts
-- [ ] T033 [P] [US1] Create QuestionControlComponent with question display, choice selection, Lock Final Answer, and Reveal buttons in src/app/host/question-control/question-control.component.ts
-- [ ] T033a [US1] Display optional explanation/notes field in QuestionControlComponent for host-only visibility (FR-021)
-- [ ] T034 [P] [US1] Create HostLadderComponent displaying 15 levels with current/cleared highlighting in src/app/host/host-ladder/host-ladder.component.ts
+- [X] T031 [P] [US1] Create HostLayoutComponent as route component for /host in src/app/host/host-layout/host-layout.component.ts
+- [X] T032 [P] [US1] Create GameSetupComponent with contestant name input, pack selector, Start Game button in src/app/host/game-setup/game-setup.component.ts
+- [X] T033 [P] [US1] Create QuestionControlComponent with question display, choice selection, Lock Final Answer, and Reveal buttons in src/app/host/question-control/question-control.component.ts
+- [X] T033a [US1] Display optional explanation/notes field in QuestionControlComponent for host-only visibility (FR-021)
+- [X] T034 [P] [US1] Create HostLadderComponent displaying 15 levels with current/cleared highlighting in src/app/host/host-ladder/host-ladder.component.ts
 
 ### Shared Components for User Story 1
 
-- [ ] T035 [P] [US1] Create AnswerChoicesComponent with visual states (neutral, selected, locked, revealed correct/incorrect) in src/app/shared/answer-choices/answer-choices.component.ts
+- [X] T035 [P] [US1] Create AnswerChoicesComponent with visual states (neutral, selected, locked, revealed correct/incorrect) in src/app/shared/answer-choices/answer-choices.component.ts
 
 ### Host Logic Integration for User Story 1
 
-- [ ] T036 [US1] Implement startQuestion() method in GameStateService triggering QUESTION_STARTED event
-- [ ] T037 [US1] Implement selectChoice() method in GameStateService triggering CHOICE_SELECTED event
-- [ ] T038 [US1] Implement lockFinalAnswer() method in GameStateService triggering FINAL_LOCKED event
-- [ ] T039 [US1] Implement revealAnswer() method in GameStateService triggering REVEAL_SHOWN event
-- [ ] T040 [US1] Implement advanceLevel() method in GameStateService triggering LEVEL_ADVANCED event
-- [ ] T041 [US1] Implement endGame() method in GameStateService triggering GAME_ENDED event with winnings calculation (validate: non-negative integer; if no safe haven reached, winnings = 0)
-- [ ] T041a [P] [US1] Create GameEndSummaryComponent displaying final winnings, questions cleared, lifelines used, and highest safe haven reached (FR-010) in src/app/shared/game-end-summary/game-end-summary.component.ts
+- [X] T036 [US1] Implement startQuestion() method in GameStateService triggering QUESTION_STARTED event
+- [X] T037 [US1] Implement selectChoice() method in GameStateService triggering CHOICE_SELECTED event
+- [X] T038 [US1] Implement lockFinalAnswer() method in GameStateService triggering FINAL_LOCKED event
+- [X] T039 [US1] Implement revealAnswer() method in GameStateService triggering REVEAL_SHOWN event
+- [X] T040 [US1] Implement advanceLevel() method in GameStateService triggering LEVEL_ADVANCED event
+- [X] T041 [US1] Implement endGame() method in GameStateService triggering GAME_ENDED event with winnings calculation (validate: non-negative integer; if no safe haven reached, winnings = 0)
+- [X] T041a [P] [US1] Create GameEndSummaryComponent displaying final winnings, questions cleared, lifelines used, and highest safe haven reached (FR-010) in src/app/shared/game-end-summary/game-end-summary.component.ts
 
 ### Host UI Styling for User Story 1
 
-- [ ] T042 [US1] Style HostLayoutComponent with Material Design panels and ngx-layout flexbox in src/app/host/host-layout/host-layout.component.scss
-- [ ] T043 [US1] Style QuestionControlComponent with clear question display and control buttons in src/app/host/question-control/question-control.component.scss
-- [ ] T044 [US1] Style HostLadderComponent with level highlighting and safe haven indicators in src/app/host/host-ladder/host-ladder.component.scss
+- [X] T042 [US1] Style HostLayoutComponent with Material Design panels and ngx-layout flexbox in src/app/host/host-layout/host-layout.component.scss
+- [X] T043 [US1] Style QuestionControlComponent with clear question display and control buttons in src/app/host/question-control/question-control.component.scss
+- [X] T044 [US1] Style HostLadderComponent with level highlighting and safe haven indicators in src/app/host/host-ladder/host-ladder.component.scss
 
 **Checkpoint**: At this point, User Story 1 (host controls) should be fully functional and testable independently. Host UI complete but seat display not yet implemented.
 
