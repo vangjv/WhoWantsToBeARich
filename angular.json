@@ -58,10 +58,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "AngularSpecKitTemplate:build:production"
+              "buildTarget": "WWTBAM:build:production"
             },
             "development": {
-              "buildTarget": "AngularSpecKitTemplate:build:development"
+              "buildTarget": "WWTBAM:build:development"
             }
           },
           "defaultConfiguration": "development"
