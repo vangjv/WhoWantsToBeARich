@@ -1,44 +1,226 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Subject, takeUntil } from 'rxjs';
+import { SyncService } from '../../services/sync.service';
+import { GameState } from '../../models/game-state.model';
+import { GamePhase } from '../../models/game-phase.model';
+import { Question } from '../../models/question.model';
+import { MoneyLadder } from '../../models/money-ladder.model';
+import { LifelineState } from '../../models/lifeline.model';
+import { ChoiceKey } from '../../models/choice-key.model';
+import { QuestionDisplayComponent } from '../question-display/question-display.component';
+import { SeatLadderComponent } from '../seat-ladder/seat-ladder.component';
+import { LifelineStatusComponent } from '../lifeline-status/lifeline-status.component';
 
 /**
- * Seat Layout Component - Placeholder for Phase 4
+ * Seat Layout Component - Contestant/Audience Display (Second Screen)
  * Route: /seat
- * Purpose: Contestant/audience display (second screen)
+ * Purpose: Read-only synchronized display optimized for 1080p/4K viewing
+ *
+ * Responsibilities:
+ * - Request full state sync on initialization (T050)
+ * - Listen to BroadcastChannel sync events (T049)
+ * - Reconstruct local state from sync events (T052)
+ * - Display question, ladder, and lifeline status
  */
 @Component({
   selector: 'app-seat-layout',
   standalone: true,
-  imports: [CommonModule],
-  template: `
-    <div class="seat-placeholder">
-      <h1>Contestant Display</h1>
-      <p>Full implementation coming in Phase 4</p>
-    </div>
-  `,
-  styles: [`
-    .seat-placeholder {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      color: #ffd700;
-      font-family: 'Roboto', sans-serif;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 48px;
-      margin-bottom: 24px;
-      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-    }
-
-    p {
-      font-size: 24px;
-      color: rgba(255, 255, 255, 0.7);
-    }
-  `]
+  imports: [
+    CommonModule,
+    QuestionDisplayComponent,
+    SeatLadderComponent,
+    LifelineStatusComponent
+  ],
+  templateUrl: './seat-layout.component.html',
+  styleUrls: ['./seat-layout.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SeatLayoutComponent {}
+export class SeatLayoutComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<void>();
+
+  // Local state signals (read-only, synced from host)
+  gameState = signal<GameState | null>(null);
+  phase = signal<GamePhase>(GamePhase.SETUP);
+  contestantName = signal<string | null>(null);
+  currentQuestion = signal<Question | null>(null);
+  currentLevel = signal<number>(1);
+  clearedLevel = signal<number>(0);
+  selectedChoice = signal<ChoiceKey | null>(null);
+  finalAnswer = signal<ChoiceKey | null>(null);
+  correctAnswer = signal<ChoiceKey | null>(null);
+  ladder = signal<MoneyLadder | null>(null);
+  lifelines = signal<LifelineState | null>(null);
+  removedChoices = signal<ChoiceKey[]>([]);
+  isConnected = signal<boolean>(false);
+  // T065: Walk away state
+  walkAwayWinnings = signal<number>(0);
+  didWalkAway = signal<boolean>(false);
+
+  constructor(private syncService: SyncService) {}
+
+  ngOnInit(): void {
+    this.setupSyncListeners();
+    this.requestStateSync();
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  /**
+   * T050: Send STATE_SYNC_REQUEST on initialization
+   */
+  private requestStateSync(): void {
+    console.log('[SeatLayout] Requesting state sync...');
+    this.syncService.sendEvent('STATE_SYNC_REQUEST', null);
+  }
+
+  /**
+   * T049: Setup BroadcastChannel event listeners
+   * T052: State reconstruction from sync events
+   */
+  private setupSyncListeners(): void {
+    // Listen for STATE_SYNC_RESPONSE (full state snapshot)
+    this.syncService.onEvent('STATE_SYNC_RESPONSE')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Received full state sync', event.payload);
+        this.applyFullState(event.payload);
+      });
+
+    // Listen for QUESTION_STARTED
+    this.syncService.onEvent('QUESTION_STARTED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Question started', event.payload);
+        this.currentQuestion.set(event.payload.question);
+        this.phase.set(GamePhase.QUESTION);
+        this.selectedChoice.set(null);
+        this.finalAnswer.set(null);
+        this.correctAnswer.set(null);
+      });
+
+    // Listen for CHOICE_SELECTED
+    this.syncService.onEvent('CHOICE_SELECTED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Choice selected', event.payload);
+        this.selectedChoice.set(event.payload.choice);
+      });
+
+    // Listen for FINAL_LOCKED
+    this.syncService.onEvent('FINAL_LOCKED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Final answer locked', event.payload);
+        this.finalAnswer.set(event.payload.choice);
+        this.phase.set(GamePhase.FINAL_LOCKED);
+      });
+
+    // Listen for REVEAL_SHOWN
+    this.syncService.onEvent('REVEAL_SHOWN')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Reveal shown', event.payload);
+        this.correctAnswer.set(event.payload.correctAnswer);
+        this.phase.set(GamePhase.REVEAL);
+      });
+
+    // Listen for LEVEL_ADVANCED
+    this.syncService.onEvent('LEVEL_ADVANCED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Level advanced', event.payload);
+        this.currentLevel.set(event.payload.level);
+        this.clearedLevel.set(event.payload.clearedLevel);
+        this.phase.set(GamePhase.BETWEEN);
+      });
+
+    // Listen for LIFELINE_USED
+    this.syncService.onEvent('LIFELINE_USED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Lifeline used', event.payload);
+        this.applyLifelineUpdate(event.payload);
+      });
+
+    // T065: Listen for WALK_AWAY event
+    this.syncService.onEvent('WALK_AWAY')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Walk away', event.payload);
+        this.didWalkAway.set(true);
+        this.walkAwayWinnings.set(event.payload.winnings);
+        this.phase.set(GamePhase.ENDED);
+      });
+
+    // Listen for GAME_ENDED
+    this.syncService.onEvent('GAME_ENDED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Game ended', event.payload);
+        this.phase.set(GamePhase.ENDED);
+      });
+
+    // Check if channel is available
+    this.isConnected.set(this.syncService.isChannelAvailable());
+  }
+
+  /**
+   * Apply full state snapshot from STATE_SYNC_RESPONSE
+   */
+  private applyFullState(state: GameState): void {
+    this.gameState.set(state);
+    this.phase.set(state.phase);
+    this.contestantName.set(state.contestantName);
+    this.currentQuestion.set(state.currentQuestion);
+    this.currentLevel.set(state.currentLevel);
+    this.clearedLevel.set(state.clearedLevel);
+    this.selectedChoice.set(state.selectedChoice);
+    this.finalAnswer.set(state.finalAnswer);
+    this.correctAnswer.set(state.correctAnswer);
+    this.ladder.set(state.ladder);
+    this.lifelines.set(state.lifelines);
+    this.removedChoices.set(state.lifelines.fiftyFifty.removedChoices);
+    this.isConnected.set(true);
+  }
+
+  /**
+   * Apply lifeline update from LIFELINE_USED event
+   */
+  private applyLifelineUpdate(payload: any): void {
+    const currentLifelines = this.lifelines();
+    if (!currentLifelines) return;
+
+    const updatedLifelines = { ...currentLifelines };
+
+    switch (payload.type) {
+      case 'fiftyFifty':
+        updatedLifelines.fiftyFifty = {
+          used: true,
+          removedChoices: payload.data.removedChoices
+        };
+        this.removedChoices.set(payload.data.removedChoices);
+        break;
+
+      case 'askAudience':
+        updatedLifelines.askAudience = {
+          used: true,
+          percentages: payload.data.percentages
+        };
+        break;
+
+      case 'phoneFriend':
+        updatedLifelines.phoneFriend = {
+          used: true,
+          suggestion: payload.data.suggestion,
+          timer: null // Timer handled separately if needed
+        };
+        break;
+    }
+
+    this.lifelines.set(updatedLifelines);
+  }
+}

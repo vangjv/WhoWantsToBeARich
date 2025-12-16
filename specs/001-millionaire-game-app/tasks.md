@@ -145,31 +145,31 @@
 
 ### Seat UI Components for User Story 2
 
-- [ ] T045 [P] [US2] Create SeatLayoutComponent as route component for /seat with second-screen optimized layout in src/app/seat/seat-layout/seat-layout.component.ts
-- [ ] T046 [P] [US2] Create QuestionDisplayComponent (seat) with read-only question and choices display in src/app/seat/question-display/question-display.component.ts
-- [ ] T047 [P] [US2] Create SeatLadderComponent with vertical dramatic styling for 1080p/4K display in src/app/seat/seat-ladder/seat-ladder.component.ts
-- [ ] T048 [P] [US2] Create LifelineStatusComponent showing 3 lifeline icons with availability status in src/app/seat/lifeline-status/lifeline-status.component.ts
+- [X] T045 [P] [US2] Create SeatLayoutComponent as route component for /seat with second-screen optimized layout in src/app/seat/seat-layout/seat-layout.component.ts
+- [X] T046 [P] [US2] Create QuestionDisplayComponent (seat) with read-only question and choices display in src/app/seat/question-display/question-display.component.ts
+- [X] T047 [P] [US2] Create SeatLadderComponent with vertical dramatic styling for 1080p/4K display in src/app/seat/seat-ladder/seat-ladder.component.ts
+- [X] T048 [P] [US2] Create LifelineStatusComponent showing 3 lifeline icons with availability status in src/app/seat/lifeline-status/lifeline-status.component.ts
 
 ### Seat Sync Logic for User Story 2
 
-- [ ] T049 [US2] Implement BroadcastChannel event listener in SeatLayoutComponent subscribing to sync events
-- [ ] T050 [US2] Implement STATE_SYNC_REQUEST message on seat component initialization in SeatLayoutComponent
-- [ ] T051 [US2] Implement STATE_SYNC_RESPONSE handler in GameStateService to send full state snapshot to seat
-- [ ] T052 [US2] Implement local state reconstruction from sync events in SeatLayoutComponent
+- [X] T049 [US2] Implement BroadcastChannel event listener in SeatLayoutComponent subscribing to sync events
+- [X] T050 [US2] Implement STATE_SYNC_REQUEST message on seat component initialization in SeatLayoutComponent
+- [X] T051 [US2] Implement STATE_SYNC_RESPONSE handler in GameStateService to send full state snapshot to seat
+- [X] T052 [US2] Implement local state reconstruction from sync events in SeatLayoutComponent
 
 ### Host-Seat Integration for User Story 2
 
-- [ ] T053 [US2] Implement openSeatDisplay() method in HostLayoutComponent using window.open() with fullscreen features
-- [ ] T054 [US2] Create ConnectionStatusComponent showing seat display connection state in src/app/shared/connection-status/connection-status.component.ts
-- [ ] T055 [US2] Implement connection status polling with interval check on seatWindow.closed in HostLayoutComponent
-- [ ] T056 [US2] Add "Open Contestant Display" button to GameSetupComponent triggering openSeatDisplay()
+- [X] T053 [US2] Implement openSeatDisplay() method in HostLayoutComponent using window.open() with fullscreen features
+- [X] T054 [US2] Create ConnectionStatusComponent showing seat display connection state in src/app/shared/connection-status/connection-status.component.ts
+- [X] T055 [US2] Implement connection status polling with interval check on seatWindow.closed in HostLayoutComponent
+- [X] T056 [US2] Add "Open Contestant Display" button to GameSetupComponent triggering openSeatDisplay()
 
 ### Seat UI Styling for User Story 2
 
-- [ ] T057 [US2] Style SeatLayoutComponent with show-style dramatic theme (gold/blue palette) in src/app/seat/seat-layout/seat-layout.component.scss
-- [ ] T058 [US2] Style SeatLadderComponent with large text, pulsing current level effect, animations in src/app/seat/seat-ladder/seat-ladder.component.scss
-- [ ] T059 [US2] Style QuestionDisplayComponent (seat) with large readable text optimized for second screen in src/app/seat/question-display/question-display.component.scss
-- [ ] T060 [US2] Create reveal sequence animations using Angular @angular/animations in src/app/seat/question-display/question-display.component.ts
+- [X] T057 [US2] Style SeatLayoutComponent with show-style dramatic theme (gold/blue palette) in src/app/seat/seat-layout/seat-layout.component.scss
+- [X] T058 [US2] Style SeatLadderComponent with large text, pulsing current level effect, animations in src/app/seat/seat-ladder/seat-ladder.component.scss
+- [X] T059 [US2] Style QuestionDisplayComponent (seat) with large readable text optimized for second screen in src/app/seat/question-display/question-display.component.scss
+- [X] T060 [US2] Create reveal sequence animations using Angular @angular/animations in src/app/seat/question-display/question-display.component.ts
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently. Host can control game, seat display synchronizes in real-time.
 
@@ -189,12 +189,12 @@
 
 ### Implementation for User Story 3
 
-- [ ] T061 [P] [US3] Create AdminPanelComponent with Walk Away button in src/app/host/admin-panel/admin-panel.component.ts
-- [ ] T062 [US3] Implement walkAway() method in GameStateService triggering WALK_AWAY event with winnings calculation
-- [ ] T063 [US3] Add walk away button state management (disabled if answer locked) in AdminPanelComponent
-- [ ] T064 [US3] Update QuestionControlComponent to disable walk away button after final answer locked
-- [ ] T065 [US3] Update SeatLayoutComponent to display walk away message on WALK_AWAY event
-- [ ] T066 [US3] Style AdminPanelComponent with clear walk away button styling in src/app/host/admin-panel/admin-panel.component.scss
+- [X] T061 [P] [US3] Create AdminPanelComponent with Walk Away button in src/app/host/admin-panel/admin-panel.component.ts
+- [X] T062 [US3] Implement walkAway() method in GameStateService triggering WALK_AWAY event with winnings calculation
+- [X] T063 [US3] Add walk away button state management (disabled if answer locked) in AdminPanelComponent
+- [X] T064 [US3] Update QuestionControlComponent to disable walk away button after final answer locked
+- [X] T065 [US3] Update SeatLayoutComponent to display walk away message on WALK_AWAY event
+- [X] T066 [US3] Style AdminPanelComponent with clear walk away button styling in src/app/host/admin-panel/admin-panel.component.scss
 
 **Checkpoint**: User Story 3 complete. Host can trigger walk away, game ends with correct winnings calculation.
 
@@ -214,13 +214,13 @@
 
 ### Implementation for User Story 4
 
-- [ ] T067 [P] [US4] Create LifelineControlComponent with 50:50 button in src/app/host/lifeline-control/lifeline-control.component.ts
-- [ ] T068 [US4] Implement useFiftyFifty() method in GameStateService with random removal of two incorrect choices
-- [ ] T069 [US4] Add LIFELINE_USED event emission with type 'fiftyFifty' and removedChoices data in GameStateService
-- [ ] T070 [US4] Update AnswerChoicesComponent to display removed choices state (grayed out) based on removedChoices input
-- [ ] T071 [US4] Update LifelineStatusComponent (seat) to show 50:50 used state and display removed choices
-- [ ] T072 [US4] Update LifelineControlComponent to disable 50:50 button after use or if answer locked
-- [ ] T073 [US4] Style LifelineControlComponent with Material buttons and used/available states in src/app/host/lifeline-control/lifeline-control.component.scss
+- [X] T067 [P] [US4] Create LifelineControlComponent with 50:50 button in src/app/host/lifeline-control/lifeline-control.component.ts
+- [X] T068 [US4] Implement useFiftyFifty() method in GameStateService with random removal of two incorrect choices
+- [X] T069 [US4] Add LIFELINE_USED event emission with type 'fiftyFifty' and removedChoices data in GameStateService
+- [X] T070 [US4] Update AnswerChoicesComponent to display removed choices state (grayed out) based on removedChoices input
+- [X] T071 [US4] Update LifelineStatusComponent (seat) to show 50:50 used state and display removed choices
+- [X] T072 [US4] Update LifelineControlComponent to disable 50:50 button after use or if answer locked
+- [X] T073 [US4] Style LifelineControlComponent with Material buttons and used/available states in src/app/host/lifeline-control/lifeline-control.component.scss
 
 **Checkpoint**: User Story 4 complete. 50:50 lifeline functional on host and seat displays.
 

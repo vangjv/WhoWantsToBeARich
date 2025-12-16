@@ -1,0 +1,18 @@
+<div class="seat-ladder" *ngIf="ladder">
+  <div class="ladder-container">
+    <div
+      *ngFor="let level of ladder.levels.slice().reverse(); trackBy: trackByLevel"
+      class="ladder-level"
+      [class.safe-haven]="isSafeHaven(level.levelNumber)"
+      [class.current]="level.levelNumber === currentLevel"
+      [class.cleared]="level.levelNumber <= clearedLevel"
+      [@levelHighlight]="getLevelState(level.levelNumber)"
+    >
+      <div class="level-number">{{ level.levelNumber }}</div>
+      <div class="level-value">{{ formatValue(level.value) }}</div>
+      <div class="safe-haven-indicator" *ngIf="isSafeHaven(level.levelNumber)">
+        <span class="safe-icon">🛡️</span>
+      </div>
+    </div>
+  </div>
+</div>

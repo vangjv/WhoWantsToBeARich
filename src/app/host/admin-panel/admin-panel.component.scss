@@ -1,0 +1,67 @@
+// Admin Panel Component Styles
+// T066: Style AdminPanelComponent with clear walk away button styling
+
+.admin-card {
+  background: #16213e;
+  color: #ffffff;
+  height: 100%;
+  min-height: 150px;
+
+  ::ng-deep .mat-mdc-card-header {
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  ::ng-deep .mat-mdc-card-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffd700;
+    margin: 0;
+  }
+}
+
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 8px 0;
+}
+
+// T066: Walk away button styling
+.walk-away-btn {
+  width: 100%;
+  height: 56px;
+  font-size: 1.1rem;
+  font-weight: 500;
+
+  mat-icon {
+    margin-right: 8px;
+  }
+
+  &:not(:disabled) {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+    color: #ffffff;
+
+    &:hover {
+      background: linear-gradient(135deg, #ee5a6f 0%, #ff6b6b 100%);
+      box-shadow: 0 4px 8px rgba(238, 90, 111, 0.4);
+    }
+  }
+
+  &:disabled {
+    background: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.3);
+    cursor: not-allowed;
+  }
+}
+
+.status-hint {
+  text-align: center;
+  padding: 4px;
+
+  small {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+}

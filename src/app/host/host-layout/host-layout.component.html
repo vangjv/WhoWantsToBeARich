@@ -1,13 +1,16 @@
 <div class="host-layout">
   <header class="host-header">
     <h1>Host Control Panel - Who Wants to Be a Millionaire</h1>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="openSeatDisplay()"
-      class="open-display-btn">
-      Open Contestant Display
-    </button>
+    <div class="header-actions">
+      <app-connection-status></app-connection-status>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="openSeatDisplay()"
+        class="open-display-btn">
+        Open Contestant Display
+      </button>
+    </div>
   </header>
 
   <div class="host-main" *ngIf="gameState">
@@ -27,6 +30,7 @@
       </div>
 
       <div class="right-panel">
+        <app-lifeline-control></app-lifeline-control>
         <app-admin-panel></app-admin-panel>
       </div>
     </div>

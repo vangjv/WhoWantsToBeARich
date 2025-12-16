@@ -21,6 +21,12 @@
     font-weight: 500;
   }
 
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
   .open-display-btn {
     min-width: 200px;
   }
@@ -45,12 +51,19 @@
 }
 
 .left-panel,
-.center-panel,
-.right-panel {
+.center-panel {
   background: #16213e;
   border-radius: 8px;
   padding: 16px;
   overflow: auto;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: auto;
+  padding: 0; // Remove padding since child components have their own cards
 }
 
 .game-ended {

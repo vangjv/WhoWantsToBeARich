@@ -1,0 +1,8 @@
+<div class="connection-status" [class.connected]="isConnected()" [class.disconnected]="!isConnected()">
+  <div class="status-indicator">
+    <span class="status-dot"></span>
+    <span class="status-text">
+      {{ isConnected() ? 'Seat Display: Connected' : 'Seat Display: Disconnected' }}
+    </span>
+  </div>
+</div>

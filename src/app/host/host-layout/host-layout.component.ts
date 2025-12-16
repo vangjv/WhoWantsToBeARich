@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
-import { Subject } from 'rxjs';
+import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GameStateService } from '../../services/game-state.service';
 import { GameState } from '../../models/game-state.model';
@@ -10,7 +10,9 @@ import { GameSetupComponent } from '../game-setup/game-setup.component';
 import { QuestionControlComponent } from '../question-control/question-control.component';
 import { HostLadderComponent } from '../host-ladder/host-ladder.component';
 import { AdminPanelComponent } from '../admin-panel/admin-panel.component';
+import { LifelineControlComponent } from '../lifeline-control/lifeline-control.component';
 import { GameEndSummaryComponent } from '../../shared/game-end-summary/game-end-summary.component';
+import { ConnectionStatusComponent } from '../../shared/connection-status/connection-status.component';
 
 /**
  * Host Layout Component - Root container for host control UI
@@ -27,7 +29,9 @@ import { GameEndSummaryComponent } from '../../shared/game-end-summary/game-end-
     QuestionControlComponent,
     HostLadderComponent,
     AdminPanelComponent,
-    GameEndSummaryComponent
+    LifelineControlComponent,
+    GameEndSummaryComponent,
+    ConnectionStatusComponent
   ],
   templateUrl: './host-layout.component.html',
   styleUrls: ['./host-layout.component.scss']
@@ -36,7 +40,10 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
   gameState: GameState | null = null;
   GamePhase = GamePhase; // Expose enum to template
 
+  @ViewChild(ConnectionStatusComponent) connectionStatus?: ConnectionStatusComponent;
+
   private destroy$ = new Subject<void>();
+  private seatWindow: Window | null = null;
 
   constructor(private gameStateService: GameStateService) {}
 
@@ -47,18 +54,37 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
       .subscribe(state => {
         this.gameState = state;
       });
+
+    // T055: Connection status polling - check if seat window is still open
+    interval(2000)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        this.checkSeatWindowStatus();
+      });
   }
 
   ngOnDestroy(): void {
     this.destroy$.next();
     this.destroy$.complete();
+
+    // Close seat window if still open
+    if (this.seatWindow && !this.seatWindow.closed) {
+      this.seatWindow.close();
+    }
   }
 
   /**
-   * Open contestant display window
+   * T053: Open contestant display window
    * Opens /seat route in popup window with fullscreen features
    */
   openSeatDisplay(): void {
+    // Check if seat window already exists and is open
+    if (this.seatWindow && !this.seatWindow.closed) {
+      this.seatWindow.focus();
+      console.log('[HostLayout] Seat window already open, bringing to front');
+      return;
+    }
+
     const width = 1920;
     const height = 1080;
     const left = window.screen.availWidth - width;
@@ -66,7 +92,27 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
 
     const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no`;
 
-    window.open('/seat', 'millionaire-seat', features);
+    this.seatWindow = window.open('/seat', 'millionaire-seat', features);
+
+    if (this.seatWindow) {
+      console.log('[HostLayout] Seat window opened successfully');
+      // Register window with connection status component
+      if (this.connectionStatus) {
+        this.connectionStatus.registerSeatWindow(this.seatWindow);
+      }
+    } else {
+      console.error('[HostLayout] Failed to open seat window - popup may be blocked');
+    }
+  }
+
+  /**
+   * T055: Check seat window status for connection indicator
+   */
+  private checkSeatWindowStatus(): void {
+    if (this.seatWindow && this.seatWindow.closed) {
+      console.log('[HostLayout] Seat window was closed');
+      this.seatWindow = null;
+    }
   }
 
   /**

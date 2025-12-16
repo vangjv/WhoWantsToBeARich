@@ -1,0 +1,57 @@
+<!-- Lifeline Control Component Template -->
+<!-- T067: 50:50 lifeline button -->
+<mat-card class="lifeline-card">
+  <mat-card-header>
+    <mat-card-title>Lifelines</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="lifelines-container">
+      <!-- 50:50 Lifeline Button -->
+      <button
+        mat-raised-button
+        class="lifeline-btn fifty-fifty"
+        [class.used]="fiftyFiftyUsed"
+        [disabled]="isFiftyFiftyDisabled()"
+        [matTooltip]="getFiftyFiftyTooltip()"
+        (click)="onUseFiftyFifty()"
+      >
+        <mat-icon class="lifeline-icon">filter_2</mat-icon>
+        <div class="lifeline-label">
+          <span class="lifeline-name">50:50</span>
+          <span class="lifeline-status" *ngIf="fiftyFiftyUsed">USED</span>
+          <span class="lifeline-status" *ngIf="!fiftyFiftyUsed">AVAILABLE</span>
+        </div>
+      </button>
+
+      <!-- Ask the Audience - Placeholder for Phase 7 -->
+      <button
+        mat-raised-button
+        class="lifeline-btn ask-audience"
+        [class.used]="askAudienceUsed"
+        disabled
+        matTooltip="Coming in Phase 7"
+      >
+        <mat-icon class="lifeline-icon">group</mat-icon>
+        <div class="lifeline-label">
+          <span class="lifeline-name">Ask Audience</span>
+          <span class="lifeline-status">Phase 7</span>
+        </div>
+      </button>
+
+      <!-- Phone a Friend - Placeholder for Phase 8 -->
+      <button
+        mat-raised-button
+        class="lifeline-btn phone-friend"
+        [class.used]="phoneFriendUsed"
+        disabled
+        matTooltip="Coming in Phase 8"
+      >
+        <mat-icon class="lifeline-icon">phone</mat-icon>
+        <div class="lifeline-label">
+          <span class="lifeline-name">Phone Friend</span>
+          <span class="lifeline-status">Phase 8</span>
+        </div>
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>
