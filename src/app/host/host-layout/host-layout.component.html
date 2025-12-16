@@ -4,8 +4,8 @@
     <div class="header-actions">
       <!-- Question Timer Display (T096) -->
       <app-timer
-        *ngIf="gameState?.questionTimer"
-        [timer]="gameState.questionTimer"
+        *ngIf="questionTimer()"
+        [timer]="questionTimer()"
         class="question-timer-display">
       </app-timer>
 

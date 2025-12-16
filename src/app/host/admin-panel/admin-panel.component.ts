@@ -75,12 +75,13 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
     this.stateSubscription = this.gameStateService.gameState$.subscribe(state => {
       this.currentPhase = state.phase;
 
-      // T063: Disable walk away button if answer locked or game ended
+      // T063: Disable walk away button if answer locked, game ended, or between questions
       this.walkAwayDisabled =
         state.phase === GamePhase.FINAL_LOCKED ||
         state.phase === GamePhase.REVEAL ||
         state.phase === GamePhase.ENDED ||
-        state.phase === GamePhase.SETUP;
+        state.phase === GamePhase.SETUP ||
+        state.phase === GamePhase.BETWEEN;
 
       // T099: Track question timer state
       this.hasQuestionTimer = !!state.questionTimer;
@@ -154,7 +155,7 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
    */
   public onEndGame(): void {
     if (confirm('End the game immediately? Final winnings will be calculated.')) {
-      this.gameStateService.endGame();
+      this.gameStateService.endGame('walkaway');
     }
   }
 

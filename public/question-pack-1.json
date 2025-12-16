@@ -1,0 +1,232 @@
+{
+  "name": "General Knowledge Millionaire Pack",
+  "description": "15 questions with increasing difficulty, formatted for a Who Wants to Be a Millionaire-style game.",
+  "creator": "ChatGPT",
+  "questions": [
+    {
+      "id": "q1",
+      "level": 1,
+      "text": "Which planet is known as the Red Planet?",
+      "choices": [
+        { "key": "A", "text": "Mars" },
+        { "key": "B", "text": "Venus" },
+        { "key": "C", "text": "Jupiter" },
+        { "key": "D", "text": "Mercury" }
+      ],
+      "correctAnswer": "A",
+      "category": "Science",
+      "difficulty": "easy",
+      "explanation": "Mars appears reddish because of iron oxide (rust) on its surface."
+    },
+    {
+      "id": "q2",
+      "level": 2,
+      "text": "What is the largest ocean on Earth?",
+      "choices": [
+        { "key": "A", "text": "Atlantic Ocean" },
+        { "key": "B", "text": "Indian Ocean" },
+        { "key": "C", "text": "Pacific Ocean" },
+        { "key": "D", "text": "Arctic Ocean" }
+      ],
+      "correctAnswer": "C",
+      "category": "Geography",
+      "difficulty": "easy",
+      "explanation": "The Pacific Ocean covers more area than all of Earth's land combined."
+    },
+    {
+      "id": "q3",
+      "level": 3,
+      "text": "In basic arithmetic, what is the result of 12 × 8?",
+      "choices": [
+        { "key": "A", "text": "86" },
+        { "key": "B", "text": "96" },
+        { "key": "C", "text": "106" },
+        { "key": "D", "text": "88" }
+      ],
+      "correctAnswer": "B",
+      "category": "Math",
+      "difficulty": "easy",
+      "explanation": "12 × 8 = 96."
+    },
+    {
+      "id": "q4",
+      "level": 4,
+      "text": "Which author wrote the novel '1984'?",
+      "choices": [
+        { "key": "A", "text": "George Orwell" },
+        { "key": "B", "text": "Aldous Huxley" },
+        { "key": "C", "text": "Ray Bradbury" },
+        { "key": "D", "text": "J.D. Salinger" }
+      ],
+      "correctAnswer": "A",
+      "category": "Literature",
+      "difficulty": "easy",
+      "explanation": "George Orwell published '1984' in 1949."
+    },
+    {
+      "id": "q5",
+      "level": 5,
+      "text": "Which element has the chemical symbol 'O'?",
+      "choices": [
+        { "key": "A", "text": "Gold" },
+        { "key": "B", "text": "Oxygen" },
+        { "key": "C", "text": "Osmium" },
+        { "key": "D", "text": "Zinc" }
+      ],
+      "correctAnswer": "B",
+      "category": "Science",
+      "difficulty": "easy",
+      "explanation": "O is the symbol for oxygen; Os is the symbol for osmium."
+    },
+    {
+      "id": "q6",
+      "level": 6,
+      "text": "What is the smallest prime number greater than 10?",
+      "choices": [
+        { "key": "A", "text": "11" },
+        { "key": "B", "text": "12" },
+        { "key": "C", "text": "13" },
+        { "key": "D", "text": "15" }
+      ],
+      "correctAnswer": "A",
+      "category": "Math",
+      "difficulty": "medium",
+      "explanation": "11 is prime; 12 is composite; 13 is prime but not the smallest > 10."
+    },
+    {
+      "id": "q7",
+      "level": 7,
+      "text": "Which painting is Leonardo da Vinci famous for creating?",
+      "choices": [
+        { "key": "A", "text": "The Starry Night" },
+        { "key": "B", "text": "The Persistence of Memory" },
+        { "key": "C", "text": "Mona Lisa" },
+        { "key": "D", "text": "Guernica" }
+      ],
+      "correctAnswer": "C",
+      "category": "Art",
+      "difficulty": "medium",
+      "explanation": "The 'Mona Lisa' is one of Leonardo da Vinci’s most famous works."
+    },
+    {
+      "id": "q8",
+      "level": 8,
+      "text": "In computing, what does the acronym 'CPU' stand for?",
+      "choices": [
+        { "key": "A", "text": "Central Processing Unit" },
+        { "key": "B", "text": "Computer Processing Utility" },
+        { "key": "C", "text": "Core Peripheral Unit" },
+        { "key": "D", "text": "Central Program Upload" }
+      ],
+      "correctAnswer": "A",
+      "category": "Technology",
+      "difficulty": "medium",
+      "explanation": "CPU stands for Central Processing Unit—the primary processor of a computer."
+    },
+    {
+      "id": "q9",
+      "level": 9,
+      "text": "Which gas makes up the largest percentage of Earth's atmosphere?",
+      "choices": [
+        { "key": "A", "text": "Oxygen" },
+        { "key": "B", "text": "Carbon Dioxide" },
+        { "key": "C", "text": "Nitrogen" },
+        { "key": "D", "text": "Argon" }
+      ],
+      "correctAnswer": "C",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "Earth’s atmosphere is about 78% nitrogen and about 21% oxygen."
+    },
+    {
+      "id": "q10",
+      "level": 10,
+      "text": "Which city is known as the 'City of Canals'?",
+      "choices": [
+        { "key": "A", "text": "Amsterdam" },
+        { "key": "B", "text": "Venice" },
+        { "key": "C", "text": "Bangkok" },
+        { "key": "D", "text": "Copenhagen" }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "medium",
+      "explanation": "Venice is famous for its extensive canal network and gondolas."
+    },
+    {
+      "id": "q11",
+      "level": 11,
+      "text": "What is the term for a word that is spelled the same forwards and backwards?",
+      "choices": [
+        { "key": "A", "text": "Anagram" },
+        { "key": "B", "text": "Palindrome" },
+        { "key": "C", "text": "Homophone" },
+        { "key": "D", "text": "Synonym" }
+      ],
+      "correctAnswer": "B",
+      "category": "Language",
+      "difficulty": "hard",
+      "explanation": "A palindrome reads the same in both directions, like 'racecar'."
+    },
+    {
+      "id": "q12",
+      "level": 12,
+      "text": "Which of these countries is NOT a member of the European Union?",
+      "choices": [
+        { "key": "A", "text": "Spain" },
+        { "key": "B", "text": "Norway" },
+        { "key": "C", "text": "Germany" },
+        { "key": "D", "text": "Italy" }
+      ],
+      "correctAnswer": "B",
+      "category": "Politics",
+      "difficulty": "hard",
+      "explanation": "Norway is in the European Economic Area but is not an EU member."
+    },
+    {
+      "id": "q13",
+      "level": 13,
+      "text": "In classical mythology, who is the Greek god of the sea?",
+      "choices": [
+        { "key": "A", "text": "Ares" },
+        { "key": "B", "text": "Apollo" },
+        { "key": "C", "text": "Poseidon" },
+        { "key": "D", "text": "Hermes" }
+      ],
+      "correctAnswer": "C",
+      "category": "Mythology",
+      "difficulty": "hard",
+      "explanation": "Poseidon rules the seas, earthquakes, and horses in Greek mythology."
+    },
+    {
+      "id": "q14",
+      "level": 14,
+      "text": "What is the name of the boundary that surrounds a black hole beyond which nothing can escape?",
+      "choices": [
+        { "key": "A", "text": "Event horizon" },
+        { "key": "B", "text": "Singularity shell" },
+        { "key": "C", "text": "Photon ring" },
+        { "key": "D", "text": "Gravity well" }
+      ],
+      "correctAnswer": "A",
+      "category": "Science",
+      "difficulty": "hard",
+      "explanation": "The event horizon is the point of no return for light and matter."
+    },
+    {
+      "id": "q15",
+      "level": 15,
+      "text": "Which of these is the largest moon in the Solar System?",
+      "choices": [
+        { "key": "A", "text": "Titan" },
+        { "key": "B", "text": "Europa" },
+        { "key": "C", "text": "Ganymede" },
+        { "key": "D", "text": "Triton" }
+      ],
+      "correctAnswer": "C",
+      "category": "Astronomy",
+      "difficulty": "hard",
+      "explanation": "Ganymede (a moon of Jupiter) is larger than Mercury."
+    }
+  ]
+}

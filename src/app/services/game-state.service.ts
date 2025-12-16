@@ -101,6 +101,12 @@ export class GameStateService {
    * Initialize new game with question pack and contestant name
    */
   public setupGame(contestantName: string, questionPack: QuestionPack, questionTimerDuration: number | null = null): void {
+    // Validate question pack has 15 questions
+    if (questionPack.questions.length !== 15) {
+      console.error(`[GameStateService] Question pack must have exactly 15 questions (has ${questionPack.questions.length})`);
+      throw new Error(`Question pack must have exactly 15 questions, but has ${questionPack.questions.length}`);
+    }
+
     const newState = createDefaultGameState();
     newState.contestantName = contestantName;
     newState.questionPack = questionPack;
@@ -115,7 +121,7 @@ export class GameStateService {
   public startGame(contestantName: string, questionPack: QuestionPack, questionTimerDuration: number | null = null): void {
     this.setupGame(contestantName, questionPack, questionTimerDuration);
     // Automatically start first question
-    setTimeout(() => this.startQuestion(), 100);
+    this.startQuestion();
   }
 
   /**
@@ -136,7 +142,7 @@ export class GameStateService {
       return;
     }
 
-    // Initialize question timer if configured
+    // Initialize question timer if configured (but don't auto-start it)
     const questionTimer = this.questionTimerDuration ? {
       durationSeconds: this.questionTimerDuration,
       remainingSeconds: this.questionTimerDuration,
@@ -144,22 +150,37 @@ export class GameStateService {
       isExpired: false
     } : null;
 
+    // Reset lifeline data for new question (keep "used" status but clear transient data)
+    const updatedLifelines = { ...state.lifelines };
+    updatedLifelines.fiftyFifty = {
+      ...updatedLifelines.fiftyFifty,
+      removedChoices: []
+    };
+    updatedLifelines.askAudience = {
+      ...updatedLifelines.askAudience,
+      percentages: null
+    };
+    updatedLifelines.phoneFriend = {
+      ...updatedLifelines.phoneFriend,
+      suggestion: null,
+      timer: null
+    };
+
     this.updateState({
       phase: GamePhase.QUESTION,
       currentQuestion: question,
       selectedChoice: null,
       finalAnswer: null,
       correctAnswer: null,
-      questionTimer
+      questionTimer,
+      lifelines: updatedLifelines
     });
 
     this.syncService.sendEvent('QUESTION_STARTED', { question });
     console.log(`[GameStateService] Started question for level ${state.currentLevel}`);
 
-    // Start question timer if configured
-    if (this.questionTimerDuration) {
-      this.startQuestionTimer();
-    }
+    // Timer is initialized but not auto-started - host can manually start it
+    // This gives host control over when to start the timer
   }
 
   /**
@@ -188,6 +209,12 @@ export class GameStateService {
       console.warn('[GameStateService] Cannot lock answer - no choice selected');
       return;
     }
+
+    // Stop Phone a Friend timer if running
+    this.stopTimer();
+
+    // Pause question timer if running
+    this.pauseQuestionTimer();
 
     this.updateState({
       phase: GamePhase.FINAL_LOCKED,
@@ -248,6 +275,10 @@ export class GameStateService {
       console.warn('[GameStateService] Cannot advance - not in REVEAL phase');
       return;
     }
+
+    // Stop any active timers
+    this.stopTimer();
+    this.stopQuestionTimer();
 
     const newLevel = state.currentLevel + 1;
     const newClearedLevel = state.currentLevel;
@@ -488,11 +519,19 @@ export class GameStateService {
     }
 
     // Mark timer as running
+    const updatedTimer = {
+      ...state.questionTimer,
+      isRunning: true
+    };
     this.updateState({
-      questionTimer: {
-        ...state.questionTimer,
-        isRunning: true
-      }
+      questionTimer: updatedTimer
+    });
+
+    // Send sync event to notify seat that timer is starting
+    this.syncService.sendEvent('TIMER_TICK', {
+      remaining: updatedTimer.remainingSeconds,
+      isRunning: true,
+      isExpired: false
     });
 
     this.questionTimerSubscription = interval(1000).subscribe(() => {
@@ -520,16 +559,22 @@ export class GameStateService {
       }
 
       const newRemaining = timer.remainingSeconds - 1;
+      const isExpired = newRemaining === 0;
 
       this.updateState({
         questionTimer: {
           ...timer,
           remainingSeconds: newRemaining,
-          isExpired: newRemaining === 0
+          isExpired
         }
       });
 
-      this.syncService.sendEvent('TIMER_TICK', { remaining: newRemaining });
+      // Send full timer state in sync event
+      this.syncService.sendEvent('TIMER_TICK', {
+        remaining: newRemaining,
+        isRunning: !isExpired,
+        isExpired
+      });
     });
   }
 
@@ -540,11 +585,18 @@ export class GameStateService {
     const state = this.getState();
     if (state.questionTimer && state.questionTimer.isRunning) {
       this.stopQuestionTimer();
+      const pausedTimer = {
+        ...state.questionTimer,
+        isRunning: false
+      };
       this.updateState({
-        questionTimer: {
-          ...state.questionTimer,
-          isRunning: false
-        }
+        questionTimer: pausedTimer
+      });
+      // Send sync event to notify seat
+      this.syncService.sendEvent('TIMER_TICK', {
+        remaining: pausedTimer.remainingSeconds,
+        isRunning: false,
+        isExpired: pausedTimer.isExpired
       });
       console.log('[GameStateService] Question timer paused');
     }
@@ -566,18 +618,31 @@ export class GameStateService {
    */
   public resetQuestionTimer(): void {
     const state = this.getState();
-    if (state.questionTimer && this.questionTimerDuration) {
-      this.stopQuestionTimer();
-      this.updateState({
-        questionTimer: {
-          durationSeconds: this.questionTimerDuration,
-          remainingSeconds: this.questionTimerDuration,
-          isRunning: false,
-          isExpired: false
-        }
-      });
-      console.log('[GameStateService] Question timer reset');
+    if (!state.questionTimer) {
+      console.warn('[GameStateService] Cannot reset timer - no timer configured');
+      return;
     }
+
+    // Use the durationSeconds from the timer state (persisted in sessionStorage)
+    const duration = state.questionTimer.durationSeconds;
+
+    this.stopQuestionTimer();
+    this.updateState({
+      questionTimer: {
+        durationSeconds: duration,
+        remainingSeconds: duration,
+        isRunning: false,
+        isExpired: false
+      }
+    });
+
+    // Send sync event to update seat display with full timer state
+    this.syncService.sendEvent('TIMER_TICK', {
+      remaining: duration,
+      isRunning: false,
+      isExpired: false
+    });
+    console.log('[GameStateService] Question timer reset to', duration, 'seconds');
   }
 
   /**

@@ -33,7 +33,7 @@
           <button
             mat-mini-fab
             color="accent"
-            [disabled]="!questionTimerRunning || questionTimerExpired"
+            [disabled]="!questionTimerRunning"
             (click)="pauseQuestionTimer()"
             [attr.aria-label]="'Pause question timer'"
             title="Pause Timer"
@@ -44,10 +44,10 @@
           <button
             mat-mini-fab
             color="primary"
-            [disabled]="questionTimerRunning || questionTimerExpired"
+            [disabled]="questionTimerRunning"
             (click)="resumeQuestionTimer()"
             [attr.aria-label]="'Resume question timer'"
-            title="Resume Timer"
+            title="Start/Resume Timer"
           >
             <mat-icon>play_arrow</mat-icon>
           </button>
@@ -55,7 +55,6 @@
           <button
             mat-mini-fab
             color="warn"
-            [disabled]="questionTimerExpired"
             (click)="resetQuestionTimer()"
             [attr.aria-label]="'Reset question timer'"
             title="Reset Timer"

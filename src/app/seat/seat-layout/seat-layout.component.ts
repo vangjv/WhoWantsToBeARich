@@ -105,6 +105,7 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
         this.selectedChoice.set(null);
         this.finalAnswer.set(null);
         this.correctAnswer.set(null);
+        this.removedChoices.set([]);
       });
 
     // Listen for CHOICE_SELECTED
@@ -177,7 +178,9 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
         if (currentTimer) {
           this.questionTimer.set({
             ...currentTimer,
-            remainingSeconds: event.payload.remaining
+            remainingSeconds: event.payload.remaining,
+            isRunning: event.payload.isRunning ?? currentTimer.isRunning,
+            isExpired: event.payload.isExpired ?? currentTimer.isExpired
           });
         }
       });

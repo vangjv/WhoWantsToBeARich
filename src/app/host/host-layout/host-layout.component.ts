@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { Subject, interval } from 'rxjs';
@@ -6,6 +6,7 @@ import { takeUntil } from 'rxjs/operators';
 import { GameStateService } from '../../services/game-state.service';
 import { GameState } from '../../models/game-state.model';
 import { GamePhase } from '../../models/game-phase.model';
+import { TimerState } from '../../models/timer.model';
 import { GameSetupComponent } from '../game-setup/game-setup.component';
 import { QuestionControlComponent } from '../question-control/question-control.component';
 import { HostLadderComponent } from '../host-ladder/host-ladder.component';
@@ -41,6 +42,7 @@ import { TimerComponent } from '../../shared/timer/timer.component';
 export class HostLayoutComponent implements OnInit, OnDestroy {
   gameState: GameState | null = null;
   GamePhase = GamePhase; // Expose enum to template
+  questionTimer = signal<TimerState | null>(null);
 
   @ViewChild(ConnectionStatusComponent) connectionStatus?: ConnectionStatusComponent;
 
@@ -55,6 +57,7 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe(state => {
         this.gameState = state;
+        this.questionTimer.set(state.questionTimer);
       });
 
     // T055: Connection status polling - check if seat window is still open
