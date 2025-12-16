@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.dialog-description {
+  margin-bottom: 20px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.percentage-inputs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.total-display {
+  padding: 12px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 8px;
+
+  &.valid {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+  }
+
+  &.invalid {
+    background-color: #ffcdd2;
+    color: #c62828;
+  }
+}
+
+.error-message {
+  color: #c62828;
+  text-align: center;
+  margin-top: 8px;
+  font-size: 14px;
+}

@@ -1,0 +1,80 @@
+<div class="seat-layout">
+  <!-- Header with Contestant Name and Connection Status -->
+  <header class="seat-header">
+    <div class="contestant-info" *ngIf="contestantName()">
+      <h1 class="contestant-name">{{ contestantName() }}</h1>
+    </div>
+
+    <!-- T097: Question Timer Display -->
+    <div class="timer-display" *ngIf="questionTimer()">
+      <app-timer [timer]="questionTimer()"></app-timer>
+    </div>
+
+    <div class="connection-indicator" [class.connected]="isConnected()">
+      <span class="status-dot"></span>
+      {{ isConnected() ? 'Connected' : 'Disconnected' }}
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <div class="seat-content">
+    <!-- Left Panel: Money Ladder -->
+    <aside class="ladder-panel">
+      <app-seat-ladder
+        [ladder]="ladder()"
+        [currentLevel]="currentLevel()"
+        [clearedLevel]="clearedLevel()"
+      ></app-seat-ladder>
+    </aside>
+
+    <!-- Center Panel: Question Display -->
+    <main class="question-panel">
+      <app-question-display
+        [question]="currentQuestion()"
+        [selectedChoice]="selectedChoice()"
+        [finalAnswer]="finalAnswer()"
+        [correctAnswer]="correctAnswer()"
+        [phase]="phase()"
+        [removedChoices]="removedChoices()"
+      ></app-question-display>
+    </main>
+
+    <!-- Right Panel: Lifeline Status -->
+    <aside class="lifeline-panel">
+      <app-lifeline-status
+        [lifelines]="lifelines()"
+      ></app-lifeline-status>
+    </aside>
+  </div>
+
+  <!-- Setup/Waiting State -->
+  <div class="waiting-overlay" *ngIf="phase() === 'SETUP' || !isConnected()">
+    <div class="waiting-content">
+      <h2 *ngIf="!isConnected()">Waiting for Host Connection...</h2>
+      <h2 *ngIf="isConnected() && phase() === 'SETUP'">Game Starting Soon</h2>
+      <div class="loading-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Game Ended State -->
+  <div class="game-ended-overlay" *ngIf="phase() === 'ENDED'">
+    <div class="ended-content">
+      <!-- T065: Walk away message display -->
+      <h2 *ngIf="didWalkAway()">{{ contestantName() }} Walked Away!</h2>
+      <h2 *ngIf="!didWalkAway()">Game Over</h2>
+
+      <div class="winnings-display" *ngIf="didWalkAway()">
+        <p class="winnings-label">You're taking home:</p>
+        <p class="winnings-amount">${{ walkAwayWinnings().toLocaleString() }}</p>
+      </div>
+
+      <p class="congratulations" *ngIf="contestantName() && !didWalkAway()">
+        Thank you for playing, {{ contestantName() }}!
+      </p>
+
+      <p class="walk-away-message" *ngIf="didWalkAway()">
+        A wise decision to walk away with guaranteed winnings!
+      </p>
+    </div>
+  </div>
+</div>

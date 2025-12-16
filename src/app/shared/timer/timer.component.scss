@@ -1,0 +1,88 @@
+:host {
+  display: block;
+}
+
+.timer-display {
+  padding: 16px;
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Roboto Mono', monospace;
+  transition: all 0.3s ease;
+
+  &.normal {
+    background-color: #e3f2fd;
+    border: 2px solid #2196f3;
+  }
+
+  &.warning {
+    background-color: #fff3e0;
+    border: 2px solid #ff9800;
+    animation: pulse 1s infinite;
+  }
+
+  &.expired {
+    background-color: #ffebee;
+    border: 2px solid #f44336;
+  }
+}
+
+.timer-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.timer-value {
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1;
+
+  .warning & {
+    color: #ff9800;
+  }
+}
+
+.timer-expired {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f44336;
+  text-transform: uppercase;
+}
+
+// T100: Time's Up warning state
+.times-up-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #f44336;
+  animation: flash 2s infinite;
+  padding: 12px;
+
+  &::before {
+    content: '⏰';
+    font-size: 32px;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes flash {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

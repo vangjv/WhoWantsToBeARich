@@ -1,0 +1,164 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://millionaire-game.example.com/schemas/question-pack.schema.json",
+  "title": "Who Wants to Be a Millionaire Question Pack",
+  "description": "Schema for question pack JSON files imported into the game",
+  "type": "object",
+  "required": ["name", "questions"],
+  "additionalProperties": false,
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "description": "Display name of the question pack",
+      "examples": ["General Knowledge Pack", "Science Trivia"]
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "Optional description of the question pack",
+      "examples": ["15 questions covering general knowledge topics"]
+    },
+    "creator": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Optional creator name or organization",
+      "examples": ["John Doe", "Trivia Masters Inc."]
+    },
+    "questions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 15,
+      "description": "Array of 1-15 questions with contiguous level assignments",
+      "items": {
+        "$ref": "#/definitions/Question"
+      }
+    }
+  },
+  "definitions": {
+    "Question": {
+      "type": "object",
+      "required": ["id", "level", "text", "choices", "correctAnswer"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Unique identifier for the question (e.g., UUID or sequential ID)",
+          "examples": ["q1", "550e8400-e29b-41d4-a716-446655440000"]
+        },
+        "level": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 15,
+          "description": "Associated level (1-15) for this question"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500,
+          "description": "Question text displayed to contestant",
+          "examples": ["What is the capital of France?"]
+        },
+        "choices": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "description": "Exactly 4 answer choices labeled A, B, C, D",
+          "items": {
+            "$ref": "#/definitions/Choice"
+          }
+        },
+        "correctAnswer": {
+          "type": "string",
+          "enum": ["A", "B", "C", "D"],
+          "description": "Key of the correct answer choice"
+        },
+        "category": {
+          "type": "string",
+          "maxLength": 50,
+          "description": "Optional category (e.g., History, Science, Geography)",
+          "examples": ["Geography", "Science"]
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["easy", "medium", "hard"],
+          "description": "Optional difficulty rating"
+        },
+        "explanation": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Optional host-only explanation or fun fact (not visible to contestant)",
+          "examples": ["Paris has been the capital since 987 AD"]
+        },
+        "mediaUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Optional URL to media file (image/audio/video) supporting the question",
+          "examples": [
+            "https://example.com/images/eiffel-tower.jpg",
+            "file:///C:/QuestionMedia/audio/question1.mp3"
+          ]
+        }
+      }
+    },
+    "Choice": {
+      "type": "object",
+      "required": ["key", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "enum": ["A", "B", "C", "D"],
+          "description": "Choice identifier (A, B, C, or D)"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200,
+          "description": "Choice text displayed to contestant",
+          "examples": ["Paris", "London", "Berlin", "Madrid"]
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "name": "Sample Question Pack",
+      "description": "A collection of 15 general knowledge questions",
+      "creator": "Game Show Team",
+      "questions": [
+        {
+          "id": "q1",
+          "level": 1,
+          "text": "What is the capital of France?",
+          "choices": [
+            { "key": "A", "text": "Paris" },
+            { "key": "B", "text": "London" },
+            { "key": "C", "text": "Berlin" },
+            { "key": "D", "text": "Madrid" }
+          ],
+          "correctAnswer": "A",
+          "category": "Geography",
+          "difficulty": "easy",
+          "explanation": "Paris has been the capital of France since 987 AD."
+        },
+        {
+          "id": "q2",
+          "level": 2,
+          "text": "Who wrote 'Romeo and Juliet'?",
+          "choices": [
+            { "key": "A", "text": "Charles Dickens" },
+            { "key": "B", "text": "William Shakespeare" },
+            { "key": "C", "text": "Jane Austen" },
+            { "key": "D", "text": "Mark Twain" }
+          ],
+          "correctAnswer": "B",
+          "category": "Literature",
+          "difficulty": "easy"
+        }
+      ]
+    }
+  ]
+}

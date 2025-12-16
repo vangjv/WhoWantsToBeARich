@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Phone a Friend</h2>
+
+<div mat-dialog-content>
+  <p class="dialog-description">
+    Enter the friend's suggestion for this question.
+    Optionally, start a 30-second countdown timer.
+  </p>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Friend's Suggestion</mat-label>
+    <textarea
+      matInput
+      [(ngModel)]="suggestion"
+      placeholder="e.g., I think it's answer B"
+      rows="4"
+      maxlength="500">
+    </textarea>
+    <mat-hint align="end">{{ suggestion.length }} / 500</mat-hint>
+  </mat-form-field>
+
+  <div class="timer-option">
+    <mat-checkbox [(ngModel)]="startTimer">
+      Start 30-second timer
+    </mat-checkbox>
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()">
+    Activate Lifeline
+  </button>
+</div>

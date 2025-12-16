@@ -1,0 +1,9 @@
+<div class="timer-display" *ngIf="timer" [ngClass]="getTimerClass()">
+  <div class="timer-label" *ngIf="!timer.isExpired">Time Remaining</div>
+  <div class="timer-value" *ngIf="!timer.isExpired">
+    {{ formatTime(timer.remainingSeconds) }}
+  </div>
+  <div class="timer-expired" *ngIf="timer.isExpired">
+    Time's Up!
+  </div>
+</div>

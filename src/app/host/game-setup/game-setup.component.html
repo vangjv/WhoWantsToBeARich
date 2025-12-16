@@ -1,0 +1,84 @@
+<mat-card class="setup-card">
+  <mat-card-header>
+    <mat-card-title>Game Setup</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Contestant Name Input -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Contestant Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="contestantName"
+        placeholder="Enter contestant name"
+        maxlength="50">
+    </mat-form-field>
+
+    <!-- Question Pack Selection -->
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Question Pack</mat-label>
+      <mat-select [(ngModel)]="selectedPackId">
+        <mat-option *ngFor="let pack of availablePacks" [value]="pack.id">
+          {{ pack.name }} ({{ pack.questions.length }} questions)
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Import Question Pack -->
+    <div class="import-section">
+      <label for="file-input" class="import-label">Or import a new question pack:</label>
+      <input
+        type="file"
+        id="file-input"
+        accept=".json"
+        (change)="onFileSelect($event)"
+        class="file-input">
+
+      <div *ngIf="importError" class="error-message">
+        {{ importError }}
+      </div>
+    </div>
+
+    <!-- Question Timer Configuration -->
+    <div class="timer-config-section">
+      <mat-checkbox [(ngModel)]="questionTimerEnabled" class="timer-checkbox">
+        Enable Question Timer
+      </mat-checkbox>
+
+      <div *ngIf="questionTimerEnabled" class="timer-duration-config">
+        <mat-label class="timer-label">Timer Duration: {{ questionTimerDuration }} seconds</mat-label>
+        <mat-slider
+          min="15"
+          max="120"
+          step="5"
+          discrete
+          [displayWith]="formatTimerLabel">
+          <input matSliderThumb [(ngModel)]="questionTimerDuration">
+        </mat-slider>
+      </div>
+    </div>
+
+    <!-- T116: Ladder Configuration Button -->
+    <div class="ladder-config-section">
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="openLadderConfigDialog()"
+        class="config-button">
+        Configure Money Ladder
+      </button>
+      <p class="config-hint">Customize prize values and safe haven positions</p>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="startGame()"
+      [disabled]="!canStartGame()"
+      class="start-button">
+      Start Game
+    </button>
+  </mat-card-actions>
+</mat-card>

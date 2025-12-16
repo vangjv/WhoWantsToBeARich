@@ -1,0 +1,86 @@
+.ladder-card {
+  background: #16213e;
+  color: #ffffff;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
+  flex: 1;
+  overflow: auto;
+}
+
+.ladder-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ladder-level {
+  display: grid;
+  grid-template-columns: 32px 1fr 24px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #0f3460;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  transition: all 0.3s ease;
+
+  .level-number {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .level-value {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .safe-icon {
+    font-size: 16px;
+  }
+
+  // Cleared level styling
+  &.cleared {
+    background: rgba(76, 175, 80, 0.2);
+    border-left-color: #4caf50;
+
+    .level-number,
+    .level-value {
+      color: #4caf50;
+    }
+  }
+
+  // Current level styling
+  &.current {
+    background: rgba(255, 215, 0, 0.2);
+    border-left-color: #ffd700;
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.4);
+
+    .level-number,
+    .level-value {
+      color: #ffd700;
+      font-weight: 700;
+    }
+  }
+
+  // Safe haven styling
+  &.safe-haven {
+    border-right: 3px solid #2196f3;
+
+    &.cleared {
+      border-right-color: #4caf50;
+    }
+
+    &.current {
+      border-right-color: #ffd700;
+    }
+  }
+
+  &:hover {
+    transform: translateX(4px);
+  }
+}

@@ -1,0 +1,35 @@
+<div class="question-display" *ngIf="question" @revealAnimation>
+  <!-- Question Text -->
+  <div class="question-text">
+    <h2>{{ question.text }}</h2>
+    <div class="question-meta" *ngIf="question.category">
+      <span class="category">{{ question.category }}</span>
+    </div>
+  </div>
+
+  <!-- Answer Choices -->
+  <div class="choices-grid">
+    <div
+      *ngFor="let choice of question.choices; trackBy: trackByKey"
+      class="choice-item"
+      [class.removed]="removedChoices.includes(choice.key)"
+      [@choiceReveal]="getChoiceState(choice.key)"
+    >
+      <div class="choice-key">{{ choice.key }}</div>
+      <div class="choice-text">{{ choice.text }}</div>
+    </div>
+  </div>
+
+  <!-- Final Answer Locked Indicator -->
+  <div class="final-answer-indicator" *ngIf="phase === 'FINAL_LOCKED'">
+    <div class="pulse-ring"></div>
+    <h3>FINAL ANSWER?</h3>
+  </div>
+</div>
+
+<!-- No Question State -->
+<div class="no-question" *ngIf="!question">
+  <div class="waiting-message">
+    <h3>Waiting for next question...</h3>
+  </div>
+</div>

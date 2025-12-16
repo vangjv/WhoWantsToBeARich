@@ -1,0 +1,68 @@
+// Connection Status Component Styling
+
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+
+  &.disconnected {
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+
+    .status-text {
+      color: #ff6b6b;
+    }
+
+    .status-dot {
+      background: #ff0000;
+      animation: pulse 2s infinite;
+    }
+  }
+
+  &.connected {
+    background: rgba(0, 255, 0, 0.1);
+    border: 1px solid rgba(0, 255, 0, 0.3);
+
+    .status-text {
+      color: #51cf66;
+    }
+
+    .status-dot {
+      background: #00ff00;
+      box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+    }
+  }
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.status-text {
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0.5px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.9);
+  }
+}

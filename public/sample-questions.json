@@ -1,0 +1,232 @@
+{
+  "name": "Sample General Knowledge Pack",
+  "description": "15 sample questions covering various topics",
+  "creator": "Game Show Team",
+  "questions": [
+    {
+      "id": "q1",
+      "level": 1,
+      "text": "What is the capital of France?",
+      "choices": [
+        { "key": "A", "text": "Paris" },
+        { "key": "B", "text": "London" },
+        { "key": "C", "text": "Berlin" },
+        { "key": "D", "text": "Madrid" }
+      ],
+      "correctAnswer": "A",
+      "category": "Geography",
+      "difficulty": "easy",
+      "explanation": "Paris has been the capital of France since 987 AD."
+    },
+    {
+      "id": "q2",
+      "level": 2,
+      "text": "Who wrote 'Romeo and Juliet'?",
+      "choices": [
+        { "key": "A", "text": "Charles Dickens" },
+        { "key": "B", "text": "William Shakespeare" },
+        { "key": "C", "text": "Jane Austen" },
+        { "key": "D", "text": "Mark Twain" }
+      ],
+      "correctAnswer": "B",
+      "category": "Literature",
+      "difficulty": "easy",
+      "explanation": "William Shakespeare wrote Romeo and Juliet around 1594-1596."
+    },
+    {
+      "id": "q3",
+      "level": 3,
+      "text": "What is the largest planet in our solar system?",
+      "choices": [
+        { "key": "A", "text": "Earth" },
+        { "key": "B", "text": "Jupiter" },
+        { "key": "C", "text": "Saturn" },
+        { "key": "D", "text": "Mars" }
+      ],
+      "correctAnswer": "B",
+      "category": "Science",
+      "difficulty": "easy",
+      "explanation": "Jupiter is the largest planet with a diameter of about 143,000 kilometers."
+    },
+    {
+      "id": "q4",
+      "level": 4,
+      "text": "In what year did World War II end?",
+      "choices": [
+        { "key": "A", "text": "1943" },
+        { "key": "B", "text": "1944" },
+        { "key": "C", "text": "1945" },
+        { "key": "D", "text": "1946" }
+      ],
+      "correctAnswer": "C",
+      "category": "History",
+      "difficulty": "medium",
+      "explanation": "World War II ended in 1945 with Germany's surrender in May and Japan's in September."
+    },
+    {
+      "id": "q5",
+      "level": 5,
+      "text": "What is the chemical symbol for gold?",
+      "choices": [
+        { "key": "A", "text": "Go" },
+        { "key": "B", "text": "Gd" },
+        { "key": "C", "text": "Au" },
+        { "key": "D", "text": "Ag" }
+      ],
+      "correctAnswer": "C",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "The symbol Au comes from the Latin word for gold, 'aurum'."
+    },
+    {
+      "id": "q6",
+      "level": 6,
+      "text": "Who painted the Mona Lisa?",
+      "choices": [
+        { "key": "A", "text": "Vincent van Gogh" },
+        { "key": "B", "text": "Pablo Picasso" },
+        { "key": "C", "text": "Leonardo da Vinci" },
+        { "key": "D", "text": "Michelangelo" }
+      ],
+      "correctAnswer": "C",
+      "category": "Art",
+      "difficulty": "medium",
+      "explanation": "Leonardo da Vinci painted the Mona Lisa between 1503 and 1519."
+    },
+    {
+      "id": "q7",
+      "level": 7,
+      "text": "What is the smallest country in the world by area?",
+      "choices": [
+        { "key": "A", "text": "Monaco" },
+        { "key": "B", "text": "Vatican City" },
+        { "key": "C", "text": "San Marino" },
+        { "key": "D", "text": "Liechtenstein" }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "medium",
+      "explanation": "Vatican City covers just 0.44 square kilometers (110 acres)."
+    },
+    {
+      "id": "q8",
+      "level": 8,
+      "text": "How many hearts does an octopus have?",
+      "choices": [
+        { "key": "A", "text": "One" },
+        { "key": "B", "text": "Two" },
+        { "key": "C", "text": "Three" },
+        { "key": "D", "text": "Four" }
+      ],
+      "correctAnswer": "C",
+      "category": "Biology",
+      "difficulty": "hard",
+      "explanation": "An octopus has three hearts: two pump blood to the gills, one pumps to the body."
+    },
+    {
+      "id": "q9",
+      "level": 9,
+      "text": "What is the speed of light in a vacuum?",
+      "choices": [
+        { "key": "A", "text": "299,792 km/s" },
+        { "key": "B", "text": "150,000 km/s" },
+        { "key": "C", "text": "450,000 km/s" },
+        { "key": "D", "text": "100,000 km/s" }
+      ],
+      "correctAnswer": "A",
+      "category": "Physics",
+      "difficulty": "hard",
+      "explanation": "The speed of light in a vacuum is approximately 299,792,458 meters per second."
+    },
+    {
+      "id": "q10",
+      "level": 10,
+      "text": "Who was the first person to walk on the moon?",
+      "choices": [
+        { "key": "A", "text": "Buzz Aldrin" },
+        { "key": "B", "text": "Neil Armstrong" },
+        { "key": "C", "text": "Yuri Gagarin" },
+        { "key": "D", "text": "Michael Collins" }
+      ],
+      "correctAnswer": "B",
+      "category": "History",
+      "difficulty": "easy",
+      "explanation": "Neil Armstrong set foot on the moon on July 20, 1969, during the Apollo 11 mission."
+    },
+    {
+      "id": "q11",
+      "level": 11,
+      "text": "What is the hardest natural substance on Earth?",
+      "choices": [
+        { "key": "A", "text": "Gold" },
+        { "key": "B", "text": "Iron" },
+        { "key": "C", "text": "Diamond" },
+        { "key": "D", "text": "Platinum" }
+      ],
+      "correctAnswer": "C",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "Diamond is the hardest known natural material, rating 10 on the Mohs hardness scale."
+    },
+    {
+      "id": "q12",
+      "level": 12,
+      "text": "In which year was the United Nations founded?",
+      "choices": [
+        { "key": "A", "text": "1942" },
+        { "key": "B", "text": "1945" },
+        { "key": "C", "text": "1948" },
+        { "key": "D", "text": "1950" }
+      ],
+      "correctAnswer": "B",
+      "category": "History",
+      "difficulty": "hard",
+      "explanation": "The United Nations was officially founded on October 24, 1945, after World War II."
+    },
+    {
+      "id": "q13",
+      "level": 13,
+      "text": "What is the rarest blood type in humans?",
+      "choices": [
+        { "key": "A", "text": "O negative" },
+        { "key": "B", "text": "AB negative" },
+        { "key": "C", "text": "A negative" },
+        { "key": "D", "text": "B negative" }
+      ],
+      "correctAnswer": "B",
+      "category": "Biology",
+      "difficulty": "hard",
+      "explanation": "AB negative is the rarest blood type, found in less than 1% of the population."
+    },
+    {
+      "id": "q14",
+      "level": 14,
+      "text": "Who developed the theory of general relativity?",
+      "choices": [
+        { "key": "A", "text": "Isaac Newton" },
+        { "key": "B", "text": "Niels Bohr" },
+        { "key": "C", "text": "Albert Einstein" },
+        { "key": "D", "text": "Stephen Hawking" }
+      ],
+      "correctAnswer": "C",
+      "category": "Physics",
+      "difficulty": "medium",
+      "explanation": "Albert Einstein published his theory of general relativity in 1915."
+    },
+    {
+      "id": "q15",
+      "level": 15,
+      "text": "What is the only continent without an active volcano?",
+      "choices": [
+        { "key": "A", "text": "Europe" },
+        { "key": "B", "text": "Australia" },
+        { "key": "C", "text": "Antarctica" },
+        { "key": "D", "text": "Africa" }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "hard",
+      "explanation": "Australia is the only continent without any active volcanoes. Antarctica has some, though dormant."
+    }
+  ]
+}

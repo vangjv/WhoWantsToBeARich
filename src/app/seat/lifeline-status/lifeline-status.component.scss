@@ -1,0 +1,214 @@
+// Lifeline Status Component - Show-Style Styling
+
+.lifeline-status {
+  padding: 20px;
+}
+
+.lifelines-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lifeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  min-width: 120px;
+
+  &.used {
+    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+
+    .lifeline-icon {
+      filter: grayscale(100%);
+    }
+  }
+
+  .lifeline-icon {
+    font-size: 40px;
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.5));
+  }
+
+  .lifeline-label {
+    font-size: 14px;
+    color: #ffd700;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .used-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 0, 0, 0.7);
+    color: #ffffff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+}
+
+// Audience Results Styling
+.audience-results {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  animation: fadeInUp 0.6s ease-out;
+
+  h4 {
+    font-size: 24px;
+    color: #ffd700;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .audience-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .audience-bar-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .bar-label {
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffd700;
+      width: 30px;
+      text-align: center;
+    }
+
+    .bar-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .audience-bar {
+      flex: 1;
+      height: 32px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.1);
+
+      ::ng-deep .mat-mdc-progress-bar-fill::after {
+        background: linear-gradient(90deg, #ffd700 0%, #ff8c00 100%);
+      }
+    }
+
+    .bar-percentage {
+      font-size: 20px;
+      color: #ffffff;
+      font-weight: 600;
+      min-width: 50px;
+      text-align: right;
+    }
+  }
+}
+
+// Phone a Friend Styling
+.friend-suggestion {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(100, 200, 255, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  animation: fadeInUp 0.6s ease-out;
+
+  h4 {
+    font-size: 24px;
+    color: #64c8ff;
+    margin: 0 0 16px 0;
+    text-align: center;
+  }
+
+  .timer-display {
+    margin-bottom: 16px;
+  }
+
+  .suggestion-text {
+    font-size: 20px;
+    color: #ffffff;
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+    font-style: italic;
+    padding: 12px;
+    background: rgba(100, 200, 255, 0.1);
+    border-radius: 8px;
+    border-left: 4px solid #64c8ff;
+  }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive adjustments for 4K
+@media (min-width: 2560px) {
+  .lifelines-row {
+    gap: 32px;
+  }
+
+  .lifeline-item {
+    min-width: 160px;
+    padding: 20px;
+
+    .lifeline-icon {
+      font-size: 56px;
+    }
+
+    .lifeline-label {
+      font-size: 18px;
+    }
+  }
+
+  .audience-results h4,
+  .friend-suggestion h4 {
+    font-size: 32px;
+  }
+
+  .audience-bar-container {
+    .bar-label {
+      font-size: 28px;
+      width: 40px;
+    }
+
+    .audience-bar {
+      height: 40px;
+    }
+
+    .bar-percentage {
+      font-size: 28px;
+    }
+  }
+
+  .friend-suggestion .suggestion-text {
+    font-size: 28px;
+  }
+}

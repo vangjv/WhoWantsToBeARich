@@ -1,0 +1,58 @@
+<div class="lifeline-status" *ngIf="lifelines">
+  <!-- Lifeline Icons -->
+  <div class="lifelines-row">
+    <div class="lifeline-item" [class.used]="isUsed('fiftyFifty')">
+      <div class="lifeline-icon">{{ getLifelineIcon('fiftyFifty') }}</div>
+      <div class="lifeline-label">{{ getLifelineLabel('fiftyFifty') }}</div>
+      <div class="used-badge" *ngIf="isUsed('fiftyFifty')">USED</div>
+    </div>
+
+    <div class="lifeline-item" [class.used]="isUsed('askAudience')">
+      <div class="lifeline-icon">{{ getLifelineIcon('askAudience') }}</div>
+      <div class="lifeline-label">{{ getLifelineLabel('askAudience') }}</div>
+      <div class="used-badge" *ngIf="isUsed('askAudience')">USED</div>
+    </div>
+
+    <div class="lifeline-item" [class.used]="isUsed('phoneFriend')">
+      <div class="lifeline-icon">{{ getLifelineIcon('phoneFriend') }}</div>
+      <div class="lifeline-label">{{ getLifelineLabel('phoneFriend') }}</div>
+      <div class="used-badge" *ngIf="isUsed('phoneFriend')">USED</div>
+    </div>
+  </div>
+
+  <!-- Ask the Audience Results -->
+  <div class="audience-results" *ngIf="lifelines.askAudience.used && getAudiencePercentages()">
+    <h4>Audience Says:</h4>
+    <div class="audience-chart">
+      <div
+        *ngFor="let item of getAudiencePercentages(); trackBy: trackByKey"
+        class="audience-bar-container"
+      >
+        <div class="bar-label">{{ item.key }}</div>
+        <div class="bar-wrapper">
+          <mat-progress-bar
+            mode="determinate"
+            [value]="item.percentage"
+            class="audience-bar"
+          ></mat-progress-bar>
+          <span class="bar-percentage">{{ item.percentage }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phone a Friend Suggestion -->
+  <div class="friend-suggestion" *ngIf="lifelines.phoneFriend.used">
+    <h4>Phone a Friend:</h4>
+
+    <!-- Timer Display (T089) -->
+    <div class="timer-display" *ngIf="getPhoneFriendTimer()">
+      <app-timer [timer]="getPhoneFriendTimer()"></app-timer>
+    </div>
+
+    <!-- Friend Suggestion Text -->
+    <p class="suggestion-text" *ngIf="getFriendSuggestion()">
+      {{ getFriendSuggestion() }}
+    </p>
+  </div>
+</div>

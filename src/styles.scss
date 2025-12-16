@@ -1,1 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Import Angular Material theming
+@use '@angular/material' as mat;
+
+// Include core Material styles
+@include mat.core();
+
+// Define custom Millionaire theme (gold/blue dramatic)
+$millionaire-primary: mat.m2-define-palette(mat.$m2-amber-palette, 700, 500, 900);
+$millionaire-accent: mat.m2-define-palette(mat.$m2-blue-palette, 900, 700, A700);
+$millionaire-warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
+
+// Create the theme
+$millionaire-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $millionaire-primary,
+    accent: $millionaire-accent,
+    warn: $millionaire-warn,
+  ),
+  typography: mat.m2-define-typography-config(
+    $font-family: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+  ),
+  density: 0,
+));
+
+// Apply theme to all Material components
+@include mat.all-component-themes($millionaire-theme);
+
+// Global styles
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif';
+  background: linear-gradient(135deg, #0a1929 0%, #1a237e 100%);
+  color: #ffffff;
+}
+
+// Show-style dramatic theme variables
+:root {
+  --color-gold: #ffa000;
+  --color-gold-light: #ffc107;
+  --color-gold-dark: #ff8f00;
+  --color-blue-dark: #0d47a1;
+  --color-blue-darker: #01579b;
+  --color-blue-darkest: #0a1929;
+  --color-correct: #4caf50;
+  --color-incorrect: #f44336;
+  --color-neutral: #ffffff;
+  --color-disabled: #757575;
+
+  --shadow-dramatic: 0 8px 24px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 20px rgba(255, 193, 7, 0.4);
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.4s ease;
+  --transition-slow: 0.8s ease;
+}

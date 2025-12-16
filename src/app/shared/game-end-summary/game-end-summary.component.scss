@@ -1,0 +1,86 @@
+.summary-card {
+  background: #16213e;
+  color: #ffffff;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.game-end-title {
+  font-size: 28px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffd700;
+  margin: 16px 0;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.summary-item {
+  padding: 20px;
+  background: #0f3460;
+  border-radius: 8px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &.highlight {
+    grid-column: 1 / -1;
+    background: rgba(255, 215, 0, 0.1);
+    border-color: #ffd700;
+  }
+
+  .summary-label {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .summary-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ffffff;
+
+    &.winnings {
+      font-size: 48px;
+      color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
+  }
+
+  .lifeline-details {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+
+    .lifeline-badge {
+      padding: 4px 8px;
+      background: rgba(33, 150, 243, 0.3);
+      border: 1px solid #2196f3;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #2196f3;
+    }
+  }
+}
+
+.walk-away-message {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(255, 152, 0, 0.1);
+  border-left: 4px solid #ff9800;
+  border-radius: 4px;
+
+  p {
+    margin: 0;
+    font-size: 16px;
+    color: #ff9800;
+    text-align: center;
+  }
+}
