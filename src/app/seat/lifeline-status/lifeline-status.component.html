@@ -42,8 +42,17 @@
   </div>
 
   <!-- Phone a Friend Suggestion -->
-  <div class="friend-suggestion" *ngIf="lifelines.phoneFriend.used && getFriendSuggestion()">
-    <h4>Friend Says:</h4>
-    <p class="suggestion-text">{{ getFriendSuggestion() }}</p>
+  <div class="friend-suggestion" *ngIf="lifelines.phoneFriend.used">
+    <h4>Phone a Friend:</h4>
+
+    <!-- Timer Display (T089) -->
+    <div class="timer-display" *ngIf="getPhoneFriendTimer()">
+      <app-timer [timer]="getPhoneFriendTimer()"></app-timer>
+    </div>
+
+    <!-- Friend Suggestion Text -->
+    <p class="suggestion-text" *ngIf="getFriendSuggestion()">
+      {{ getFriendSuggestion() }}
+    </p>
   </div>
 </div>

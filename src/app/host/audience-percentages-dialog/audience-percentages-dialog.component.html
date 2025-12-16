@@ -1,0 +1,77 @@
+<h2 mat-dialog-title>Ask the Audience</h2>
+
+<div mat-dialog-content>
+  <p class="dialog-description">
+    Enter the audience voting percentages for each answer choice.
+    All percentages must sum to exactly 100.
+  </p>
+
+  <div class="percentage-inputs">
+    <mat-form-field appearance="outline">
+      <mat-label>Choice A (%)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="percentageA"
+        (ngModelChange)="updateValidation()"
+        min="0"
+        max="100"
+        step="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choice B (%)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="percentageB"
+        (ngModelChange)="updateValidation()"
+        min="0"
+        max="100"
+        step="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choice C (%)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="percentageC"
+        (ngModelChange)="updateValidation()"
+        min="0"
+        max="100"
+        step="1">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Choice D (%)</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="percentageD"
+        (ngModelChange)="updateValidation()"
+        min="0"
+        max="100"
+        step="1">
+    </mat-form-field>
+  </div>
+
+  <div class="total-display" [class.valid]="isValid()" [class.invalid]="!isValid()">
+    <strong>Total:</strong> {{ getTotal() }}%
+  </div>
+
+  <div class="error-message" *ngIf="validationError">
+    {{ validationError }}
+  </div>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()"
+    [disabled]="!isValid()">
+    Submit
+  </button>
+</div>

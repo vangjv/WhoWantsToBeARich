@@ -241,15 +241,15 @@
 
 ### Implementation for User Story 5
 
-- [ ] T074 [P] [US5] Add Ask the Audience button to LifelineControlComponent in src/app/host/lifeline-control/lifeline-control.component.ts
-- [ ] T075 [P] [US5] Create AudiencePercentagesDialogComponent with 4 input fields (A, B, C, D) and sum validation in src/app/host/audience-percentages-dialog/audience-percentages-dialog.component.ts
-- [ ] T076 [US5] Implement useAskAudience() method in GameStateService with LIFELINE_USED event emission
-- [ ] T077 [US5] Add validation logic for percentage sum equals 100 and disable input fields for removed choices if 50:50 used (FR-032) in AudiencePercentagesDialogComponent
-- [ ] T078 [US5] Update LifelineStatusComponent (seat) to display bar chart with audience percentages using Material progress bars
-- [ ] T079 [US5] Update LifelineControlComponent to disable Ask the Audience button after use or if answer locked
-- [ ] T080 [US5] Handle 50:50 integration - show percentages only for remaining choices if 50:50 used first in LifelineStatusComponent
-- [ ] T081 [US5] Style AudiencePercentagesDialogComponent with Material dialog styling in src/app/host/audience-percentages-dialog/audience-percentages-dialog.component.scss
-- [ ] T082 [US5] Style bar chart display in LifelineStatusComponent with show-style dramatic effect in src/app/seat/lifeline-status/lifeline-status.component.scss
+- [X] T074 [P] [US5] Add Ask the Audience button to LifelineControlComponent in src/app/host/lifeline-control/lifeline-control.component.ts
+- [X] T075 [P] [US5] Create AudiencePercentagesDialogComponent with 4 input fields (A, B, C, D) and sum validation in src/app/host/audience-percentages-dialog/audience-percentages-dialog.component.ts
+- [X] T076 [US5] Implement useAskAudience() method in GameStateService with LIFELINE_USED event emission
+- [X] T077 [US5] Add validation logic for percentage sum equals 100 and disable input fields for removed choices if 50:50 used (FR-032) in AudiencePercentagesDialogComponent
+- [X] T078 [US5] Update LifelineStatusComponent (seat) to display bar chart with audience percentages using Material progress bars
+- [X] T079 [US5] Update LifelineControlComponent to disable Ask the Audience button after use or if answer locked
+- [X] T080 [US5] Handle 50:50 integration - show percentages only for remaining choices if 50:50 used first in LifelineStatusComponent
+- [X] T081 [US5] Style AudiencePercentagesDialogComponent with Material dialog styling in src/app/host/audience-percentages-dialog/audience-percentages-dialog.component.scss
+- [X] T082 [US5] Style bar chart display in LifelineStatusComponent with show-style dramatic effect in src/app/seat/lifeline-status/lifeline-status.component.scss
 
 **Checkpoint**: User Story 5 complete. Ask the Audience lifeline functional with percentage validation and bar chart display.
 
@@ -270,16 +270,16 @@
 
 ### Implementation for User Story 6
 
-- [ ] T083 [P] [US6] Add Phone a Friend button to LifelineControlComponent in src/app/host/lifeline-control/lifeline-control.component.ts
-- [ ] T084 [P] [US6] Create PhoneFriendDialogComponent with suggestion input and optional timer controls in src/app/host/phone-friend-dialog/phone-friend-dialog.component.ts
-- [ ] T085 [P] [US6] Create TimerComponent with countdown display (MM:SS format) in src/app/shared/timer/timer.component.ts
-- [ ] T086 [US6] Implement usePhoneFriend() method in GameStateService with LIFELINE_USED event emission
-- [ ] T087 [US6] Implement RxJS interval timer in GameStateService with TIMER_TICK events (1/second)
-- [ ] T088 [US6] Implement timer expiration logic with TIMER_EXPIRED event in GameStateService
-- [ ] T089 [US6] Update LifelineStatusComponent (seat) to display friend suggestion text and timer countdown
-- [ ] T090 [US6] Update LifelineControlComponent to disable Phone a Friend button after use or if answer locked
-- [ ] T091 [US6] Style PhoneFriendDialogComponent with Material dialog styling in src/app/host/phone-friend-dialog/phone-friend-dialog.component.scss
-- [ ] T092 [US6] Style TimerComponent with large countdown display in src/app/shared/timer/timer.component.scss
+- [X] T083 [P] [US6] Add Phone a Friend button to LifelineControlComponent in src/app/host/lifeline-control/lifeline-control.component.ts
+- [X] T084 [P] [US6] Create PhoneFriendDialogComponent with suggestion input and optional timer controls in src/app/host/phone-friend-dialog/phone-friend-dialog.component.ts
+- [X] T085 [P] [US6] Create TimerComponent with countdown display (MM:SS format) in src/app/shared/timer/timer.component.ts
+- [X] T086 [US6] Implement usePhoneFriend() method in GameStateService with LIFELINE_USED event emission
+- [X] T087 [US6] Implement RxJS interval timer in GameStateService with TIMER_TICK events (1/second)
+- [X] T088 [US6] Implement timer expiration logic with TIMER_EXPIRED event in GameStateService
+- [X] T089 [US6] Update LifelineStatusComponent (seat) to display friend suggestion text and timer countdown
+- [X] T090 [US6] Update LifelineControlComponent to disable Phone a Friend button after use or if answer locked
+- [X] T091 [US6] Style PhoneFriendDialogComponent with Material dialog styling in src/app/host/phone-friend-dialog/phone-friend-dialog.component.scss
+- [X] T092 [US6] Style TimerComponent with large countdown display in src/app/shared/timer/timer.component.scss
 
 **Checkpoint**: User Story 6 complete. All three lifelines functional.
 
@@ -300,14 +300,14 @@
 
 ### Implementation for User Story 7
 
-- [ ] T093 [P] [US7] Add question timer configuration to GameSetupComponent (enable checkbox, duration input) in src/app/host/game-setup/game-setup.component.ts
-- [ ] T094 [US7] Update GameState model to include questionTimer field in src/app/models/game-state.model.ts
-- [ ] T095 [US7] Implement startQuestionTimer() method in GameStateService with RxJS interval and TIMER_TICK events
-- [ ] T096 [US7] Add TimerComponent instance to HostLayoutComponent displaying question timer in header
-- [ ] T097 [US7] Add TimerComponent instance to SeatLayoutComponent displaying question timer in prominent position
-- [ ] T098 [US7] Update QuestionControlComponent to start/stop question timer on question start/reveal
-- [ ] T099 [US7] Add pause, resume, and reset buttons to AdminPanelComponent for all active timers (question timer and Phone Friend timer) with clear visual state indicators
-- [ ] T100 [US7] Style timer display with "Time's Up" warning state in TimerComponent styling
+- [X] T093 [P] [US7] Add question timer configuration to GameSetupComponent (enable checkbox, duration input) in src/app/host/game-setup/game-setup.component.ts
+- [X] T094 [US7] Update GameState model to include questionTimer field in src/app/models/game-state.model.ts
+- [X] T095 [US7] Implement startQuestionTimer() method in GameStateService with RxJS interval and TIMER_TICK events
+- [X] T096 [US7] Add TimerComponent instance to HostLayoutComponent displaying question timer in header
+- [X] T097 [US7] Add TimerComponent instance to SeatLayoutComponent displaying question timer in prominent position
+- [X] T098 [US7] Update QuestionControlComponent to start/stop question timer on question start/reveal
+- [X] T099 [US7] Add pause, resume, and reset buttons to AdminPanelComponent for all active timers (question timer and Phone Friend timer) with clear visual state indicators
+- [X] T100 [US7] Style timer display with "Time's Up" warning state in TimerComponent styling
 
 **Checkpoint**: User Story 7 complete. Question timer functional on both displays with host controls.
 
@@ -328,17 +328,17 @@
 
 ### Implementation for User Story 8
 
-- [ ] T101 [P] [US8] Create Zod schema matching question-pack.schema.json in src/app/services/question-pack.service.ts
-- [ ] T102 [P] [US8] Create sample-questions.json with 15 valid questions in public/sample-questions.json
-- [ ] T103 [US8] Implement importPack() method with Zod validation in QuestionPackService
-- [ ] T104 [US8] Implement validatePack() method with detailed error reporting in QuestionPackService
-- [ ] T105 [US8] Implement savePack() method with localStorage persistence in QuestionPackService
-- [ ] T106 [US8] Implement loadPack() and listPacks() methods in QuestionPackService
-- [ ] T107 [US8] Add file upload control to GameSetupComponent with validation error display
-- [ ] T108 [US8] Add question pack dropdown selector to GameSetupComponent showing all imported packs
-- [ ] T109 [US8] Display optional question fields (category, difficulty, explanation) in QuestionControlComponent for host view
-- [ ] T110 [US8] Add validation error dialog component showing specific validation issues
-- [ ] T111 [US8] Style file upload and pack selector in GameSetupComponent with Material form controls
+- [X] T101 [P] [US8] Create Zod schema matching question-pack.schema.json in src/app/services/question-pack.service.ts
+- [X] T102 [P] [US8] Create sample-questions.json with 15 valid questions in public/sample-questions.json
+- [X] T103 [US8] Implement importPack() method with Zod validation in QuestionPackService
+- [X] T104 [US8] Implement validatePack() method with detailed error reporting in QuestionPackService
+- [X] T105 [US8] Implement savePack() method with localStorage persistence in QuestionPackService
+- [X] T106 [US8] Implement loadPack() and listPacks() methods in QuestionPackService
+- [X] T107 [US8] Add file upload control to GameSetupComponent with validation error display
+- [X] T108 [US8] Add question pack dropdown selector to GameSetupComponent showing all imported packs
+- [X] T109 [US8] Display optional question fields (category, difficulty, explanation) in QuestionControlComponent for host view
+- [X] T110 [US8] Add validation error dialog component showing specific validation issues
+- [X] T111 [US8] Style file upload and pack selector in GameSetupComponent with Material form controls
 
 **Checkpoint**: User Story 8 complete. Custom question pack import functional with validation and persistence.
 
@@ -359,16 +359,16 @@
 
 ### Implementation for User Story 9
 
-- [ ] T112 [P] [US9] Create LadderConfigDialogComponent with 15 value inputs and safe haven checkboxes in src/app/host/ladder-config-dialog/ladder-config-dialog.component.ts
-- [ ] T113 [US9] Implement saveConfig() method in LadderConfigService with localStorage persistence
-- [ ] T114 [US9] Implement loadConfig() method in LadderConfigService loading custom ladder or default
-- [ ] T115 [US9] Implement resetToDefault() method in LadderConfigService
-- [ ] T116 [US9] Add "Configure Ladder" button to GameSetupComponent opening LadderConfigDialogComponent
-- [ ] T117 [US9] Update calculateWinnings() function to use custom safe haven positions from ladder config
-- [ ] T118 [US9] Update HostLadderComponent to visually indicate custom safe haven positions
-- [ ] T119 [US9] Update SeatLadderComponent to visually indicate custom safe haven positions
-- [ ] T120 [US9] Add ladder value validation (positive integers, monotonically increasing warning) in LadderConfigDialogComponent
-- [ ] T121 [US9] Style LadderConfigDialogComponent with Material form controls and table layout in src/app/host/ladder-config-dialog/ladder-config-dialog.component.scss
+- [X] T112 [P] [US9] Create LadderConfigDialogComponent with 15 value inputs and safe haven checkboxes in src/app/host/ladder-config-dialog/ladder-config-dialog.component.ts
+- [X] T113 [US9] Implement saveConfig() method in LadderConfigService with localStorage persistence
+- [X] T114 [US9] Implement loadConfig() method in LadderConfigService loading custom ladder or default
+- [X] T115 [US9] Implement resetToDefault() method in LadderConfigService
+- [X] T116 [US9] Add "Configure Ladder" button to GameSetupComponent opening LadderConfigDialogComponent
+- [X] T117 [US9] Update calculateWinnings() function to use custom safe haven positions from ladder config
+- [X] T118 [US9] Update HostLadderComponent to visually indicate custom safe haven positions
+- [X] T119 [US9] Update SeatLadderComponent to visually indicate custom safe haven positions
+- [X] T120 [US9] Add ladder value validation (positive integers, monotonically increasing warning) in LadderConfigDialogComponent
+- [X] T121 [US9] Style LadderConfigDialogComponent with Material form controls and table layout in src/app/host/ladder-config-dialog/ladder-config-dialog.component.scss
 
 **Checkpoint**: User Story 9 complete. All user stories (P1, P2, P3) now independently functional.
 
@@ -380,16 +380,16 @@
 
 ### Navigation Guards & State Persistence
 
-- [ ] T122 [P] Implement Angular CanDeactivate guard for HostLayoutComponent warning before route navigation during active game (phases other than SETUP/ENDED) in src/app/guards/unsaved-changes.guard.ts
-- [ ] T122a [P] Implement beforeunload event handler in HostLayoutComponent warning on browser close/refresh during active game (FR-043)
-- [ ] T123 [P] Implement sessionStorage backup for game state on host in GameStateService
-- [ ] T124 [P] Implement sessionStorage restoration on host reload in GameStateService
+- [X] T122 [P] Implement Angular CanDeactivate guard for HostLayoutComponent warning before route navigation during active game (phases other than SETUP/ENDED) in src/app/guards/unsaved-changes.guard.ts
+- [X] T122a [P] Implement beforeunload event handler in HostLayoutComponent warning on browser close/refresh during active game (FR-043)
+- [X] T123 [P] Implement sessionStorage backup for game state on host in GameStateService
+- [X] T124 [P] Implement sessionStorage restoration on host reload in GameStateService
 
 ### Error Handling & User Feedback
 
-- [ ] T125 [P] Add global error handler for BroadcastChannel failures in src/app/services/sync.service.ts
-- [ ] T126 [P] Add user-friendly error messages for question pack validation failures with specific issue details
-- [ ] T127 [P] Add loading indicators for question pack import and validation operations
+- [X] T125 [P] Add global error handler for BroadcastChannel failures in src/app/services/sync.service.ts
+- [X] T126 [P] Add user-friendly error messages for question pack validation failures with specific issue details
+- [X] T127 [P] Add loading indicators for question pack import and validation operations
 
 ### Accessibility & UX Improvements
 
@@ -399,10 +399,10 @@
 
 ### Admin Controls Completion
 
-- [ ] T131 [P] Add "Override Current Level" dropdown to AdminPanelComponent for host adjustments
-- [ ] T132 [P] Add "Reset Lifelines" checkboxes to AdminPanelComponent for lifeline state override
-- [ ] T133 [P] Add "End Game" button to AdminPanelComponent for immediate game termination
-- [ ] T134 [P] Add "Reset Game" button to AdminPanelComponent returning to SETUP phase
+- [X] T131 [P] Add "Override Current Level" dropdown to AdminPanelComponent for host adjustments
+- [X] T132 [P] Add "Reset Lifelines" checkboxes to AdminPanelComponent for lifeline state override
+- [X] T133 [P] Add "End Game" button to AdminPanelComponent for immediate game termination
+- [X] T134 [P] Add "Reset Game" button to AdminPanelComponent returning to SETUP phase
 
 ### Documentation & Validation
 

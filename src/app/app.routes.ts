@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { UnsavedChangesGuard } from './guards/unsaved-changes.guard';
 
 export const routes: Routes = [
   {
@@ -8,7 +9,8 @@ export const routes: Routes = [
   },
   {
     path: 'host',
-    loadComponent: () => import('./host/host-layout/host-layout.component').then(m => m.HostLayoutComponent)
+    loadComponent: () => import('./host/host-layout/host-layout.component').then(m => m.HostLayoutComponent),
+    canDeactivate: [UnsavedChangesGuard]
   },
   {
     path: 'seat',

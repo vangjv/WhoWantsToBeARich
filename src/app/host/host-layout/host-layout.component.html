@@ -2,6 +2,13 @@
   <header class="host-header">
     <h1>Host Control Panel - Who Wants to Be a Millionaire</h1>
     <div class="header-actions">
+      <!-- Question Timer Display (T096) -->
+      <app-timer
+        *ngIf="gameState?.questionTimer"
+        [timer]="gameState.questionTimer"
+        class="question-timer-display">
+      </app-timer>
+
       <app-connection-status></app-connection-status>
       <button
         mat-raised-button

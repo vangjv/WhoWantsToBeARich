@@ -25,6 +25,120 @@
         <small *ngIf="currentPhase === 'FINAL_LOCKED' || currentPhase === 'REVEAL'">Cannot walk away after locking answer</small>
         <small *ngIf="currentPhase === 'ENDED'">Game has ended</small>
       </div>
+
+      <!-- T099: Question Timer Controls -->
+      <div class="timer-controls" *ngIf="hasQuestionTimer">
+        <h4 class="controls-label">Question Timer</h4>
+        <div class="timer-buttons">
+          <button
+            mat-mini-fab
+            color="accent"
+            [disabled]="!questionTimerRunning || questionTimerExpired"
+            (click)="pauseQuestionTimer()"
+            [attr.aria-label]="'Pause question timer'"
+            title="Pause Timer"
+          >
+            <mat-icon>pause</mat-icon>
+          </button>
+
+          <button
+            mat-mini-fab
+            color="primary"
+            [disabled]="questionTimerRunning || questionTimerExpired"
+            (click)="resumeQuestionTimer()"
+            [attr.aria-label]="'Resume question timer'"
+            title="Resume Timer"
+          >
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+
+          <button
+            mat-mini-fab
+            color="warn"
+            [disabled]="questionTimerExpired"
+            (click)="resetQuestionTimer()"
+            [attr.aria-label]="'Reset question timer'"
+            title="Reset Timer"
+          >
+            <mat-icon>restart_alt</mat-icon>
+          </button>
+        </div>
+
+        <div class="timer-status" *ngIf="questionTimerExpired">
+          <small class="timer-expired-msg">⏰ Time's Up</small>
+        </div>
+      </div>
+
+      <mat-divider class="section-divider"></mat-divider>
+
+      <!-- T131: Override Current Level -->
+      <div class="level-override-section">
+        <h4 class="controls-label">Override Level</h4>
+        <mat-form-field appearance="outline" class="level-select">
+          <mat-label>Current Level</mat-label>
+          <mat-select [(ngModel)]="currentLevel" (selectionChange)="onOverrideLevel(currentLevel)">
+            <mat-option *ngFor="let level of availableLevels" [value]="level">
+              Level {{ level }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <mat-divider class="section-divider"></mat-divider>
+
+      <!-- T132: Reset Lifelines -->
+      <div class="lifeline-reset-section">
+        <h4 class="controls-label">Reset Lifelines</h4>
+        <div class="lifeline-checkboxes">
+          <mat-checkbox
+            [checked]="!fiftyFiftyUsed"
+            [disabled]="!fiftyFiftyUsed"
+            (change)="onResetLifeline('fiftyFifty')"
+          >
+            50:50
+          </mat-checkbox>
+          <mat-checkbox
+            [checked]="!askAudienceUsed"
+            [disabled]="!askAudienceUsed"
+            (change)="onResetLifeline('askAudience')"
+          >
+            Ask the Audience
+          </mat-checkbox>
+          <mat-checkbox
+            [checked]="!phoneFriendUsed"
+            [disabled]="!phoneFriendUsed"
+            (change)="onResetLifeline('phoneFriend')"
+          >
+            Phone a Friend
+          </mat-checkbox>
+        </div>
+      </div>
+
+      <mat-divider class="section-divider"></mat-divider>
+
+      <!-- T133 & T134: End Game and Reset Game -->
+      <div class="game-control-section">
+        <h4 class="controls-label">Game Controls</h4>
+        <div class="game-control-buttons">
+          <button
+            mat-stroked-button
+            color="warn"
+            (click)="onEndGame()"
+            [disabled]="currentPhase === 'SETUP' || currentPhase === 'ENDED'"
+          >
+            <mat-icon>stop</mat-icon>
+            <span>End Game</span>
+          </button>
+          <button
+            mat-stroked-button
+            color="accent"
+            (click)="onResetGame()"
+          >
+            <mat-icon>refresh</mat-icon>
+            <span>Reset Game</span>
+          </button>
+        </div>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

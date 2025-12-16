@@ -15,8 +15,11 @@ import { SyncService } from './sync.service';
   providedIn: 'root'
 })
 export class GameStateService {
-  private gameStateSubject = new BehaviorSubject<GameState>(createDefaultGameState());
+  private readonly SESSION_STORAGE_KEY = 'millionaire-game-state';
+  private gameStateSubject = new BehaviorSubject<GameState>(this.loadOrCreateState());
   private timerSubscription: Subscription | null = null;
+  private questionTimerSubscription: Subscription | null = null;
+  private questionTimerDuration: number | null = null;
 
   /**
    * Observable stream of game state changes
@@ -28,6 +31,39 @@ export class GameStateService {
     this.syncService.onEvent<any>('STATE_SYNC_REQUEST').subscribe(() => {
       this.sendFullStateSync();
     });
+
+    // T123: Subscribe to state changes and persist to sessionStorage
+    this.gameState$.subscribe(state => {
+      this.saveToSessionStorage(state);
+    });
+  }
+
+  /**
+   * T124: Load state from sessionStorage or create default
+   */
+  private loadOrCreateState(): GameState {
+    try {
+      const stored = sessionStorage.getItem(this.SESSION_STORAGE_KEY);
+      if (stored) {
+        const state = JSON.parse(stored) as GameState;
+        console.log('[GameStateService] Restored game state from sessionStorage');
+        return state;
+      }
+    } catch (error) {
+      console.error('[GameStateService] Failed to load state from sessionStorage:', error);
+    }
+    return createDefaultGameState();
+  }
+
+  /**
+   * T123: Save state to sessionStorage
+   */
+  private saveToSessionStorage(state: GameState): void {
+    try {
+      sessionStorage.setItem(this.SESSION_STORAGE_KEY, JSON.stringify(state));
+    } catch (error) {
+      console.error('[GameStateService] Failed to save state to sessionStorage:', error);
+    }
   }
 
   /**
@@ -35,6 +71,13 @@ export class GameStateService {
    */
   public getState(): GameState {
     return this.gameStateSubject.value;
+  }
+
+  /**
+   * Get current state (alias for guard compatibility)
+   */
+  public getCurrentState(): GameState {
+    return this.getState();
   }
 
   /**
@@ -57,19 +100,20 @@ export class GameStateService {
   /**
    * Initialize new game with question pack and contestant name
    */
-  public setupGame(contestantName: string, questionPack: QuestionPack): void {
+  public setupGame(contestantName: string, questionPack: QuestionPack, questionTimerDuration: number | null = null): void {
     const newState = createDefaultGameState();
     newState.contestantName = contestantName;
     newState.questionPack = questionPack;
+    this.questionTimerDuration = questionTimerDuration;
     this.gameStateSubject.next(newState);
-    console.log('[GameStateService] Game setup complete');
+    console.log('[GameStateService] Game setup complete, timer duration:', questionTimerDuration);
   }
 
   /**
    * Start a new game - combines setup and starts first question
    */
-  public startGame(contestantName: string, questionPack: QuestionPack): void {
-    this.setupGame(contestantName, questionPack);
+  public startGame(contestantName: string, questionPack: QuestionPack, questionTimerDuration: number | null = null): void {
+    this.setupGame(contestantName, questionPack, questionTimerDuration);
     // Automatically start first question
     setTimeout(() => this.startQuestion(), 100);
   }
@@ -92,16 +136,30 @@ export class GameStateService {
       return;
     }
 
+    // Initialize question timer if configured
+    const questionTimer = this.questionTimerDuration ? {
+      durationSeconds: this.questionTimerDuration,
+      remainingSeconds: this.questionTimerDuration,
+      isRunning: false,
+      isExpired: false
+    } : null;
+
     this.updateState({
       phase: GamePhase.QUESTION,
       currentQuestion: question,
       selectedChoice: null,
       finalAnswer: null,
-      correctAnswer: null
+      correctAnswer: null,
+      questionTimer
     });
 
     this.syncService.sendEvent('QUESTION_STARTED', { question });
     console.log(`[GameStateService] Started question for level ${state.currentLevel}`);
+
+    // Start question timer if configured
+    if (this.questionTimerDuration) {
+      this.startQuestionTimer();
+    }
   }
 
   /**
@@ -162,6 +220,9 @@ export class GameStateService {
       correct,
       correctAnswer: state.currentQuestion.correctAnswer
     });
+
+    // Stop question timer
+    this.stopQuestionTimer();
 
     console.log(`[GameStateService] Revealed answer: ${state.currentQuestion.correctAnswer}, correct: ${correct}`);
 
@@ -405,7 +466,7 @@ export class GameStateService {
   }
 
   /**
-   * Stop active timer
+   * Stop active timer (Phone a Friend)
    */
   private stopTimer(): void {
     if (this.timerSubscription) {
@@ -415,11 +476,164 @@ export class GameStateService {
   }
 
   /**
+   * Start question timer
+   */
+  public startQuestionTimer(): void {
+    this.stopQuestionTimer();
+
+    const state = this.getState();
+    if (!state.questionTimer) {
+      console.warn('[GameStateService] No question timer configured');
+      return;
+    }
+
+    // Mark timer as running
+    this.updateState({
+      questionTimer: {
+        ...state.questionTimer,
+        isRunning: true
+      }
+    });
+
+    this.questionTimerSubscription = interval(1000).subscribe(() => {
+      const currentState = this.getState();
+      const timer = currentState.questionTimer;
+
+      if (!timer || timer.remainingSeconds <= 0) {
+        this.stopQuestionTimer();
+
+        // Update to expired state
+        if (timer) {
+          this.updateState({
+            questionTimer: {
+              ...timer,
+              isRunning: false,
+              isExpired: true,
+              remainingSeconds: 0
+            }
+          });
+        }
+
+        this.syncService.sendEvent('TIMER_EXPIRED', null);
+        console.log('[GameStateService] Question timer expired');
+        return;
+      }
+
+      const newRemaining = timer.remainingSeconds - 1;
+
+      this.updateState({
+        questionTimer: {
+          ...timer,
+          remainingSeconds: newRemaining,
+          isExpired: newRemaining === 0
+        }
+      });
+
+      this.syncService.sendEvent('TIMER_TICK', { remaining: newRemaining });
+    });
+  }
+
+  /**
+   * Pause question timer
+   */
+  public pauseQuestionTimer(): void {
+    const state = this.getState();
+    if (state.questionTimer && state.questionTimer.isRunning) {
+      this.stopQuestionTimer();
+      this.updateState({
+        questionTimer: {
+          ...state.questionTimer,
+          isRunning: false
+        }
+      });
+      console.log('[GameStateService] Question timer paused');
+    }
+  }
+
+  /**
+   * Resume question timer
+   */
+  public resumeQuestionTimer(): void {
+    const state = this.getState();
+    if (state.questionTimer && !state.questionTimer.isRunning && !state.questionTimer.isExpired) {
+      this.startQuestionTimer();
+      console.log('[GameStateService] Question timer resumed');
+    }
+  }
+
+  /**
+   * Reset question timer to initial duration
+   */
+  public resetQuestionTimer(): void {
+    const state = this.getState();
+    if (state.questionTimer && this.questionTimerDuration) {
+      this.stopQuestionTimer();
+      this.updateState({
+        questionTimer: {
+          durationSeconds: this.questionTimerDuration,
+          remainingSeconds: this.questionTimerDuration,
+          isRunning: false,
+          isExpired: false
+        }
+      });
+      console.log('[GameStateService] Question timer reset');
+    }
+  }
+
+  /**
+   * Stop question timer
+   */
+  private stopQuestionTimer(): void {
+    if (this.questionTimerSubscription) {
+      this.questionTimerSubscription.unsubscribe();
+      this.questionTimerSubscription = null;
+    }
+  }
+
+  /**
    * Reset game to initial state
    */
   public resetGame(): void {
     this.stopTimer();
+    this.stopQuestionTimer();
+    this.questionTimerDuration = null;
     this.gameStateSubject.next(createDefaultGameState());
     console.log('[GameStateService] Game reset');
+  }
+
+  /**
+   * T131: Override current level (admin control)
+   */
+  public overrideLevel(newLevel: number): void {
+    if (newLevel < 1 || newLevel > 15) {
+      console.error('[GameStateService] Invalid level:', newLevel);
+      return;
+    }
+
+    this.updateState({ currentLevel: newLevel });
+    console.log('[GameStateService] Level overridden to:', newLevel);
+  }
+
+  /**
+   * T132: Reset a lifeline to unused state (admin control)
+   */
+  public resetLifeline(lifelineType: 'fiftyFifty' | 'askAudience' | 'phoneFriend'): void {
+    const state = this.getState();
+    const updatedLifelines = { ...state.lifelines };
+
+    switch (lifelineType) {
+      case 'fiftyFifty':
+        updatedLifelines.fiftyFifty = { used: false, removedChoices: [] };
+        break;
+      case 'askAudience':
+        updatedLifelines.askAudience = { used: false, percentages: null };
+        break;
+      case 'phoneFriend':
+        updatedLifelines.phoneFriend = { used: false, suggestion: null, timer: null };
+        break;
+    }
+
+    this.updateState({ lifelines: updatedLifelines });
+    console.log('[GameStateService] Lifeline reset:', lifelineType);
   }
 }

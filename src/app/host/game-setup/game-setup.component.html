@@ -38,6 +38,37 @@
         {{ importError }}
       </div>
     </div>
+
+    <!-- Question Timer Configuration -->
+    <div class="timer-config-section">
+      <mat-checkbox [(ngModel)]="questionTimerEnabled" class="timer-checkbox">
+        Enable Question Timer
+      </mat-checkbox>
+
+      <div *ngIf="questionTimerEnabled" class="timer-duration-config">
+        <mat-label class="timer-label">Timer Duration: {{ questionTimerDuration }} seconds</mat-label>
+        <mat-slider
+          min="15"
+          max="120"
+          step="5"
+          discrete
+          [displayWith]="formatTimerLabel">
+          <input matSliderThumb [(ngModel)]="questionTimerDuration">
+        </mat-slider>
+      </div>
+    </div>
+
+    <!-- T116: Ladder Configuration Button -->
+    <div class="ladder-config-section">
+      <button
+        mat-stroked-button
+        color="accent"
+        (click)="openLadderConfigDialog()"
+        class="config-button">
+        Configure Money Ladder
+      </button>
+      <p class="config-hint">Customize prize values and safe haven positions</p>
+    </div>
   </mat-card-content>
 
   <mat-card-actions align="end">

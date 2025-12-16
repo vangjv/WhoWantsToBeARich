@@ -23,33 +23,37 @@
         </div>
       </button>
 
-      <!-- Ask the Audience - Placeholder for Phase 7 -->
+      <!-- Ask the Audience Lifeline Button -->
       <button
         mat-raised-button
         class="lifeline-btn ask-audience"
         [class.used]="askAudienceUsed"
-        disabled
-        matTooltip="Coming in Phase 7"
+        [disabled]="isAskAudienceDisabled()"
+        [matTooltip]="getAskAudienceTooltip()"
+        (click)="onUseAskAudience()"
       >
         <mat-icon class="lifeline-icon">group</mat-icon>
         <div class="lifeline-label">
           <span class="lifeline-name">Ask Audience</span>
-          <span class="lifeline-status">Phase 7</span>
+          <span class="lifeline-status" *ngIf="askAudienceUsed">USED</span>
+          <span class="lifeline-status" *ngIf="!askAudienceUsed">AVAILABLE</span>
         </div>
       </button>
 
-      <!-- Phone a Friend - Placeholder for Phase 8 -->
+      <!-- Phone a Friend Lifeline Button -->
       <button
         mat-raised-button
         class="lifeline-btn phone-friend"
         [class.used]="phoneFriendUsed"
-        disabled
-        matTooltip="Coming in Phase 8"
+        [disabled]="isPhoneFriendDisabled()"
+        [matTooltip]="getPhoneFriendTooltip()"
+        (click)="onUsePhoneFriend()"
       >
         <mat-icon class="lifeline-icon">phone</mat-icon>
         <div class="lifeline-label">
           <span class="lifeline-name">Phone Friend</span>
-          <span class="lifeline-status">Phase 8</span>
+          <span class="lifeline-status" *ngIf="phoneFriendUsed">USED</span>
+          <span class="lifeline-status" *ngIf="!phoneFriendUsed">AVAILABLE</span>
         </div>
       </button>
     </div>

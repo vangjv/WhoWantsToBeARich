@@ -4,6 +4,12 @@
     <div class="contestant-info" *ngIf="contestantName()">
       <h1 class="contestant-name">{{ contestantName() }}</h1>
     </div>
+
+    <!-- T097: Question Timer Display -->
+    <div class="timer-display" *ngIf="questionTimer()">
+      <app-timer [timer]="questionTimer()"></app-timer>
+    </div>
+
     <div class="connection-indicator" [class.connected]="isConnected()">
       <span class="status-dot"></span>
       {{ isConnected() ? 'Connected' : 'Disconnected' }}

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LifelineState, AudiencePercentages } from '../../models/lifeline.model';
 import { ChoiceKey } from '../../models/choice-key.model';
+import { TimerComponent } from '../../shared/timer/timer.component';
+import { TimerState } from '../../models/timer.model';
 
 /**
  * Lifeline Status Component
@@ -12,7 +14,7 @@ import { ChoiceKey } from '../../models/choice-key.model';
 @Component({
   selector: 'app-lifeline-status',
   standalone: true,
-  imports: [CommonModule, MatProgressBarModule],
+  imports: [CommonModule, MatProgressBarModule, TimerComponent],
   templateUrl: './lifeline-status.component.html',
   styleUrls: ['./lifeline-status.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -71,6 +73,13 @@ export class LifelineStatusComponent {
    */
   getFriendSuggestion(): string | null {
     return this.lifelines?.phoneFriend?.suggestion || null;
+  }
+
+  /**
+   * Get Phone a Friend timer state
+   */
+  getPhoneFriendTimer(): TimerState | null {
+    return this.lifelines?.phoneFriend?.timer || null;
   }
 
   /**

@@ -11,6 +11,8 @@ import { ChoiceKey } from '../../models/choice-key.model';
 import { QuestionDisplayComponent } from '../question-display/question-display.component';
 import { SeatLadderComponent } from '../seat-ladder/seat-ladder.component';
 import { LifelineStatusComponent } from '../lifeline-status/lifeline-status.component';
+import { TimerComponent } from '../../shared/timer/timer.component';
+import { TimerState } from '../../models/timer.model';
 
 /**
  * Seat Layout Component - Contestant/Audience Display (Second Screen)
@@ -30,7 +32,8 @@ import { LifelineStatusComponent } from '../lifeline-status/lifeline-status.comp
     CommonModule,
     QuestionDisplayComponent,
     SeatLadderComponent,
-    LifelineStatusComponent
+    LifelineStatusComponent,
+    TimerComponent
   ],
   templateUrl: './seat-layout.component.html',
   styleUrls: ['./seat-layout.component.scss'],
@@ -56,6 +59,8 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
   // T065: Walk away state
   walkAwayWinnings = signal<number>(0);
   didWalkAway = signal<boolean>(false);
+  // T097: Question timer state
+  questionTimer = signal<TimerState | null>(null);
 
   constructor(private syncService: SyncService) {}
 
@@ -164,6 +169,34 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
         this.phase.set(GamePhase.ENDED);
       });
 
+    // T097: Listen for TIMER_TICK (question timer updates)
+    this.syncService.onEvent('TIMER_TICK')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        const currentTimer = this.questionTimer();
+        if (currentTimer) {
+          this.questionTimer.set({
+            ...currentTimer,
+            remainingSeconds: event.payload.remaining
+          });
+        }
+      });
+
+    // T097: Listen for TIMER_EXPIRED (question timer expired)
+    this.syncService.onEvent('TIMER_EXPIRED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        const currentTimer = this.questionTimer();
+        if (currentTimer) {
+          this.questionTimer.set({
+            ...currentTimer,
+            remainingSeconds: 0,
+            isExpired: true,
+            isRunning: false
+          });
+        }
+      });
+
     // Check if channel is available
     this.isConnected.set(this.syncService.isChannelAvailable());
   }
@@ -184,6 +217,7 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
     this.ladder.set(state.ladder);
     this.lifelines.set(state.lifelines);
     this.removedChoices.set(state.lifelines.fiftyFifty.removedChoices);
+    this.questionTimer.set(state.questionTimer);
     this.isConnected.set(true);
   }
 

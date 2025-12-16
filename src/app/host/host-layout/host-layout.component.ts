@@ -13,6 +13,7 @@ import { AdminPanelComponent } from '../admin-panel/admin-panel.component';
 import { LifelineControlComponent } from '../lifeline-control/lifeline-control.component';
 import { GameEndSummaryComponent } from '../../shared/game-end-summary/game-end-summary.component';
 import { ConnectionStatusComponent } from '../../shared/connection-status/connection-status.component';
+import { TimerComponent } from '../../shared/timer/timer.component';
 
 /**
  * Host Layout Component - Root container for host control UI
@@ -31,7 +32,8 @@ import { ConnectionStatusComponent } from '../../shared/connection-status/connec
     AdminPanelComponent,
     LifelineControlComponent,
     GameEndSummaryComponent,
-    ConnectionStatusComponent
+    ConnectionStatusComponent,
+    TimerComponent
   ],
   templateUrl: './host-layout.component.html',
   styleUrls: ['./host-layout.component.scss']
@@ -61,6 +63,9 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
       .subscribe(() => {
         this.checkSeatWindowStatus();
       });
+
+    // T122a: Warn on browser close/refresh during active game
+    window.addEventListener('beforeunload', this.handleBeforeUnload);
   }
 
   ngOnDestroy(): void {
@@ -71,6 +76,29 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
     if (this.seatWindow && !this.seatWindow.closed) {
       this.seatWindow.close();
     }
+
+    // T122a: Remove beforeunload listener
+    window.removeEventListener('beforeunload', this.handleBeforeUnload);
+  }
+
+  /**
+   * T122a: Handle beforeunload event to warn about losing game state
+   */
+  private handleBeforeUnload = (event: BeforeUnloadEvent): string | undefined => {
+    if (!this.gameState) {
+      return undefined;
+    }
+
+    // Only warn if game is in active phase (not SETUP or ENDED)
+    if (this.gameState.phase !== GamePhase.SETUP &&
+        this.gameState.phase !== GamePhase.ENDED) {
+      event.preventDefault();
+      // Modern browsers require returnValue to be set
+      event.returnValue = 'You have an active game in progress. Are you sure you want to leave?';
+      return event.returnValue;
+    }
+
+    return undefined;
   }
 
   /**
