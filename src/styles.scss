@@ -12,7 +12,7 @@ $millionaire-accent: mat.m2-define-palette(mat.$m2-blue-palette, 900, 700, A700)
 $millionaire-warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
 
 // Create the theme
-$millionaire-theme: mat.m2-define-light-theme((
+$millionaire-theme: mat.m2-define-dark-theme((
   color: (
     primary: $millionaire-primary,
     accent: $millionaire-accent,

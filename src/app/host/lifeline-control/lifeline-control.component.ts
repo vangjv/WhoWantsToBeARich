@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GameStateService } from '../../services/game-state.service';
+import { SoundService } from '../../services/sound.service';
 import { GamePhase } from '../../models/game-phase.model';
 import { Subscription } from 'rxjs';
 import { AudiencePercentagesDialogComponent } from '../audience-percentages-dialog/audience-percentages-dialog.component';
@@ -52,7 +53,8 @@ export class LifelineControlComponent implements OnInit, OnDestroy {
 
   constructor(
     private gameStateService: GameStateService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private soundService: SoundService
   ) {}
 
   ngOnInit(): void {
@@ -84,6 +86,7 @@ export class LifelineControlComponent implements OnInit, OnDestroy {
    */
   public onUseFiftyFifty(): void {
     if (!this.fiftyFiftyUsed && !this.lifelinesDisabled) {
+      this.soundService.play('lifeline');
       this.gameStateService.useFiftyFifty();
     }
   }
@@ -120,6 +123,7 @@ export class LifelineControlComponent implements OnInit, OnDestroy {
    */
   public onUseAskAudience(): void {
     if (!this.askAudienceUsed && !this.lifelinesDisabled) {
+      this.soundService.play('lifeline');
       const dialogRef = this.dialog.open(AudiencePercentagesDialogComponent, {
         width: '500px',
         disableClose: true
@@ -165,6 +169,7 @@ export class LifelineControlComponent implements OnInit, OnDestroy {
    */
   public onUsePhoneFriend(): void {
     if (!this.phoneFriendUsed && !this.lifelinesDisabled) {
+      this.soundService.play('lifeline');
       const dialogRef = this.dialog.open(PhoneFriendDialogComponent, {
         width: '500px',
         disableClose: true

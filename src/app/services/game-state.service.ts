@@ -6,6 +6,7 @@ import { Question, QuestionPack } from '../models/question.model';
 import { ChoiceKey, LifelineType } from '../models/choice-key.model';
 import { AudiencePercentages } from '../models/lifeline.model';
 import { SyncService } from './sync.service';
+import { SoundService } from './sound.service';
 
 /**
  * Service for managing game state and emitting sync events
@@ -19,14 +20,16 @@ export class GameStateService {
   private gameStateSubject = new BehaviorSubject<GameState>(this.loadOrCreateState());
   private timerSubscription: Subscription | null = null;
   private questionTimerSubscription: Subscription | null = null;
-  private questionTimerDuration: number | null = null;
 
   /**
    * Observable stream of game state changes
    */
   public readonly gameState$: Observable<GameState> = this.gameStateSubject.asObservable();
 
-  constructor(private syncService: SyncService) {
+  constructor(
+    private syncService: SyncService,
+    private soundService: SoundService
+  ) {
     // Listen for state sync requests from seat
     this.syncService.onEvent<any>('STATE_SYNC_REQUEST').subscribe(() => {
       this.sendFullStateSync();
@@ -110,7 +113,7 @@ export class GameStateService {
     const newState = createDefaultGameState();
     newState.contestantName = contestantName;
     newState.questionPack = questionPack;
-    this.questionTimerDuration = questionTimerDuration;
+    newState.questionTimerDuration = questionTimerDuration;
     this.gameStateSubject.next(newState);
     console.log('[GameStateService] Game setup complete, timer duration:', questionTimerDuration);
   }
@@ -143,9 +146,9 @@ export class GameStateService {
     }
 
     // Initialize question timer if configured (but don't auto-start it)
-    const questionTimer = this.questionTimerDuration ? {
-      durationSeconds: this.questionTimerDuration,
-      remainingSeconds: this.questionTimerDuration,
+    const questionTimer = state.questionTimerDuration ? {
+      durationSeconds: state.questionTimerDuration,
+      remainingSeconds: state.questionTimerDuration,
       isRunning: false,
       isExpired: false
     } : null;
@@ -232,6 +235,7 @@ export class GameStateService {
     });
 
     this.syncService.sendEvent('FINAL_LOCKED', { choice: state.selectedChoice });
+    this.soundService.play('final-answer');
     console.log(`[GameStateService] Final answer locked: ${state.selectedChoice}`);
   }
 
@@ -265,11 +269,13 @@ export class GameStateService {
 
     // Handle outcome
     if (correct) {
+      this.soundService.play('correct-answer');
       // Correct answer - can advance or end if level 15
       if (state.currentLevel === 15) {
         this.endGame('win');
       }
     } else {
+      this.soundService.play('wrong-answer');
       // Incorrect answer - end game with safe haven winnings
       this.endGame('lose');
     }
@@ -466,6 +472,8 @@ export class GameStateService {
       data: { suggestion, timerStarted: startTimer }
     });
 
+    this.soundService.play('phone-friend');
+
     if (startTimer) {
       this.startPhoneFriendTimer();
     }
@@ -527,6 +535,9 @@ export class GameStateService {
       console.warn('[GameStateService] No question timer configured');
       return;
     }
+
+    // Play question music based on level
+    this.soundService.playQuestionMusic(state.currentLevel);
 
     // Mark timer as running
     const updatedTimer = {
@@ -671,7 +682,6 @@ export class GameStateService {
   public resetGame(): void {
     this.stopTimer();
     this.stopQuestionTimer();
-    this.questionTimerDuration = null;
     this.gameStateSubject.next(createDefaultGameState());
     console.log('[GameStateService] Game reset');
   }

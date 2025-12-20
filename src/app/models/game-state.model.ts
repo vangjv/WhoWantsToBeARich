@@ -23,6 +23,7 @@ export interface GameState {
   lifelines: LifelineState;
   questionPack: QuestionPack | null;
   questionTimer: TimerState | null;
+  questionTimerDuration: number | null;
   finalWinnings: number;
   walkAway: boolean;
   questionVisible: boolean;
@@ -47,6 +48,7 @@ export function createDefaultGameState(): GameState {
     lifelines: createDefaultLifelines(),
     questionPack: null,
     questionTimer: null,
+    questionTimerDuration: null,
     finalWinnings: 0,
     walkAway: false,
     questionVisible: false,
