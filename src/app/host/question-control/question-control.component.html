@@ -30,7 +30,7 @@
                 {{ gameState!.currentQuestion!.difficulty | uppercase }}
               </span>
             </div>
-            
+
             <mat-slide-toggle
               [checked]="gameState!.questionVisible"
               (change)="toggleVisibility($event.checked)"
