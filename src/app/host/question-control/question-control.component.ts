@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GameStateService } from '../../services/game-state.service';
@@ -30,6 +31,7 @@ import { SoundboardComponent } from '../soundboard/soundboard.component';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
+    MatSlideToggleModule,
     AnswerChoicesComponent,
     SoundboardComponent
   ],
@@ -59,6 +61,10 @@ export class QuestionControlComponent implements OnInit, OnDestroy {
 
   startQuestion(): void {
     this.gameStateService.startQuestion();
+  }
+
+  toggleVisibility(visible: boolean): void {
+    this.gameStateService.toggleQuestionVisibility(visible);
   }
 
   selectChoice(choice: ChoiceKey): void {

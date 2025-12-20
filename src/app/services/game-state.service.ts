@@ -173,7 +173,8 @@ export class GameStateService {
       finalAnswer: null,
       correctAnswer: null,
       questionTimer,
-      lifelines: updatedLifelines
+      lifelines: updatedLifelines,
+      questionVisible: false // Hidden by default until host shows it
     });
 
     this.syncService.sendEvent('QUESTION_STARTED', { question });
@@ -197,6 +198,15 @@ export class GameStateService {
     this.updateState({ selectedChoice: choice });
     this.syncService.sendEvent('CHOICE_SELECTED', { choice });
     console.log(`[GameStateService] Selected choice: ${choice}`);
+  }
+
+  /**
+   * Toggle question visibility on seat display
+   */
+  public toggleQuestionVisibility(visible: boolean): void {
+    this.updateState({ questionVisible: visible });
+    this.syncService.sendEvent('QUESTION_VISIBILITY_CHANGED', { visible });
+    console.log(`[GameStateService] Question visibility set to: ${visible}`);
   }
 
   /**

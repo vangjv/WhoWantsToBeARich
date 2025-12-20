@@ -31,23 +31,25 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 8px;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
 }
 
 .timer-value {
   font-size: 48px;
   font-weight: bold;
   line-height: 1;
+  color: #0d47a1;
 
   .warning & {
-    color: #ff9800;
+    color: #bf360c;
   }
 }
 
 .timer-expired {
   font-size: 32px;
   font-weight: bold;
-  color: #f44336;
+  color: #b71c1c;
   text-transform: uppercase;
 }
 

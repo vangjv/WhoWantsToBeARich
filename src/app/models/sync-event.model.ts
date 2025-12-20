@@ -147,6 +147,16 @@ export interface SyncEventGameEnded extends BaseSyncEvent {
 }
 
 /**
+ * Question visibility changed
+ */
+export interface SyncEventQuestionVisibilityChanged extends BaseSyncEvent {
+  type: 'QUESTION_VISIBILITY_CHANGED';
+  payload: {
+    visible: boolean;
+  };
+}
+
+/**
  * Discriminated union of all sync event types
  * Used for BroadcastChannel communication
  */
@@ -162,7 +172,8 @@ export type SyncEvent =
   | SyncEventTimerTick
   | SyncEventTimerExpired
   | SyncEventWalkAway
-  | SyncEventGameEnded;
+  | SyncEventGameEnded
+  | SyncEventQuestionVisibilityChanged;
 
 /**
  * Type guard for sync events

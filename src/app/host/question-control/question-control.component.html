@@ -18,16 +18,25 @@
         <div *ngIf="showQuestion() && gameState?.currentQuestion" class="question-section">
           <!-- Question Header -->
           <div class="question-header">
-            <span class="level-badge">Level {{ gameState!.currentLevel }}</span>
-            <span class="category-badge" *ngIf="gameState!.currentQuestion!.category">
-              📂 {{ gameState!.currentQuestion!.category }}
-            </span>
-            <span class="difficulty-badge" *ngIf="gameState!.currentQuestion!.difficulty"
-                  [class.easy]="gameState!.currentQuestion!.difficulty === 'easy'"
-                  [class.medium]="gameState!.currentQuestion!.difficulty === 'medium'"
-                  [class.hard]="gameState!.currentQuestion!.difficulty === 'hard'">
-              {{ gameState!.currentQuestion!.difficulty | uppercase }}
-            </span>
+            <div class="badges">
+              <span class="level-badge">Level {{ gameState!.currentLevel }}</span>
+              <span class="category-badge" *ngIf="gameState!.currentQuestion!.category">
+                📂 {{ gameState!.currentQuestion!.category }}
+              </span>
+              <span class="difficulty-badge" *ngIf="gameState!.currentQuestion!.difficulty"
+                    [class.easy]="gameState!.currentQuestion!.difficulty === 'easy'"
+                    [class.medium]="gameState!.currentQuestion!.difficulty === 'medium'"
+                    [class.hard]="gameState!.currentQuestion!.difficulty === 'hard'">
+                {{ gameState!.currentQuestion!.difficulty | uppercase }}
+              </span>
+            </div>
+            
+            <mat-slide-toggle
+              [checked]="gameState!.questionVisible"
+              (change)="toggleVisibility($event.checked)"
+              color="primary">
+              Show on Seat
+            </mat-slide-toggle>
           </div>
 
           <!-- Question Text -->

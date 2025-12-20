@@ -20,11 +20,18 @@
 .question-section {
   .question-header {
     display: flex;
-    gap: 12px;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 16px;
 
+    .badges {
+      display: flex;
+      gap: 12px;
+    }
+
     .level-badge,
-    .category-badge {
+    .category-badge,
+    .difficulty-badge {
       padding: 4px 12px;
       border-radius: 12px;
       font-size: 12px;

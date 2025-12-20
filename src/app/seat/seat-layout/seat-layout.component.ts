@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import { SyncService } from '../../services/sync.service';
@@ -47,6 +47,8 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
   phase = signal<GamePhase>(GamePhase.SETUP);
   contestantName = signal<string | null>(null);
   currentQuestion = signal<Question | null>(null);
+  questionVisible = signal<boolean>(false);
+  visibleQuestion = computed(() => this.questionVisible() ? this.currentQuestion() : null);
   currentLevel = signal<number>(1);
   clearedLevel = signal<number>(0);
   selectedChoice = signal<ChoiceKey | null>(null);
@@ -101,11 +103,20 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
       .subscribe((event: any) => {
         console.log('[SeatLayout] Question started', event.payload);
         this.currentQuestion.set(event.payload.question);
+        this.questionVisible.set(false); // Hidden by default
         this.phase.set(GamePhase.QUESTION);
         this.selectedChoice.set(null);
         this.finalAnswer.set(null);
         this.correctAnswer.set(null);
         this.removedChoices.set([]);
+      });
+
+    // Listen for QUESTION_VISIBILITY_CHANGED
+    this.syncService.onEvent('QUESTION_VISIBILITY_CHANGED')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((event: any) => {
+        console.log('[SeatLayout] Question visibility changed', event.payload);
+        this.questionVisible.set(event.payload.visible);
       });
 
     // Listen for CHOICE_SELECTED
@@ -212,6 +223,7 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
     this.phase.set(state.phase);
     this.contestantName.set(state.contestantName);
     this.currentQuestion.set(state.currentQuestion);
+    this.questionVisible.set(state.questionVisible);
     this.currentLevel.set(state.currentLevel);
     this.clearedLevel.set(state.clearedLevel);
     this.selectedChoice.set(state.selectedChoice);

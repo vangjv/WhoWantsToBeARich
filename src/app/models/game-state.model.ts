@@ -25,6 +25,7 @@ export interface GameState {
   questionTimer: TimerState | null;
   finalWinnings: number;
   walkAway: boolean;
+  questionVisible: boolean;
 }
 
 /**
@@ -46,7 +47,8 @@ export function createDefaultGameState(): GameState {
     questionPack: null,
     questionTimer: null,
     finalWinnings: 0,
-    walkAway: false
+    walkAway: false,
+    questionVisible: false
   };
 }
 
