@@ -1,0 +1,19 @@
+<div class="soundboard-container">
+  <div class="sound-grid">
+    <button
+      *ngFor="let sound of sounds"
+      mat-raised-button
+      color="accent"
+      class="sound-button"
+      (click)="playSound(sound.id)">
+      <mat-icon>music_note</mat-icon>
+      {{ sound.name }}
+    </button>
+  </div>
+
+  <div class="controls">
+    <button mat-raised-button color="warn" (click)="stopAll()">
+      <mat-icon>stop</mat-icon> Stop All Sounds
+    </button>
+  </div>
+</div>

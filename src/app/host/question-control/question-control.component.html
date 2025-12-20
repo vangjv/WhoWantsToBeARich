@@ -1,94 +1,100 @@
-<mat-card class="question-control-card">
-  <mat-card-header>
-    <mat-card-title>Question Control</mat-card-title>
-  </mat-card-header>
+<mat-tab-group animationDuration="0ms" class="control-tabs" mat-stretch-tabs="false" mat-align-tabs="start">
+  <mat-tab label="Question Control">
+    <mat-card class="question-control-card">
+      <mat-card-content>
+        <!-- Start Question Button -->
+        <div *ngIf="!showQuestion()" class="start-section">
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="startQuestion()"
+            [disabled]="!canStartQuestion()"
+            class="control-button">
+            Start Question (Level {{ gameState?.currentLevel || 1 }})
+          </button>
+        </div>
 
-  <mat-card-content>
-    <!-- Start Question Button -->
-    <div *ngIf="!showQuestion()" class="start-section">
-      <button
-        mat-raised-button
-        color="primary"
-        (click)="startQuestion()"
-        [disabled]="!canStartQuestion()"
-        class="control-button">
-        Start Question (Level {{ gameState?.currentLevel || 1 }})
-      </button>
-    </div>
+        <!-- Question Display -->
+        <div *ngIf="showQuestion() && gameState?.currentQuestion" class="question-section">
+          <!-- Question Header -->
+          <div class="question-header">
+            <span class="level-badge">Level {{ gameState!.currentLevel }}</span>
+            <span class="category-badge" *ngIf="gameState!.currentQuestion!.category">
+              📂 {{ gameState!.currentQuestion!.category }}
+            </span>
+            <span class="difficulty-badge" *ngIf="gameState!.currentQuestion!.difficulty"
+                  [class.easy]="gameState!.currentQuestion!.difficulty === 'easy'"
+                  [class.medium]="gameState!.currentQuestion!.difficulty === 'medium'"
+                  [class.hard]="gameState!.currentQuestion!.difficulty === 'hard'">
+              {{ gameState!.currentQuestion!.difficulty | uppercase }}
+            </span>
+          </div>
 
-    <!-- Question Display -->
-    <div *ngIf="showQuestion() && gameState?.currentQuestion" class="question-section">
-      <!-- Question Header -->
-      <div class="question-header">
-        <span class="level-badge">Level {{ gameState!.currentLevel }}</span>
-        <span class="category-badge" *ngIf="gameState!.currentQuestion!.category">
-          📂 {{ gameState!.currentQuestion!.category }}
-        </span>
-        <span class="difficulty-badge" *ngIf="gameState!.currentQuestion!.difficulty"
-              [class.easy]="gameState!.currentQuestion!.difficulty === 'easy'"
-              [class.medium]="gameState!.currentQuestion!.difficulty === 'medium'"
-              [class.hard]="gameState!.currentQuestion!.difficulty === 'hard'">
-          {{ gameState!.currentQuestion!.difficulty | uppercase }}
-        </span>
-      </div>
+          <!-- Question Text -->
+          <div class="question-text">
+            {{ gameState!.currentQuestion!.text }}
+          </div>
 
-      <!-- Question Text -->
-      <div class="question-text">
-        {{ gameState!.currentQuestion!.text }}
-      </div>
+          <!-- Answer Choices -->
+          <app-answer-choices
+            [choices]="gameState!.currentQuestion!.choices"
+            [selectedChoice]="gameState!.selectedChoice"
+            [finalAnswer]="gameState!.finalAnswer"
+            [correctAnswer]="gameState!.phase === GamePhase.REVEAL ? gameState!.correctAnswer : null"
+            [removedChoices]="gameState!.lifelines.fiftyFifty.removedChoices"
+            [isHostView]="true"
+            (choiceSelected)="selectChoice($event)">
+          </app-answer-choices>
 
-      <!-- Answer Choices -->
-      <app-answer-choices
-        [choices]="gameState!.currentQuestion!.choices"
-        [selectedChoice]="gameState!.selectedChoice"
-        [finalAnswer]="gameState!.finalAnswer"
-        [correctAnswer]="gameState!.phase === GamePhase.REVEAL ? gameState!.correctAnswer : null"
-        [removedChoices]="gameState!.lifelines.fiftyFifty.removedChoices"
-        [isHostView]="true"
-        (choiceSelected)="selectChoice($event)">
-      </app-answer-choices>
+          <!-- Host-Only Explanation (FR-021) -->
+          <div *ngIf="showExplanation()" class="explanation-section">
+            <h4>Host Notes:</h4>
+            <p>{{ gameState!.currentQuestion!.explanation }}</p>
+            <p class="correct-answer-note">
+              <strong>Correct Answer:</strong> {{ gameState!.currentQuestion!.correctAnswer }}
+            </p>
+          </div>
+        </div>
+      </mat-card-content>
 
-      <!-- Host-Only Explanation (FR-021) -->
-      <div *ngIf="showExplanation()" class="explanation-section">
-        <h4>Host Notes:</h4>
-        <p>{{ gameState!.currentQuestion!.explanation }}</p>
-        <p class="correct-answer-note">
-          <strong>Correct Answer:</strong> {{ gameState!.currentQuestion!.correctAnswer }}
-        </p>
-      </div>
-    </div>
-  </mat-card-content>
+      <mat-card-actions align="end" *ngIf="showQuestion()">
+        <!-- Lock Final Answer Button -->
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="lockFinalAnswer()"
+          [disabled]="!canLockAnswer()"
+          class="control-button">
+          🔒 Lock Final Answer
+        </button>
 
-  <mat-card-actions align="end" *ngIf="showQuestion()">
-    <!-- Lock Final Answer Button -->
-    <button
-      mat-raised-button
-      color="accent"
-      (click)="lockFinalAnswer()"
-      [disabled]="!canLockAnswer()"
-      class="control-button">
-      🔒 Lock Final Answer
-    </button>
+        <!-- Reveal Button -->
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="revealAnswer()"
+          [disabled]="!canReveal()"
+          class="control-button">
+          ✨ Reveal
+        </button>
 
-    <!-- Reveal Button -->
-    <button
-      mat-raised-button
-      color="warn"
-      (click)="revealAnswer()"
-      [disabled]="!canReveal()"
-      class="control-button">
-      ✨ Reveal
-    </button>
+        <!-- Advance Level Button -->
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="advanceLevel()"
+          [disabled]="!canAdvanceLevel()"
+          class="control-button"
+          *ngIf="gameState?.phase === GamePhase.REVEAL">
+          ➡️ Continue
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-tab>
 
-    <!-- Advance Level Button -->
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="advanceLevel()"
-      [disabled]="!canAdvanceLevel()"
-      class="control-button"
-      *ngIf="gameState?.phase === GamePhase.REVEAL">
-      ➡️ Continue
-    </button>
-  </mat-card-actions>
-</mat-card>
+  <mat-tab label="Soundboard">
+    <mat-card class="soundboard-card">
+      <app-soundboard></app-soundboard>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

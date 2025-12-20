@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy, ViewChild, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GameStateService } from '../../services/game-state.service';
+import { SoundService } from '../../services/sound.service';
 import { GameState } from '../../models/game-state.model';
 import { GamePhase } from '../../models/game-phase.model';
 import { TimerState } from '../../models/timer.model';
@@ -27,6 +29,7 @@ import { TimerComponent } from '../../shared/timer/timer.component';
   imports: [
     CommonModule,
     MatButtonModule,
+    MatIconModule,
     GameSetupComponent,
     QuestionControlComponent,
     HostLadderComponent,
@@ -43,13 +46,17 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
   gameState: GameState | null = null;
   GamePhase = GamePhase; // Expose enum to template
   questionTimer = signal<TimerState | null>(null);
+  isSoundPaused = false;
 
   @ViewChild(ConnectionStatusComponent) connectionStatus?: ConnectionStatusComponent;
 
   private destroy$ = new Subject<void>();
   private seatWindow: Window | null = null;
 
-  constructor(private gameStateService: GameStateService) {}
+  constructor(
+    private gameStateService: GameStateService,
+    private soundService: SoundService
+  ) {}
 
   ngOnInit(): void {
     // Subscribe to game state updates
@@ -58,6 +65,12 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
       .subscribe(state => {
         this.gameState = state;
         this.questionTimer.set(state.questionTimer);
+      });
+
+    this.soundService.isPaused$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(paused => {
+        this.isSoundPaused = paused;
       });
 
     // T055: Connection status polling - check if seat window is still open
@@ -82,6 +95,10 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
 
     // T122a: Remove beforeunload listener
     window.removeEventListener('beforeunload', this.handleBeforeUnload);
+  }
+
+  toggleSound(): void {
+    this.soundService.togglePause();
   }
 
   /**

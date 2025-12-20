@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { GameStateService } from '../../services/game-state.service';
@@ -9,6 +10,7 @@ import { GameState } from '../../models/game-state.model';
 import { GamePhase } from '../../models/game-phase.model';
 import { ChoiceKey } from '../../models/choice-key.model';
 import { AnswerChoicesComponent } from '../../shared/answer-choices/answer-choices.component';
+import { SoundboardComponent } from '../soundboard/soundboard.component';
 
 /**
  * Question Control Component
@@ -27,7 +29,9 @@ import { AnswerChoicesComponent } from '../../shared/answer-choices/answer-choic
     CommonModule,
     MatButtonModule,
     MatCardModule,
-    AnswerChoicesComponent
+    MatTabsModule,
+    AnswerChoicesComponent,
+    SoundboardComponent
   ],
   templateUrl: './question-control.component.html',
   styleUrls: ['./question-control.component.scss']
