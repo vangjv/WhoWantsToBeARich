@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { GameStateService } from '../../services/game-state.service';
 import { GamePhase } from '../../models/game-phase.model';
 import { Subscription } from 'rxjs';
@@ -29,7 +30,8 @@ import { Subscription } from 'rxjs';
     MatSelectModule,
     MatFormFieldModule,
     MatCheckboxModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSlideToggleModule
   ],
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.scss']
@@ -68,6 +70,11 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
   public askAudienceUsed = false;
   public phoneFriendUsed = false;
 
+  /**
+   * Whether connection status is hidden on seat display
+   */
+  public hideConnectionStatus = true;
+
   constructor(private gameStateService: GameStateService) {}
 
   ngOnInit(): void {
@@ -95,6 +102,8 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
       this.fiftyFiftyUsed = state.lifelines.fiftyFifty.used;
       this.askAudienceUsed = state.lifelines.askAudience.used;
       this.phoneFriendUsed = state.lifelines.phoneFriend.used;
+
+      this.hideConnectionStatus = state.hideConnectionStatus;
     });
   }
 
@@ -166,6 +175,13 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
     if (confirm('Reset game to setup? All progress will be lost.')) {
       this.gameStateService.resetGame();
     }
+  }
+
+  /**
+   * Toggle connection status visibility
+   */
+  public toggleConnectionStatus(): void {
+    this.gameStateService.setConnectionStatusVisibility(!this.hideConnectionStatus);
   }
 
   /**

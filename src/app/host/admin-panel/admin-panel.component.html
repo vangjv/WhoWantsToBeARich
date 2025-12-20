@@ -115,6 +115,20 @@
 
       <mat-divider class="section-divider"></mat-divider>
 
+      <!-- Display Settings -->
+      <div class="display-settings-section">
+        <h4 class="controls-label">Display Settings</h4>
+        <mat-slide-toggle
+          [checked]="!hideConnectionStatus"
+          (change)="toggleConnectionStatus()"
+          color="primary"
+        >
+          Show Connection Status on Seat
+        </mat-slide-toggle>
+      </div>
+
+      <mat-divider class="section-divider"></mat-divider>
+
       <!-- T133 & T134: End Game and Reset Game -->
       <div class="game-control-section">
         <h4 class="controls-label">Game Controls</h4>

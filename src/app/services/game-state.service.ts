@@ -711,4 +711,13 @@ export class GameStateService {
     this.updateState({ lifelines: updatedLifelines });
     console.log('[GameStateService] Lifeline reset:', lifelineType);
   }
+
+  /**
+   * Toggle connection status visibility on seat display
+   */
+  public setConnectionStatusVisibility(hidden: boolean): void {
+    this.updateState({ hideConnectionStatus: hidden });
+    this.sendFullStateSync();
+    console.log('[GameStateService] Connection status visibility set to hidden:', hidden);
+  }
 }

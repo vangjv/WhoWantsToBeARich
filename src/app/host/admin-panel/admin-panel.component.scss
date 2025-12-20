@@ -50,7 +50,7 @@
 
   &:disabled {
     background: rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.5);
     cursor: not-allowed;
   }
 }
@@ -60,7 +60,7 @@
   padding: 4px;
 
   small {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.85rem;
     font-style: italic;
   }
@@ -101,6 +101,25 @@
 .section-divider {
   margin: 16px 0;
   border-color: rgba(255, 255, 255, 0.1);
+}
+
+// Display settings styling
+.display-settings-section {
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  .controls-label {
+    margin: 0 0 12px 0;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffd700;
+  }
+
+  mat-slide-toggle {
+    color: rgba(255, 255, 255, 0.9);
+  }
 }
 
 // T131: Level override styling

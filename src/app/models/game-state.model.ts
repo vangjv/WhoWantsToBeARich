@@ -26,6 +26,7 @@ export interface GameState {
   finalWinnings: number;
   walkAway: boolean;
   questionVisible: boolean;
+  hideConnectionStatus: boolean;
 }
 
 /**
@@ -48,7 +49,8 @@ export function createDefaultGameState(): GameState {
     questionTimer: null,
     finalWinnings: 0,
     walkAway: false,
-    questionVisible: false
+    questionVisible: false,
+    hideConnectionStatus: true
   };
 }
 

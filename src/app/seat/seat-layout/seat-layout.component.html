@@ -10,7 +10,7 @@
       <app-timer [timer]="questionTimer()"></app-timer>
     </div>
 
-    <div class="connection-indicator" [class.connected]="isConnected()">
+    <div class="connection-indicator" [class.connected]="isConnected()" *ngIf="!hideConnectionStatus()">
       <span class="status-dot"></span>
       {{ isConnected() ? 'Connected' : 'Disconnected' }}
     </div>

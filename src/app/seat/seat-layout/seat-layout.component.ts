@@ -63,6 +63,7 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
   didWalkAway = signal<boolean>(false);
   // T097: Question timer state
   questionTimer = signal<TimerState | null>(null);
+  hideConnectionStatus = signal<boolean>(true);
 
   constructor(private syncService: SyncService) {}
 
@@ -233,6 +234,7 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
     this.lifelines.set(state.lifelines);
     this.removedChoices.set(state.lifelines.fiftyFifty.removedChoices);
     this.questionTimer.set(state.questionTimer);
+    this.hideConnectionStatus.set(state.hideConnectionStatus);
     this.isConnected.set(true);
   }
 
