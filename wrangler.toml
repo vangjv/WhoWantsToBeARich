@@ -2,4 +2,7 @@ name = "wwtbam"
 
 compatibility_date = "2025-12-20"
 
-assets = { directory = "dist/wwtbam/browser" }
+[assets]
+directory = "dist/wwtbam/browser"
+# This is the key bit for Angular deep links:
+not_found_handling = "single-page-application"
