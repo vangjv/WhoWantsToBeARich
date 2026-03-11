@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { QuestionPack } from '../models/question.model';
 import { QuestionPackService } from './question-pack.service';
 
 function createQuestion(level: number) {
@@ -21,7 +22,9 @@ describe('QuestionPackService', () => {
   let service: QuestionPackService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [QuestionPackService]
+    });
     service = TestBed.inject(QuestionPackService);
   });
 
@@ -54,13 +57,13 @@ describe('QuestionPackService', () => {
     });
 
     await service.loadPredefinedPacks();
-    const firstLoadPacks = await new Promise<any[]>((resolve) => {
+    const firstLoadPacks = await new Promise<QuestionPack[]>((resolve) => {
       service.getAvailablePacks().subscribe(resolve);
     });
     expect(firstLoadPacks.length).toBe(1);
 
     await service.loadPredefinedPacks();
-    const secondLoadPacks = await new Promise<any[]>((resolve) => {
+    const secondLoadPacks = await new Promise<QuestionPack[]>((resolve) => {
       service.getAvailablePacks().subscribe(resolve);
     });
     expect(secondLoadPacks.length).toBe(1);
