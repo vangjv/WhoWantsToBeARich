@@ -1,0 +1,412 @@
+{
+  "name": "Expert Knowledge Pack",
+  "description": "Difficult academic and historical questions intended for expert players.",
+  "creator": "Predefined Pack Generator",
+  "questions": [
+    {
+      "id": "pack4-q1",
+      "level": 1,
+      "text": "What is the study of fungi called?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Botany"
+        },
+        {
+          "key": "B",
+          "text": "Mycology"
+        },
+        {
+          "key": "C",
+          "text": "Entomology"
+        },
+        {
+          "key": "D",
+          "text": "Ecology"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Biology",
+      "difficulty": "easy",
+      "explanation": "Mycology is the branch of biology focused on fungi."
+    },
+    {
+      "id": "pack4-q2",
+      "level": 2,
+      "text": "Which physicist introduced the uncertainty principle?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Max Planck"
+        },
+        {
+          "key": "B",
+          "text": "Werner Heisenberg"
+        },
+        {
+          "key": "C",
+          "text": "Erwin Schr\u00f6dinger"
+        },
+        {
+          "key": "D",
+          "text": "Paul Dirac"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Physics",
+      "difficulty": "easy",
+      "explanation": "Heisenberg formulated the uncertainty principle."
+    },
+    {
+      "id": "pack4-q3",
+      "level": 3,
+      "text": "What is the main language family of Hungarian?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Romance"
+        },
+        {
+          "key": "B",
+          "text": "Germanic"
+        },
+        {
+          "key": "C",
+          "text": "Slavic"
+        },
+        {
+          "key": "D",
+          "text": "Uralic"
+        }
+      ],
+      "correctAnswer": "D",
+      "category": "Linguistics",
+      "difficulty": "easy",
+      "explanation": "Hungarian belongs to the Uralic family."
+    },
+    {
+      "id": "pack4-q4",
+      "level": 4,
+      "text": "Which war was triggered by the Defenestration of Prague in 1618?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Seven Years' War"
+        },
+        {
+          "key": "B",
+          "text": "Thirty Years' War"
+        },
+        {
+          "key": "C",
+          "text": "War of Spanish Succession"
+        },
+        {
+          "key": "D",
+          "text": "Crimean War"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "History",
+      "difficulty": "easy",
+      "explanation": "The Defenestration of Prague sparked the Thirty Years\u2019 War."
+    },
+    {
+      "id": "pack4-q5",
+      "level": 5,
+      "text": "Which mathematician is associated with the Last Theorem proved by Andrew Wiles?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Euler"
+        },
+        {
+          "key": "B",
+          "text": "Gauss"
+        },
+        {
+          "key": "C",
+          "text": "Fermat"
+        },
+        {
+          "key": "D",
+          "text": "Riemann"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Math",
+      "difficulty": "easy",
+      "explanation": "Wiles proved Fermat\u2019s Last Theorem."
+    },
+    {
+      "id": "pack4-q6",
+      "level": 6,
+      "text": "What is the primary ore of aluminum?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Hematite"
+        },
+        {
+          "key": "B",
+          "text": "Bauxite"
+        },
+        {
+          "key": "C",
+          "text": "Galena"
+        },
+        {
+          "key": "D",
+          "text": "Sphalerite"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Chemistry",
+      "difficulty": "medium",
+      "explanation": "Aluminum is primarily extracted from bauxite."
+    },
+    {
+      "id": "pack4-q7",
+      "level": 7,
+      "text": "In economics, what does CPI stand for?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Consumer Price Index"
+        },
+        {
+          "key": "B",
+          "text": "Central Production Indicator"
+        },
+        {
+          "key": "C",
+          "text": "Currency Parity Index"
+        },
+        {
+          "key": "D",
+          "text": "Consumer Purchasing Indicator"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Economics",
+      "difficulty": "medium",
+      "explanation": "CPI tracks average price changes for consumer goods/services."
+    },
+    {
+      "id": "pack4-q8",
+      "level": 8,
+      "text": "Who wrote \"The Structure of Scientific Revolutions\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Karl Popper"
+        },
+        {
+          "key": "B",
+          "text": "Thomas Kuhn"
+        },
+        {
+          "key": "C",
+          "text": "Imre Lakatos"
+        },
+        {
+          "key": "D",
+          "text": "Paul Feyerabend"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Philosophy of Science",
+      "difficulty": "medium",
+      "explanation": "Thomas Kuhn authored the influential work in 1962."
+    },
+    {
+      "id": "pack4-q9",
+      "level": 9,
+      "text": "What is the largest moon of Saturn?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Titan"
+        },
+        {
+          "key": "B",
+          "text": "Enceladus"
+        },
+        {
+          "key": "C",
+          "text": "Rhea"
+        },
+        {
+          "key": "D",
+          "text": "Iapetus"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Astronomy",
+      "difficulty": "medium",
+      "explanation": "Titan is Saturn\u2019s largest moon."
+    },
+    {
+      "id": "pack4-q10",
+      "level": 10,
+      "text": "Which treaty ended the War of the Spanish Succession in 1713?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Treaty of Utrecht"
+        },
+        {
+          "key": "B",
+          "text": "Treaty of Westphalia"
+        },
+        {
+          "key": "C",
+          "text": "Treaty of Nystad"
+        },
+        {
+          "key": "D",
+          "text": "Treaty of Aix-la-Chapelle"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "History",
+      "difficulty": "medium",
+      "explanation": "The Treaty of Utrecht ended major hostilities in 1713."
+    },
+    {
+      "id": "pack4-q11",
+      "level": 11,
+      "text": "In computer science, Big-O of binary search is?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "O(n)"
+        },
+        {
+          "key": "B",
+          "text": "O(log n)"
+        },
+        {
+          "key": "C",
+          "text": "O(n log n)"
+        },
+        {
+          "key": "D",
+          "text": "O(1)"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Computer Science",
+      "difficulty": "hard",
+      "explanation": "Binary search halves the search space each step."
+    },
+    {
+      "id": "pack4-q12",
+      "level": 12,
+      "text": "What is Avogadro\u2019s number approximately?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "6.02 \u00d7 10^23"
+        },
+        {
+          "key": "B",
+          "text": "9.81 \u00d7 10^2"
+        },
+        {
+          "key": "C",
+          "text": "3.00 \u00d7 10^8"
+        },
+        {
+          "key": "D",
+          "text": "1.60 \u00d7 10^-19"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Chemistry",
+      "difficulty": "hard",
+      "explanation": "Avogadro\u2019s constant is about 6.022\u00d710^23 mol^-1."
+    },
+    {
+      "id": "pack4-q13",
+      "level": 13,
+      "text": "Which dynasty built most of the existing Great Wall sections?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Qin"
+        },
+        {
+          "key": "B",
+          "text": "Han"
+        },
+        {
+          "key": "C",
+          "text": "Ming"
+        },
+        {
+          "key": "D",
+          "text": "Tang"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "History",
+      "difficulty": "hard",
+      "explanation": "Most surviving Great Wall sections are Ming-era."
+    },
+    {
+      "id": "pack4-q14",
+      "level": 14,
+      "text": "What is the derivative of ln(x)?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "1/x"
+        },
+        {
+          "key": "B",
+          "text": "x"
+        },
+        {
+          "key": "C",
+          "text": "ln(x)"
+        },
+        {
+          "key": "D",
+          "text": "e^x"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Math",
+      "difficulty": "hard",
+      "explanation": "d/dx ln(x) = 1/x for x>0."
+    },
+    {
+      "id": "pack4-q15",
+      "level": 15,
+      "text": "Which theorem states that every bounded sequence in R^n has a convergent subsequence?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Stokes\u2019 theorem"
+        },
+        {
+          "key": "B",
+          "text": "Bolzano\u2013Weierstrass theorem"
+        },
+        {
+          "key": "C",
+          "text": "Noether theorem"
+        },
+        {
+          "key": "D",
+          "text": "Green\u2019s theorem"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Mathematics",
+      "difficulty": "hard",
+      "explanation": "Bolzano\u2013Weierstrass guarantees a convergent subsequence."
+    }
+  ]
+}

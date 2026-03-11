@@ -1,0 +1,412 @@
+{
+  "name": "Advanced Mixed Trivia Pack",
+  "description": "Broader topics with medium-to-hard escalation across all 15 levels.",
+  "creator": "Predefined Pack Generator",
+  "questions": [
+    {
+      "id": "pack3-q1",
+      "level": 1,
+      "text": "Which metal is liquid at standard room temperature?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Iron"
+        },
+        {
+          "key": "B",
+          "text": "Mercury"
+        },
+        {
+          "key": "C",
+          "text": "Aluminum"
+        },
+        {
+          "key": "D",
+          "text": "Copper"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Chemistry",
+      "difficulty": "easy",
+      "explanation": "Mercury is liquid at room temperature."
+    },
+    {
+      "id": "pack3-q2",
+      "level": 2,
+      "text": "What is the largest internal organ in the human body?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Heart"
+        },
+        {
+          "key": "B",
+          "text": "Liver"
+        },
+        {
+          "key": "C",
+          "text": "Lung"
+        },
+        {
+          "key": "D",
+          "text": "Kidney"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Biology",
+      "difficulty": "easy",
+      "explanation": "The liver is the largest internal organ."
+    },
+    {
+      "id": "pack3-q3",
+      "level": 3,
+      "text": "Which empire built Machu Picchu?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Aztec"
+        },
+        {
+          "key": "B",
+          "text": "Roman"
+        },
+        {
+          "key": "C",
+          "text": "Inca"
+        },
+        {
+          "key": "D",
+          "text": "Ottoman"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "History",
+      "difficulty": "easy",
+      "explanation": "Machu Picchu was built by the Inca civilization."
+    },
+    {
+      "id": "pack3-q4",
+      "level": 4,
+      "text": "In computing, what does CPU stand for?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Central Process Unit"
+        },
+        {
+          "key": "B",
+          "text": "Computer Processing Unit"
+        },
+        {
+          "key": "C",
+          "text": "Central Processing Unit"
+        },
+        {
+          "key": "D",
+          "text": "Core Processing Utility"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Technology",
+      "difficulty": "easy",
+      "explanation": "CPU means Central Processing Unit."
+    },
+    {
+      "id": "pack3-q5",
+      "level": 5,
+      "text": "Which artist is known for the sculpture \"David\" (Renaissance masterpiece)?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Donatello"
+        },
+        {
+          "key": "B",
+          "text": "Michelangelo"
+        },
+        {
+          "key": "C",
+          "text": "Bernini"
+        },
+        {
+          "key": "D",
+          "text": "Raphael"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Art",
+      "difficulty": "easy",
+      "explanation": "Michelangelo carved the famous Renaissance David."
+    },
+    {
+      "id": "pack3-q6",
+      "level": 6,
+      "text": "What is the SI unit of electrical resistance?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Volt"
+        },
+        {
+          "key": "B",
+          "text": "Ampere"
+        },
+        {
+          "key": "C",
+          "text": "Ohm"
+        },
+        {
+          "key": "D",
+          "text": "Watt"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Physics",
+      "difficulty": "medium",
+      "explanation": "Electrical resistance is measured in ohms."
+    },
+    {
+      "id": "pack3-q7",
+      "level": 7,
+      "text": "Which scientist discovered penicillin in 1928?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Louis Pasteur"
+        },
+        {
+          "key": "B",
+          "text": "Alexander Fleming"
+        },
+        {
+          "key": "C",
+          "text": "Robert Koch"
+        },
+        {
+          "key": "D",
+          "text": "Marie Curie"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "Fleming discovered penicillin from mold."
+    },
+    {
+      "id": "pack3-q8",
+      "level": 8,
+      "text": "What is the term for animals active at dawn and dusk?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Nocturnal"
+        },
+        {
+          "key": "B",
+          "text": "Diurnal"
+        },
+        {
+          "key": "C",
+          "text": "Crepuscular"
+        },
+        {
+          "key": "D",
+          "text": "Arboreal"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Biology",
+      "difficulty": "medium",
+      "explanation": "Crepuscular animals are active around twilight."
+    },
+    {
+      "id": "pack3-q9",
+      "level": 9,
+      "text": "Which number is represented by \"M\" in Roman numerals?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "500"
+        },
+        {
+          "key": "B",
+          "text": "1000"
+        },
+        {
+          "key": "C",
+          "text": "50"
+        },
+        {
+          "key": "D",
+          "text": "100"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Math",
+      "difficulty": "medium",
+      "explanation": "M corresponds to one thousand."
+    },
+    {
+      "id": "pack3-q10",
+      "level": 10,
+      "text": "Which layer of Earth lies directly beneath the crust?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Outer core"
+        },
+        {
+          "key": "B",
+          "text": "Inner core"
+        },
+        {
+          "key": "C",
+          "text": "Mantle"
+        },
+        {
+          "key": "D",
+          "text": "Asthenosphere"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Geology",
+      "difficulty": "medium",
+      "explanation": "The mantle lies below Earth\u2019s crust."
+    },
+    {
+      "id": "pack3-q11",
+      "level": 11,
+      "text": "Who composed the opera cycle \"The Ring of the Nibelung\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Mozart"
+        },
+        {
+          "key": "B",
+          "text": "Verdi"
+        },
+        {
+          "key": "C",
+          "text": "Wagner"
+        },
+        {
+          "key": "D",
+          "text": "Puccini"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Music",
+      "difficulty": "hard",
+      "explanation": "Richard Wagner composed the Ring cycle."
+    },
+    {
+      "id": "pack3-q12",
+      "level": 12,
+      "text": "What is the name of the supercontinent that existed before modern continents?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Laurasia"
+        },
+        {
+          "key": "B",
+          "text": "Pangaea"
+        },
+        {
+          "key": "C",
+          "text": "Gondwana"
+        },
+        {
+          "key": "D",
+          "text": "Rodinia"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Geology",
+      "difficulty": "hard",
+      "explanation": "Pangaea was the late Paleozoic supercontinent."
+    },
+    {
+      "id": "pack3-q13",
+      "level": 13,
+      "text": "Which philosopher tutored Alexander the Great?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Socrates"
+        },
+        {
+          "key": "B",
+          "text": "Plato"
+        },
+        {
+          "key": "C",
+          "text": "Aristotle"
+        },
+        {
+          "key": "D",
+          "text": "Pythagoras"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "History",
+      "difficulty": "hard",
+      "explanation": "Aristotle served as Alexander\u2019s tutor."
+    },
+    {
+      "id": "pack3-q14",
+      "level": 14,
+      "text": "In probability, what is the expected value of a fair six-sided die roll?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "3.0"
+        },
+        {
+          "key": "B",
+          "text": "3.5"
+        },
+        {
+          "key": "C",
+          "text": "4.0"
+        },
+        {
+          "key": "D",
+          "text": "2.5"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Math",
+      "difficulty": "hard",
+      "explanation": "(1+2+3+4+5+6)/6 = 3.5."
+    },
+    {
+      "id": "pack3-q15",
+      "level": 15,
+      "text": "Which celestial object sits at the center of the Milky Way?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "A neutron star"
+        },
+        {
+          "key": "B",
+          "text": "A white dwarf"
+        },
+        {
+          "key": "C",
+          "text": "A supermassive black hole"
+        },
+        {
+          "key": "D",
+          "text": "A quasar"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Astronomy",
+      "difficulty": "hard",
+      "explanation": "Sagittarius A* is a supermassive black hole at the center."
+    }
+  ]
+}

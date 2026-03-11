@@ -61,6 +61,12 @@ export interface ValidationResult {
   pack?: QuestionPack;
 }
 
+interface PredefinedPackManifestItem {
+  id: string;
+  name: string;
+  file: string;
+}
+
 /**
  * Service for importing and validating question packs
  */
@@ -70,6 +76,7 @@ export interface ValidationResult {
 export class QuestionPackService {
   private packs: Map<string, QuestionPack> = new Map();
   private packsSubject = new BehaviorSubject<QuestionPack[]>([]);
+  private predefinedPacksLoaded = false;
 
   /**
    * Import question pack from JSON with validation
@@ -167,6 +174,45 @@ export class QuestionPackService {
 
     this.savePack(result.pack);
     return result.pack;
+  }
+
+  /**
+   * Load predefined question packs from public assets
+   */
+  public async loadPredefinedPacks(manifestPath: string = '/predefined-packs/index.json'): Promise<void> {
+    if (this.predefinedPacksLoaded) {
+      return;
+    }
+
+    const manifestResponse = await fetch(manifestPath);
+    if (!manifestResponse.ok) {
+      throw new Error(`Failed to load predefined pack index: ${manifestResponse.status}`);
+    }
+
+    const manifest = await manifestResponse.json() as PredefinedPackManifestItem[];
+
+    for (const item of manifest) {
+      try {
+        const packResponse = await fetch(`/predefined-packs/${item.file}`);
+        if (!packResponse.ok) {
+          console.warn(`[QuestionPackService] Failed to load predefined pack file: ${item.file}`);
+          continue;
+        }
+
+        const packJson = await packResponse.json();
+        const result = this.validatePack(packJson);
+        if (!result.valid || !result.pack) {
+          console.warn(`[QuestionPackService] Invalid predefined pack ${item.file}:`, result.errors);
+          continue;
+        }
+
+        this.savePack(result.pack);
+      } catch (error) {
+        console.warn(`[QuestionPackService] Failed to process predefined pack ${item.file}:`, error);
+      }
+    }
+
+    this.predefinedPacksLoaded = true;
   }
 
   /**

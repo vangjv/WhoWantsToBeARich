@@ -1,0 +1,412 @@
+{
+  "name": "Everyday Basics Pack",
+  "description": "Foundational trivia with gentle progression from very easy to easy-medium.",
+  "creator": "Predefined Pack Generator",
+  "questions": [
+    {
+      "id": "pack1-q1",
+      "level": 1,
+      "text": "The color of a clear daytime sky is usually?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Blue"
+        },
+        {
+          "key": "B",
+          "text": "Green"
+        },
+        {
+          "key": "C",
+          "text": "Red"
+        },
+        {
+          "key": "D",
+          "text": "Purple"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "explanation": "Sunlight scatters in the atmosphere and makes the sky appear blue."
+    },
+    {
+      "id": "pack1-q2",
+      "level": 2,
+      "text": "How many days are in a week?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "5"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "7"
+        },
+        {
+          "key": "D",
+          "text": "8"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "General Knowledge",
+      "difficulty": "easy",
+      "explanation": "A week has seven days."
+    },
+    {
+      "id": "pack1-q3",
+      "level": 3,
+      "text": "Which animal says \"meow\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Dog"
+        },
+        {
+          "key": "B",
+          "text": "Cat"
+        },
+        {
+          "key": "C",
+          "text": "Cow"
+        },
+        {
+          "key": "D",
+          "text": "Duck"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Animals",
+      "difficulty": "easy",
+      "explanation": "Cats are known for meowing."
+    },
+    {
+      "id": "pack1-q4",
+      "level": 4,
+      "text": "What do people drink from a cup?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Sand"
+        },
+        {
+          "key": "B",
+          "text": "Liquid"
+        },
+        {
+          "key": "C",
+          "text": "Paper"
+        },
+        {
+          "key": "D",
+          "text": "Stone"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Daily Life",
+      "difficulty": "easy",
+      "explanation": "Cups are used for liquids."
+    },
+    {
+      "id": "pack1-q5",
+      "level": 5,
+      "text": "Which month comes after March?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "April"
+        },
+        {
+          "key": "B",
+          "text": "May"
+        },
+        {
+          "key": "C",
+          "text": "June"
+        },
+        {
+          "key": "D",
+          "text": "July"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Calendar",
+      "difficulty": "easy",
+      "explanation": "April follows March."
+    },
+    {
+      "id": "pack1-q6",
+      "level": 6,
+      "text": "What is 10 + 5?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "12"
+        },
+        {
+          "key": "B",
+          "text": "13"
+        },
+        {
+          "key": "C",
+          "text": "15"
+        },
+        {
+          "key": "D",
+          "text": "16"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Math",
+      "difficulty": "medium",
+      "explanation": "Ten plus five equals fifteen."
+    },
+    {
+      "id": "pack1-q7",
+      "level": 7,
+      "text": "Which planet do humans live on?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Mars"
+        },
+        {
+          "key": "B",
+          "text": "Earth"
+        },
+        {
+          "key": "C",
+          "text": "Venus"
+        },
+        {
+          "key": "D",
+          "text": "Jupiter"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "Humans live on Earth."
+    },
+    {
+      "id": "pack1-q8",
+      "level": 8,
+      "text": "What is frozen water called?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Steam"
+        },
+        {
+          "key": "B",
+          "text": "Rain"
+        },
+        {
+          "key": "C",
+          "text": "Ice"
+        },
+        {
+          "key": "D",
+          "text": "Mist"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Science",
+      "difficulty": "medium",
+      "explanation": "Water becomes ice when frozen."
+    },
+    {
+      "id": "pack1-q9",
+      "level": 9,
+      "text": "Which instrument has black and white keys?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Drum"
+        },
+        {
+          "key": "B",
+          "text": "Flute"
+        },
+        {
+          "key": "C",
+          "text": "Piano"
+        },
+        {
+          "key": "D",
+          "text": "Violin"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Music",
+      "difficulty": "medium",
+      "explanation": "A piano has black and white keys."
+    },
+    {
+      "id": "pack1-q10",
+      "level": 10,
+      "text": "Which direction does the sun rise from?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "North"
+        },
+        {
+          "key": "B",
+          "text": "South"
+        },
+        {
+          "key": "C",
+          "text": "East"
+        },
+        {
+          "key": "D",
+          "text": "West"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Geography",
+      "difficulty": "medium",
+      "explanation": "The sun appears to rise in the east."
+    },
+    {
+      "id": "pack1-q11",
+      "level": 11,
+      "text": "How many minutes are in one hour?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "30"
+        },
+        {
+          "key": "B",
+          "text": "45"
+        },
+        {
+          "key": "C",
+          "text": "60"
+        },
+        {
+          "key": "D",
+          "text": "90"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Time",
+      "difficulty": "hard",
+      "explanation": "One hour equals sixty minutes."
+    },
+    {
+      "id": "pack1-q12",
+      "level": 12,
+      "text": "Which gas do humans breathe in to survive?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Oxygen"
+        },
+        {
+          "key": "B",
+          "text": "Helium"
+        },
+        {
+          "key": "C",
+          "text": "Carbon monoxide"
+        },
+        {
+          "key": "D",
+          "text": "Nitrogen dioxide"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Biology",
+      "difficulty": "hard",
+      "explanation": "Humans need oxygen for respiration."
+    },
+    {
+      "id": "pack1-q13",
+      "level": 13,
+      "text": "What is the capital city of Japan?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Seoul"
+        },
+        {
+          "key": "B",
+          "text": "Beijing"
+        },
+        {
+          "key": "C",
+          "text": "Tokyo"
+        },
+        {
+          "key": "D",
+          "text": "Bangkok"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Geography",
+      "difficulty": "hard",
+      "explanation": "Tokyo is the capital of Japan."
+    },
+    {
+      "id": "pack1-q14",
+      "level": 14,
+      "text": "Which ocean is the largest?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Atlantic"
+        },
+        {
+          "key": "B",
+          "text": "Indian"
+        },
+        {
+          "key": "C",
+          "text": "Pacific"
+        },
+        {
+          "key": "D",
+          "text": "Arctic"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Geography",
+      "difficulty": "hard",
+      "explanation": "The Pacific Ocean is the largest."
+    },
+    {
+      "id": "pack1-q15",
+      "level": 15,
+      "text": "Which shape has exactly three sides?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Square"
+        },
+        {
+          "key": "B",
+          "text": "Triangle"
+        },
+        {
+          "key": "C",
+          "text": "Circle"
+        },
+        {
+          "key": "D",
+          "text": "Rectangle"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Math",
+      "difficulty": "hard",
+      "explanation": "A triangle has three sides."
+    }
+  ]
+}
