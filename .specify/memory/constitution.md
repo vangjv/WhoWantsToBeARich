@@ -2,7 +2,7 @@
 SYNC IMPACT REPORT
 ==================
 Version Change: Initial → 1.0.0
-Rationale: First constitution for Who Wants to Be a Millionaire game project
+Rationale: First constitution for Who Wants to Be Rich game project
 
 Modified/Added Principles:
 - NEW: I. Component-Based Architecture
@@ -23,7 +23,7 @@ Templates Status:
 Follow-up Actions: None
 -->
 
-# Who Wants to Be a Millionaire Game Constitution
+# Who Wants to Be Rich Game Constitution
 
 ## Core Principles
 

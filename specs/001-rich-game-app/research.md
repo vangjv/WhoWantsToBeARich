@@ -1,7 +1,7 @@
-# Research Document: Who Wants to Be a Millionaire Game Application
+# Research Document: Who Wants to Be Rich Game Application
 
 **Date**: 2025-12-14  
-**Feature**: 001-millionaire-game-app
+**Feature**: 001-rich-game-app
 
 ## Purpose
 
@@ -64,7 +64,7 @@ Use BroadcastChannel API as primary mechanism for host-to-seat synchronization, 
 ### Implementation Notes
 ```typescript
 // SyncService pattern
-const channel = new BroadcastChannel('millionaire-game');
+const channel = new BroadcastChannel('rich-game');
 
 // Host (sender)
 channel.postMessage({ type: 'QUESTION_STARTED', payload: currentQuestion });
@@ -376,7 +376,7 @@ Use `window.open()` with specific window features (fullscreen, toolbar hidden) t
 // Host service
 openSeatDisplay(): void {
   const features = 'width=1920,height=1080,toolbar=no,menubar=no,location=no';
-  this.seatWindow = window.open('/seat', 'MillionaireSeat', features);
+  this.seatWindow = window.open('/seat', 'RichSeat', features);
   
   // Poll for connection status
   this.connectionCheck$ = interval(2000).pipe(

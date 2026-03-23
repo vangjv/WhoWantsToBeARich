@@ -1,8 +1,8 @@
-# Tasks: Who Wants to Be a Millionaire Game Application
+# Tasks: Who Wants to Be Rich Game Application
 
-**Feature**: 001-millionaire-game-app  
+**Feature**: 001-rich-game-app  
 **Date**: 2025-12-14  
-**Input**: Design documents from `specs/001-millionaire-game-app/`
+**Input**: Design documents from `specs/001-rich-game-app/`
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -55,7 +55,7 @@
 
 - [X] T015 [P] Create LadderLevel interface in src/app/models/money-ladder.model.ts
 - [X] T016 [P] Create MoneyLadder interface in src/app/models/money-ladder.model.ts
-- [X] T017 [P] Create createDefaultLadder() function with classic US Millionaire values in src/app/models/money-ladder.model.ts
+- [X] T017 [P] Create createDefaultLadder() function with classic game show values in src/app/models/money-ladder.model.ts
 
 ### Lifeline Models
 

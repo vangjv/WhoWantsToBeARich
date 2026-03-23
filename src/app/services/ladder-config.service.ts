@@ -8,7 +8,7 @@ import { MoneyLadder, createDefaultLadder } from '../models/money-ladder.model';
   providedIn: 'root'
 })
 export class LadderConfigService {
-  private readonly STORAGE_KEY = 'millionaire-ladder-config';
+  private readonly STORAGE_KEY = 'rich-ladder-config';
   private currentLadder: MoneyLadder = createDefaultLadder();
 
   constructor() {

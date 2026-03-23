@@ -11,7 +11,7 @@ import { SyncEvent, isSyncEvent } from '../models/sync-event.model';
   providedIn: 'root'
 })
 export class SyncService {
-  private readonly CHANNEL_NAME = 'millionaire-game';
+  private readonly CHANNEL_NAME = 'rich-game';
   private channel: BroadcastChannel | null = null;
   private messageSubject = new Subject<SyncEvent>();
 

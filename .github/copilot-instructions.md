@@ -1,12 +1,12 @@
-# Who Wants to Be a Millionaire - Game Application
+# Who Wants to Be Rich - Game Application
 
 ## Architecture Overview
 
-**Dual-Display Game Show Application**: This Angular 21+ app implements a "Who Wants to Be a Millionaire" game with **two synchronized browser windows**:
+**Dual-Display Game Show Application**: This Angular 21+ app implements a "Who Wants to Be Rich" game with **two synchronized browser windows**:
 - **Host UI** (`/host`): Full game control - loads questions, triggers reveals, manages lifelines, timer, and adjudication
 - **Seat UI** (`/seat`): Contestant/audience display - read-only, show-style presentation for second screen (1080p/4K optimized)
 
-**Critical Synchronization Pattern**: Host owns all game state mutations; Seat is a pure consumer. Use `BroadcastChannel` API (`millionaire-game` channel) for cross-window sync with `STATE_SYNC_REQUEST`/`STATE_SYNC_RESPONSE` pattern on reload. Seat must survive close/refresh and reconnect automatically.
+**Critical Synchronization Pattern**: Host owns all game state mutations; Seat is a pure consumer. Use `BroadcastChannel` API (`rich-game` channel) for cross-window sync with `STATE_SYNC_REQUEST`/`STATE_SYNC_RESPONSE` pattern on reload. Seat must survive close/refresh and reconnect automatically.
 
 ## Tech Stack
 
@@ -20,7 +20,7 @@
 
 ## Data Model & State Management
 
-All data models defined in [`specs/001-millionaire-game-app/contracts/typescript-interfaces.md`](../specs/001-millionaire-game-app/contracts/typescript-interfaces.md). Implement interfaces in `src/app/models/`.
+All data models defined in [`specs/001-rich-game-app/contracts/typescript-interfaces.md`](../specs/001-rich-game-app/contracts/typescript-interfaces.md). Implement interfaces in `src/app/models/`.
 
 **Root State**: `GameState` interface with strict phase transitions:
 ```
@@ -49,7 +49,7 @@ JSON validation required (use Zod or similar):
 - Each question: `id`, `level`, `text`, `choices[4]`, `correctAnswer` (A/B/C/D)
 - Exactly 4 choices with unique keys A-D
 - Optional: `category`, `difficulty`, `explanation`, `mediaUrl` (http/https/file:// paths)
-- See [`specs/001-millionaire-game-app/contracts/question-pack.schema.json`](../specs/001-millionaire-game-app/contracts/question-pack.schema.json)
+- See [`specs/001-rich-game-app/contracts/question-pack.schema.json`](../specs/001-rich-game-app/contracts/question-pack.schema.json)
 
 ## Money Ladder Configuration
 
@@ -69,7 +69,7 @@ All lifelines: One-time use, disable button after activation, sync status to Sea
 
 All messages: `{ type: string, payload: any, timestamp: number }`
 
-**Critical Events** (see [`specs/001-millionaire-game-app/contracts/sync-event.protocol.md`](../specs/001-millionaire-game-app/contracts/sync-event.protocol.md)):
+**Critical Events** (see [`specs/001-rich-game-app/contracts/sync-event.protocol.md`](../specs/001-rich-game-app/contracts/sync-event.protocol.md)):
 - `STATE_SYNC_REQUEST` (Seat → Host): Request full state on load/reconnect
 - `STATE_SYNC_RESPONSE` (Host → Seat): Full GameState snapshot
 - `QUESTION_STARTED`, `ANSWER_SELECTED`, `FINAL_LOCKED`, `REVEAL_CORRECT`, `GAME_ENDED`
@@ -118,4 +118,4 @@ Use `@Input()` for data, `@Output()` for events, shared services for cross-compo
 
 ## Specification Documents
 
-All requirements, user stories, and acceptance scenarios in [`specs/001-millionaire-game-app/spec.md`](../specs/001-millionaire-game-app/spec.md). Implementation plan in [`specs/001-millionaire-game-app/plan.md`](../specs/001-millionaire-game-app/plan.md). Reference these for clarifications.
+All requirements, user stories, and acceptance scenarios in [`specs/001-rich-game-app/spec.md`](../specs/001-rich-game-app/spec.md). Implementation plan in [`specs/001-rich-game-app/plan.md`](../specs/001-rich-game-app/plan.md). Reference these for clarifications.

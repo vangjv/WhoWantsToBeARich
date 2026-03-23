@@ -140,7 +140,7 @@ export class HostLayoutComponent implements OnInit, OnDestroy {
 
     const features = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=no,toolbar=no,menubar=no,location=no,status=no`;
 
-    this.seatWindow = window.open('/seat', 'millionaire-seat', features);
+    this.seatWindow = window.open('/seat', 'rich-seat', features);
 
     if (this.seatWindow) {
       console.log('[HostLayout] Seat window opened successfully');

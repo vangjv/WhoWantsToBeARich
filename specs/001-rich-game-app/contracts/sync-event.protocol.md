@@ -7,7 +7,7 @@
 
 This document defines the message protocol for synchronizing game state between the Host UI (`/host`) and Seat UI (`/seat`) using the BroadcastChannel API.
 
-**Channel Name**: `millionaire-game`
+**Channel Name**: `rich-game`
 
 **Message Format**: JSON objects with `type`, `payload`, and `timestamp` fields
 
@@ -465,7 +465,7 @@ type SyncEvent =
 ### Handling Events (Seat Side)
 
 ```typescript
-const channel = new BroadcastChannel('millionaire-game');
+const channel = new BroadcastChannel('rich-game');
 
 channel.onmessage = (event: MessageEvent<SyncEvent>) => {
   const message = event.data;
@@ -500,7 +500,7 @@ channel.onmessage = (event: MessageEvent<SyncEvent>) => {
 ### Sending Events (Host Side)
 
 ```typescript
-const channel = new BroadcastChannel('millionaire-game');
+const channel = new BroadcastChannel('rich-game');
 
 function sendSyncEvent(type: string, payload: any): void {
   const message: SyncEvent = {

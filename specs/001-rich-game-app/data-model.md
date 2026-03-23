@@ -1,7 +1,7 @@
-# Data Model: Who Wants to Be a Millionaire Game Application
+# Data Model: Who Wants to Be Rich Game Application
 
 **Date**: 2025-12-14  
-**Feature**: 001-millionaire-game-app
+**Feature**: 001-rich-game-app
 
 ## Purpose
 
@@ -192,7 +192,7 @@ This document defines all data entities, their fields, relationships, validation
 - `safeHavens` must contain level numbers that exist in `levels`
 - `safeHavens` should be sorted ascending
 
-**Default Configuration** (classic UK/US Millionaire):
+**Default Configuration** (classic game show):
 ```typescript
 [
   { levelNumber: 1, value: 100 },
