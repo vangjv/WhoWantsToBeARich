@@ -6,17 +6,17 @@
 // Include core Material styles
 @include mat.core();
 
-// Define custom Millionaire theme (gold/blue dramatic)
-$millionaire-primary: mat.m2-define-palette(mat.$m2-amber-palette, 700, 500, 900);
-$millionaire-accent: mat.m2-define-palette(mat.$m2-blue-palette, 900, 700, A700);
-$millionaire-warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
+// Define custom Rich theme (gold/blue dramatic)
+$rich-primary: mat.m2-define-palette(mat.$m2-amber-palette, 700, 500, 900);
+$rich-accent: mat.m2-define-palette(mat.$m2-blue-palette, 900, 700, A700);
+$rich-warn: mat.m2-define-palette(mat.$m2-red-palette, 700);
 
 // Create the theme
-$millionaire-theme: mat.m2-define-dark-theme((
+$rich-theme: mat.m2-define-dark-theme((
   color: (
-    primary: $millionaire-primary,
-    accent: $millionaire-accent,
-    warn: $millionaire-warn,
+    primary: $rich-primary,
+    accent: $rich-accent,
+    warn: $rich-warn,
   ),
   typography: mat.m2-define-typography-config(
     $font-family: '"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
@@ -25,7 +25,7 @@ $millionaire-theme: mat.m2-define-dark-theme((
 ));
 
 // Apply theme to all Material components
-@include mat.all-component-themes($millionaire-theme);
+@include mat.all-component-themes($rich-theme);
 
 // Global styles
 * {

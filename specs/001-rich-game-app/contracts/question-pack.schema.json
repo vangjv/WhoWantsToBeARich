@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://millionaire-game.example.com/schemas/question-pack.schema.json",
-  "title": "Who Wants to Be a Millionaire Question Pack",
+  "$id": "https://rich-game.example.com/schemas/question-pack.schema.json",
+  "title": "Who Wants to Be Rich Question Pack",
   "description": "Schema for question pack JSON files imported into the game",
   "type": "object",
   "required": ["name", "questions"],

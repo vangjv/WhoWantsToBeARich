@@ -406,7 +406,7 @@ function createDefaultGameState(): GameState {
 }
 
 /**
- * Create default money ladder (classic UK/US Millionaire)
+ * Create default money ladder (classic game show)
  */
 function createDefaultLadder(): MoneyLadder {
   return {

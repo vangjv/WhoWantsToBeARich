@@ -1,4 +1,4 @@
-# Specification Quality Checklist: Who Wants to Be a Millionaire Game Application
+# Specification Quality Checklist: Who Wants to Be Rich Game Application
 
 **Purpose**: Validate specification completeness and quality before proceeding to planning  
 **Created**: 2025-12-14  

@@ -1,12 +1,12 @@
-# Quickstart Guide: Who Wants to Be a Millionaire Game Application
+# Quickstart Guide: Who Wants to Be Rich Game Application
 
 **Date**: 2025-12-14  
-**Feature**: 001-millionaire-game-app  
+**Feature**: 001-rich-game-app  
 **Target Audience**: Developers implementing this feature
 
 ## Overview
 
-This guide provides a step-by-step implementation roadmap for building the "Who Wants to Be a Millionaire" game application. Follow this sequence to ensure proper layering of functionality from foundation to features.
+This guide provides a step-by-step implementation roadmap for building the "Who Wants to Be Rich" game application. Follow this sequence to ensure proper layering of functionality from foundation to features.
 
 ---
 
@@ -32,7 +32,7 @@ This guide provides a step-by-step implementation roadmap for building the "Who 
 
 ```bash
 # Ensure you're in project root
-cd c:\Projects\WhoWantsToBeAMillionaire
+cd c:\Projects\WhoWantsToBeRich
 
 # Verify Angular CLI version
 ng version
@@ -187,7 +187,7 @@ export class SyncService {
   public events$: Observable<SyncEvent>;
   
   constructor() {
-    this.channel = new BroadcastChannel('millionaire-game');
+    this.channel = new BroadcastChannel('rich-game');
     this.events$ = fromEvent<MessageEvent<SyncEvent>>(this.channel, 'message')
       .pipe(map(event => event.data));
   }
@@ -716,7 +716,7 @@ Per constitution, no automated tests. Validate through manual testing:
 ng build --configuration production
 ```
 
-**Output**: `dist/who-wants-to-be-a-millionaire/` directory
+**Output**: `dist/who-wants-to-be-rich/` directory
 
 ### Step 10.2: Test Production Build Locally
 
@@ -725,7 +725,7 @@ ng build --configuration production
 npm install -g http-server
 
 # Serve production build
-http-server dist/who-wants-to-be-a-millionaire/browser -p 8080
+http-server dist/who-wants-to-be-rich/browser -p 8080
 
 # Open browser to http://localhost:8080
 ```

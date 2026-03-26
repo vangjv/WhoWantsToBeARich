@@ -1,13 +1,13 @@
-# Implementation Plan: Who Wants to Be a Millionaire Game Application
+# Implementation Plan: Who Wants to Be Rich Game Application
 
-**Branch**: `001-millionaire-game-app` | **Date**: 2025-12-14 | **Spec**: [spec.md](./spec.md)
-**Input**: Feature specification from `/specs/001-millionaire-game-app/spec.md`
+**Branch**: `001-rich-game-app` | **Date**: 2025-12-14 | **Spec**: [spec.md](./spec.md)
+**Input**: Feature specification from `/specs/001-rich-game-app/spec.md`
 
 **Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/commands/plan.md` for the execution workflow.
 
 ## Summary
 
-Build an Angular 21+ single-page application implementing a "Who Wants to Be a Millionaire" style game show with dual synchronized displays (host control UI at `/host` and contestant display UI at `/seat`). The application runs entirely client-side with real-time synchronization between windows using BroadcastChannel API, supporting 15-level money ladder, three lifelines (50:50, Ask the Audience, Phone a Friend), walk-away option, optional timers, and custom question pack import via JSON.
+Build an Angular 21+ single-page application implementing a "Who Wants to Be Rich" style game show with dual synchronized displays (host control UI at `/host` and contestant display UI at `/seat`). The application runs entirely client-side with real-time synchronization between windows using BroadcastChannel API, supporting 15-level money ladder, three lifelines (50:50, Ask the Audience, Phone a Friend), walk-away option, optional timers, and custom question pack import via JSON.
 
 **Technical Approach**: Angular 21 standalone components with signal-based reactivity, Angular Material UI components, BroadcastChannel API for cross-window synchronization, service-based state management with RxJS observables, and show-style UX fidelity optimized for 1080p/4K second-screen display.
 
@@ -74,7 +74,7 @@ Build an Angular 21+ single-page application implementing a "Who Wants to Be a M
 ### Documentation (this feature)
 
 ```text
-specs/001-millionaire-game-app/
+specs/001-rich-game-app/
 ├── plan.md                          # This file (/speckit.plan command output) ✅
 ├── research.md                      # Phase 0 output (/speckit.plan command) ✅
 ├── data-model.md                    # Phase 1 output (/speckit.plan command) ✅
@@ -95,7 +95,7 @@ specs/001-millionaire-game-app/
 **Selected Structure**: Single-page web application with dual-route architecture
 
 ```text
-c:\Projects\WhoWantsToBeAMillionaire\
+c:\Projects\WhoWantsToBeRich\
 ├── angular.json                     # Angular project configuration
 ├── package.json                     # Dependencies and scripts
 ├── tsconfig.json                    # TypeScript configuration (strict mode enabled)
@@ -146,7 +146,7 @@ c:\Projects\WhoWantsToBeAMillionaire\
 │           ├── choice-button.component.ts
 │           └── validation.utils.ts
 └── specs/                           # Feature documentation directory
-    └── 001-millionaire-game-app/    # This feature's documentation
+    └── 001-rich-game-app/    # This feature's documentation
 ```
 
 **Structure Decision**: 

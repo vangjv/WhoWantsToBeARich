@@ -1,6 +1,6 @@
 ## 1) Product overview
 
-Build an **Angular 21+ single-page app** that runs a **Who Wants to Be a Millionaire–style game** in a browser with **two synchronized UIs**:
+Build an **Angular 21+ single-page app** that runs a **Who Wants to Be Rich–style game** in a browser with **two synchronized UIs**:
 
 * **Host UI**: controls game flow, loads question packs, triggers reveals/locks, manages timer, lifelines, and adjudication.
 * **Contestant/Audience UI** (“Hot Seat”): opened as a **popup window** for a second screen; show-like display of the current question ladder, question text, answer choices, and lifeline status (read-only).
@@ -321,7 +321,7 @@ Requirements:
 
 * Multi-device play over a network (server/WebSocket)
 * Automatic “smart” audience/friend generation by difficulty (can add later)
-* Licensed Millionaire audio/visual assets (use original, inspired-by styling)
+* Licensed audio/visual assets (use original, inspired-by styling)
 * Full cinematic animation/sound package
 
-If you want, I can also define a **JSON schema** for the Millionaire question pack and a **validator** spec similar to the Family Feud one, so you can import packs safely and reuse the same host/seat architecture across all three games.
+If you want, I can also define a **JSON schema** for the question pack and a **validator** spec similar to the Family Feud one, so you can import packs safely and reuse the same host/seat architecture across all three games.

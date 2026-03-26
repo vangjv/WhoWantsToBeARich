@@ -1,9 +1,9 @@
-# Feature Specification: Who Wants to Be a Millionaire Game Application
+# Feature Specification: Who Wants to Be Rich Game Application
 
-**Feature Branch**: `001-millionaire-game-app`  
+**Feature Branch**: `001-rich-game-app`  
 **Created**: 2025-12-14  
 **Status**: Draft  
-**Input**: User description: "Build an Angular 21+ single-page app that runs a Who Wants to Be a Millionaire-style game in a browser with two synchronized UIs"
+**Input**: User description: "Build an Angular 21+ single-page app that runs a Who Wants to Be Rich-style game in a browser with two synchronized UIs"
 
 ## Clarifications
 
@@ -12,7 +12,7 @@
 - Q: The 50:50 lifeline spec says it removes "two incorrect answers" but doesn't specify the selection method when there are three incorrect answers to choose from. → A: Remove two incorrect answers randomly from the three available (random selection)
 - Q: When a contestant walks away from a question they haven't answered yet, what winnings do they receive? → A: Contestant receives winnings from the last successfully cleared level (the highest level they answered correctly). Example: If contestant is ON level 7 (viewing level 7 question, not yet answered), they walked away with level 6 winnings ($16,000). If ON level 5, they get level 4 winnings ($1,000).
 - Q: The Question Pack JSON format specification mentions support for optional media fields (image/audio/video), but doesn't specify how these media assets should be referenced or loaded. → A: Media fields contain URLs (http/https or file:// paths) to external media files
-- Q: The specification states that default money ladder uses "US dollar values typical of game show format" but doesn't specify what those exact default values are for each of the 15 levels. → A: Use classic UK/US Millionaire ladder progression - $100, $200, $300, $500, $1K, $2K, $4K, $8K, $16K, $32K, $64K, $125K, $250K, $500K, $1M
+- Q: The specification states that default money ladder uses "US dollar values typical of game show format" but doesn't specify what those exact default values are for each of the 15 levels. → A: Use classic game show ladder progression - $100, $200, $300, $500, $1K, $2K, $4K, $8K, $16K, $32K, $64K, $125K, $250K, $500K, $1M
 - Q: The spec mentions that the contestant display popup can be "closed or refreshed" and should reconnect with full state sync. However, it doesn't specify whether the host should receive any notification when the contestant display disconnects or reconnects. → A: Visual indicator showing connection status (connected/disconnected) without modal dialogs or blocking popups
 
 ## User Scenarios & Testing *(mandatory)*
@@ -299,8 +299,8 @@ A game operator needs to customize the money ladder values and safe haven positi
 - Standard web browser with modern API support (BroadcastChannel, ES6+, popup windows allowed)
 - Single contestant per game session (no multi-player or tournament bracket support)
 - Host acts as both game master and adjudicator (no contestant input controls)
-- Audio/visual assets use original inspired-by styling (no licensed Millionaire media)
-- Default ladder uses classic UK/US Millionaire values ($100, $200, $300, $500, $1K, $2K, $4K, $8K, $16K, $32K, $64K, $125K, $250K, $500K, $1M); customizable for other currencies
+- Audio/visual assets use original inspired-by styling (no licensed media)
+- Default ladder uses classic game show values ($100, $200, $300, $500, $1K, $2K, $4K, $8K, $16K, $32K, $64K, $125K, $250K, $500K, $1M); customizable for other currencies
 - 50:50 removes two incorrect answers randomly from the three available incorrect choices
 - Phone a Friend suggestions are entered manually by host (no actual phone integration or external communication)
 - Ask the Audience percentages entered manually by host (no live audience polling system)
@@ -320,7 +320,7 @@ A game operator needs to customize the money ladder values and safe haven positi
 - Real-time audience polling integration for Ask the Audience percentages
 - Actual phone/video call integration for Phone a Friend lifeline
 - Automated audience/friend response generation based on difficulty or AI
-- Licensed Millionaire audio clips, music, graphics, or animations
+- Licensed audio clips, music, graphics, or animations
 - In-app question pack editor or question authoring tools
 - Persistent storage or database for game history, statistics, or saved games
 - User accounts, authentication, or multi-user session management

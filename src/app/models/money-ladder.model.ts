@@ -15,7 +15,7 @@ export interface MoneyLadder {
 }
 
 /**
- * Create default money ladder (classic UK/US Millionaire)
+ * Create default money ladder (classic game show style)
  */
 export function createDefaultLadder(): MoneyLadder {
   return {

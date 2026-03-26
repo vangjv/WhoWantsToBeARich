@@ -1,7 +1,7 @@
-# API Contracts: Who Wants to Be a Millionaire Game Application
+# API Contracts: Who Wants to Be Rich Game Application
 
 **Date**: 2025-12-14  
-**Feature**: 001-millionaire-game-app
+**Feature**: 001-rich-game-app
 
 ## Overview
 

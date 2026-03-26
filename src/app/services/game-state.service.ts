@@ -16,7 +16,7 @@ import { SoundService } from './sound.service';
   providedIn: 'root'
 })
 export class GameStateService {
-  private readonly SESSION_STORAGE_KEY = 'millionaire-game-state';
+  private readonly SESSION_STORAGE_KEY = 'rich-game-state';
   private gameStateSubject = new BehaviorSubject<GameState>(this.loadOrCreateState());
   private timerSubscription: Subscription | null = null;
   private questionTimerSubscription: Subscription | null = null;
