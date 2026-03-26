@@ -157,6 +157,28 @@ export interface SyncEventQuestionVisibilityChanged extends BaseSyncEvent {
 }
 
 /**
+ * Host sends audio control commands to the seat window.
+ */
+export interface SyncEventAudioCommand extends BaseSyncEvent {
+  type: 'AUDIO_COMMAND';
+  payload: {
+    action: 'play' | 'stop' | 'pause' | 'resume';
+    soundId?: string;
+  };
+}
+
+/**
+ * Host sends current audio state when the seat reconnects.
+ */
+export interface SyncEventAudioSync extends BaseSyncEvent {
+  type: 'AUDIO_SYNC';
+  payload: {
+    currentSoundId: string | null;
+    isPaused: boolean;
+  };
+}
+
+/**
  * Discriminated union of all sync event types
  * Used for BroadcastChannel communication
  */
@@ -173,7 +195,9 @@ export type SyncEvent =
   | SyncEventTimerExpired
   | SyncEventWalkAway
   | SyncEventGameEnded
-  | SyncEventQuestionVisibilityChanged;
+  | SyncEventQuestionVisibilityChanged
+  | SyncEventAudioCommand
+  | SyncEventAudioSync;
 
 /**
  * Type guard for sync events
