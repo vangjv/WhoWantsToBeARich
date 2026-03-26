@@ -1,32 +1,40 @@
 // Seat Ladder Component - Vertical Dramatic Styling
 // Optimized for 1080p/4K display with show-style presentation
 
+:host {
+  display: block;
+  height: 100%;
+}
+
 .seat-ladder {
-  padding: 20px;
+  padding: clamp(12px, 1.2vw, 20px);
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-width: 0;
 }
 
 .ladder-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-width: 300px;
-  margin: 0 auto;
+  gap: clamp(6px, 0.8vw, 8px);
+  width: 100%;
+  max-width: none;
+  min-width: 0;
 }
 
 .ladder-level {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 20px;
+  gap: clamp(10px, 1vw, 16px);
+  padding: clamp(10px, 1vw, 12px) clamp(14px, 1.5vw, 20px);
   background: rgba(255, 255, 255, 0.05);
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   transition: all 0.3s ease;
+  min-width: 0;
 
   &.cleared {
     background: rgba(255, 215, 0, 0.1);
@@ -75,19 +83,21 @@
   }
 
   .level-number {
-    font-size: 20px;
+    font-size: clamp(18px, 1.3vw, 20px);
     font-weight: bold;
     color: rgba(255, 255, 255, 0.6);
-    width: 40px;
+    width: clamp(28px, 2vw, 40px);
     text-align: center;
+    flex-shrink: 0;
   }
 
   .level-value {
-    font-size: 24px;
+    font-size: clamp(20px, 1.6vw, 24px);
     font-weight: 600;
     color: #ffffff;
     flex: 1;
     letter-spacing: 1px;
+    min-width: 0;
   }
 
   .safe-haven-indicator {
@@ -97,7 +107,7 @@
     transform: translateY(-50%);
 
     .safe-icon {
-      font-size: 20px;
+      font-size: clamp(18px, 1.3vw, 20px);
       filter: drop-shadow(0 0 4px rgba(100, 200, 255, 0.6));
     }
   }
@@ -116,6 +126,16 @@
       0 0 30px rgba(255, 215, 0, 0.7),
       0 0 60px rgba(255, 215, 0, 0.5),
       inset 0 0 30px rgba(255, 215, 0, 0.3);
+  }
+}
+
+@media (max-height: 900px) {
+  .seat-ladder {
+    padding: 12px;
+  }
+
+  .ladder-level {
+    padding-block: 8px;
   }
 }
 
