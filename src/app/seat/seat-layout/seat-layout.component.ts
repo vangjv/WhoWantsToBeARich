@@ -13,6 +13,7 @@ import { SeatLadderComponent } from '../seat-ladder/seat-ladder.component';
 import { LifelineStatusComponent } from '../lifeline-status/lifeline-status.component';
 import { TimerComponent } from '../../shared/timer/timer.component';
 import { TimerState } from '../../models/timer.model';
+import { SoundService } from '../../services/sound.service';
 
 /**
  * Seat Layout Component - Contestant/Audience Display (Second Screen)
@@ -65,7 +66,10 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
   questionTimer = signal<TimerState | null>(null);
   hideConnectionStatus = signal<boolean>(true);
 
-  constructor(private syncService: SyncService) {}
+  constructor(
+    private syncService: SyncService,
+    private soundService: SoundService
+  ) {}
 
   ngOnInit(): void {
     this.setupSyncListeners();

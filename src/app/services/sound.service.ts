@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { SyncService } from './sync.service';
 
 export interface Sound {
   id: string;
@@ -7,12 +8,26 @@ export interface Sound {
   filename: string;
 }
 
+type AudioCommandAction = 'play' | 'stop' | 'pause' | 'resume';
+
 @Injectable({
   providedIn: 'root'
 })
 export class SoundService {
+  private readonly loopingSoundIds = new Set([
+    'main-theme',
+    '100-1k',
+    '2k-32k',
+    '64k-125k',
+    '250k-500k',
+    '1m'
+  ]);
+  private readonly isSeatWindow =
+    typeof window !== 'undefined' &&
+    (window.name === 'rich-seat' || window.location.pathname.startsWith('/seat'));
   private audioMap = new Map<string, HTMLAudioElement>();
   private currentPlaying: HTMLAudioElement | null = null;
+  private currentSoundId: string | null = null;
   private isPaused = false;
 
   // List of available sounds
@@ -33,7 +48,7 @@ export class SoundService {
   private isPausedSubject = new BehaviorSubject<boolean>(false);
   isPaused$ = this.isPausedSubject.asObservable();
 
-  constructor() {
+  constructor(private syncService: SyncService) {
     // Preload sounds
     this.sounds.forEach(sound => {
       const audio = new Audio();
@@ -41,58 +56,42 @@ export class SoundService {
       audio.load();
       this.audioMap.set(sound.id, audio);
     });
+
+    this.initializeSync();
   }
 
   play(soundId: string): void {
-    if (this.isPaused) {
-      // If globally paused, we might want to allow playing new sounds but they start paused?
-      // Or just play them. The requirement says "pause and resume sounds".
-      // Usually "pause" means pause currently playing.
-      // If I play a new sound while paused, should it play?
-      // Let's assume "Master Pause" stops everything and prevents new sounds until resumed?
-      // Or just pauses the current one.
-      // Let's assume it pauses current playback. If user clicks play, it should probably override pause or start playing.
-      // Let's reset pause state if user explicitly plays a sound.
-      this.resume();
+    if (!this.isSeatWindow) {
+      this.currentSoundId = this.loopingSoundIds.has(soundId) ? soundId : null;
+      this.isPaused = false;
+      this.isPausedSubject.next(false);
+      this.sendAudioCommand('play', soundId);
+      return;
     }
 
-    this.stopAll();
-
-    const audio = this.audioMap.get(soundId);
-    if (audio) {
-      audio.currentTime = 0;
-      audio.play().catch(err => console.error('Error playing sound:', err));
-      this.currentPlaying = audio;
-
-      // Loop background music tracks
-      if (['main-theme', '100-1k', '2k-32k', '64k-125k', '250k-500k', '1m'].includes(soundId)) {
-        audio.loop = true;
-      } else {
-        audio.loop = false;
-      }
-
-      // When audio ends, clear currentPlaying
-      audio.onended = () => {
-        if (this.currentPlaying === audio) {
-          this.currentPlaying = null;
-        }
-      };
-    }
+    this.playLocal(soundId);
   }
 
   stopAll(): void {
-    if (this.currentPlaying) {
-      this.currentPlaying.pause();
-      this.currentPlaying.currentTime = 0;
-      this.currentPlaying = null;
+    if (!this.isSeatWindow) {
+      this.currentSoundId = null;
+      this.isPaused = false;
+      this.isPausedSubject.next(false);
+      this.sendAudioCommand('stop');
+      return;
     }
-    this.audioMap.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
+
+    this.stopLocal();
   }
 
   pause(): void {
+    if (!this.isSeatWindow) {
+      this.isPaused = true;
+      this.isPausedSubject.next(true);
+      this.sendAudioCommand('pause');
+      return;
+    }
+
     if (this.currentPlaying) {
       this.currentPlaying.pause();
       this.isPaused = true;
@@ -101,9 +100,20 @@ export class SoundService {
   }
 
   resume(): void {
+    if (!this.isSeatWindow) {
+      this.isPaused = false;
+      this.isPausedSubject.next(false);
+      this.sendAudioCommand('resume');
+      return;
+    }
+
     if (this.currentPlaying && this.isPaused) {
       this.currentPlaying.play().catch(err => console.error('Error resuming sound:', err));
+    } else if (!this.currentPlaying && this.currentSoundId) {
+      this.playLocal(this.currentSoundId);
+      return;
     }
+
     this.isPaused = false;
     this.isPausedSubject.next(false);
   }
@@ -128,5 +138,109 @@ export class SoundService {
     } else if (level === 15) {
       this.play('1m');
     }
+  }
+
+  private initializeSync(): void {
+    if (this.isSeatWindow) {
+      this.syncService.onEvent('AUDIO_COMMAND').subscribe((event: any) => {
+        this.handleAudioCommand(event.payload.action, event.payload.soundId);
+      });
+      this.syncService.onEvent('AUDIO_SYNC').subscribe((event: any) => {
+        this.handleAudioSync(event.payload.currentSoundId, event.payload.isPaused);
+      });
+      return;
+    }
+
+    this.syncService.onEvent('STATE_SYNC_REQUEST').subscribe(() => {
+      this.syncService.sendEvent('AUDIO_SYNC', {
+        currentSoundId: this.currentSoundId,
+        isPaused: this.isPaused
+      });
+    });
+  }
+
+  private sendAudioCommand(action: AudioCommandAction, soundId?: string): void {
+    this.syncService.sendEvent('AUDIO_COMMAND', { action, soundId });
+  }
+
+  private handleAudioCommand(action: AudioCommandAction, soundId?: string): void {
+    switch (action) {
+      case 'play':
+        if (soundId) {
+          this.playLocal(soundId);
+        }
+        break;
+      case 'stop':
+        this.stopLocal();
+        break;
+      case 'pause':
+        this.pause();
+        break;
+      case 'resume':
+        this.resume();
+        break;
+    }
+  }
+
+  private handleAudioSync(soundId: string | null, paused: boolean): void {
+    if (!soundId) {
+      this.stopLocal();
+      this.isPaused = paused;
+      this.isPausedSubject.next(paused);
+      return;
+    }
+
+    if (paused) {
+      this.stopLocal();
+      this.currentSoundId = soundId;
+      this.isPaused = true;
+      this.isPausedSubject.next(true);
+      return;
+    }
+
+    this.playLocal(soundId);
+  }
+
+  private playLocal(soundId: string): void {
+    if (this.isPaused) {
+      this.isPaused = false;
+      this.isPausedSubject.next(false);
+    }
+
+    this.stopLocal();
+
+    const audio = this.audioMap.get(soundId);
+    if (audio) {
+      this.currentSoundId = soundId;
+      audio.loop = this.loopingSoundIds.has(soundId);
+      audio.currentTime = 0;
+      audio.play().catch(err => console.error('Error playing sound:', err));
+      this.currentPlaying = audio;
+
+      // When audio ends, clear currentPlaying
+      audio.onended = () => {
+        if (this.currentPlaying === audio) {
+          this.currentPlaying = null;
+          if (!audio.loop) {
+            this.currentSoundId = null;
+          }
+        }
+      };
+    }
+  }
+
+  private stopLocal(): void {
+    if (this.currentPlaying) {
+      this.currentPlaying.pause();
+      this.currentPlaying.currentTime = 0;
+      this.currentPlaying = null;
+    }
+    this.audioMap.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    this.currentSoundId = null;
+    this.isPaused = false;
+    this.isPausedSubject.next(false);
   }
 }
