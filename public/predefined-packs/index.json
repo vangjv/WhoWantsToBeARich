@@ -1,0 +1,27 @@
+[
+  {
+    "id": "pack1",
+    "name": "Everyday Basics Pack",
+    "file": "pack1-everyday-basics.json"
+  },
+  {
+    "id": "pack2",
+    "name": "General Knowledge Challenge Pack",
+    "file": "pack2-general-knowledge.json"
+  },
+  {
+    "id": "pack3",
+    "name": "Advanced Mixed Trivia Pack",
+    "file": "pack3-advanced-mix.json"
+  },
+  {
+    "id": "pack4",
+    "name": "Expert Knowledge Pack",
+    "file": "pack4-expert-knowledge.json"
+  },
+  {
+    "id": "pack5",
+    "name": "Mastermind Ultra-Hard Pack",
+    "file": "pack5-mastermind.json"
+  }
+]

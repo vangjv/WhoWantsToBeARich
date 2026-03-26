@@ -60,7 +60,13 @@ export class GameSetupComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    try {
+      await this.questionPackService.loadPredefinedPacks();
+    } catch (error) {
+      this.importError = error instanceof Error ? error.message : 'Failed to load predefined packs';
+    }
+
     this.loadAvailablePacks();
   }
 

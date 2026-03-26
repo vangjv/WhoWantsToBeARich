@@ -16,7 +16,7 @@
 
     <!-- Question Pack Selection -->
     <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Question Pack</mat-label>
+      <mat-label>Question Pack (Predefined or Imported)</mat-label>
       <mat-select [(ngModel)]="selectedPackId">
         <mat-option *ngFor="let pack of availablePacks" [value]="pack.id">
           {{ pack.name }} ({{ pack.questions.length }} questions)

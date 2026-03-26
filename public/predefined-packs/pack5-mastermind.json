@@ -1,0 +1,412 @@
+{
+  "name": "Mastermind Ultra-Hard Pack",
+  "description": "Highest-difficulty set with specialist-level questions across disciplines.",
+  "creator": "Predefined Pack Generator",
+  "questions": [
+    {
+      "id": "pack5-q1",
+      "level": 1,
+      "text": "Which logic system extends propositional logic with quantifiers?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Modal logic"
+        },
+        {
+          "key": "B",
+          "text": "First-order logic"
+        },
+        {
+          "key": "C",
+          "text": "Fuzzy logic"
+        },
+        {
+          "key": "D",
+          "text": "Temporal logic"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Logic",
+      "difficulty": "easy",
+      "explanation": "First-order logic introduces quantifiers like \u2200 and \u2203."
+    },
+    {
+      "id": "pack5-q2",
+      "level": 2,
+      "text": "What is the SI derived unit for pressure?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Joule"
+        },
+        {
+          "key": "B",
+          "text": "Pascal"
+        },
+        {
+          "key": "C",
+          "text": "Newton"
+        },
+        {
+          "key": "D",
+          "text": "Tesla"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Physics",
+      "difficulty": "easy",
+      "explanation": "Pressure is measured in pascals (N/m\u00b2)."
+    },
+    {
+      "id": "pack5-q3",
+      "level": 3,
+      "text": "Which civilization developed cuneiform script?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Phoenician"
+        },
+        {
+          "key": "B",
+          "text": "Sumerian"
+        },
+        {
+          "key": "C",
+          "text": "Minoan"
+        },
+        {
+          "key": "D",
+          "text": "Hittite"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Ancient History",
+      "difficulty": "easy",
+      "explanation": "Cuneiform originated with the Sumerians in Mesopotamia."
+    },
+    {
+      "id": "pack5-q4",
+      "level": 4,
+      "text": "In genetics, what does PCR stand for?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Protein Chain Reaction"
+        },
+        {
+          "key": "B",
+          "text": "Polymerase Chain Reaction"
+        },
+        {
+          "key": "C",
+          "text": "Primary Cell Replication"
+        },
+        {
+          "key": "D",
+          "text": "Phosphate Cycle Reaction"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Biotechnology",
+      "difficulty": "easy",
+      "explanation": "PCR amplifies DNA sequences."
+    },
+    {
+      "id": "pack5-q5",
+      "level": 5,
+      "text": "Which mathematician introduced transfinite numbers?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "David Hilbert"
+        },
+        {
+          "key": "B",
+          "text": "Georg Cantor"
+        },
+        {
+          "key": "C",
+          "text": "Kurt G\u00f6del"
+        },
+        {
+          "key": "D",
+          "text": "Henri Poincar\u00e9"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Mathematics",
+      "difficulty": "easy",
+      "explanation": "Cantor founded set theory and transfinite arithmetic."
+    },
+    {
+      "id": "pack5-q6",
+      "level": 6,
+      "text": "What is the capital of Kazakhstan?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Almaty"
+        },
+        {
+          "key": "B",
+          "text": "Astana"
+        },
+        {
+          "key": "C",
+          "text": "Tashkent"
+        },
+        {
+          "key": "D",
+          "text": "Bishkek"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "medium",
+      "explanation": "Kazakhstan\u2019s capital is Astana (formerly Nur-Sultan)."
+    },
+    {
+      "id": "pack5-q7",
+      "level": 7,
+      "text": "Which equation describes blackbody radiation spectral distribution?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Bernoulli equation"
+        },
+        {
+          "key": "B",
+          "text": "Planck\u2019s law"
+        },
+        {
+          "key": "C",
+          "text": "Navier\u2013Stokes equation"
+        },
+        {
+          "key": "D",
+          "text": "Poisson equation"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Physics",
+      "difficulty": "medium",
+      "explanation": "Planck\u2019s law models blackbody radiation spectrum."
+    },
+    {
+      "id": "pack5-q8",
+      "level": 8,
+      "text": "Who authored \"Critique of Pure Reason\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Immanuel Kant"
+        },
+        {
+          "key": "B",
+          "text": "G. W. F. Hegel"
+        },
+        {
+          "key": "C",
+          "text": "Baruch Spinoza"
+        },
+        {
+          "key": "D",
+          "text": "John Locke"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Philosophy",
+      "difficulty": "medium",
+      "explanation": "Kant published Critique of Pure Reason in 1781."
+    },
+    {
+      "id": "pack5-q9",
+      "level": 9,
+      "text": "In linguistics, what does IPA stand for?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "International Phonetic Alphabet"
+        },
+        {
+          "key": "B",
+          "text": "Integrated Phonology Analysis"
+        },
+        {
+          "key": "C",
+          "text": "Indo-Pacific Alphabet"
+        },
+        {
+          "key": "D",
+          "text": "Internal Pronunciation Atlas"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Linguistics",
+      "difficulty": "medium",
+      "explanation": "IPA is the standard notation for speech sounds."
+    },
+    {
+      "id": "pack5-q10",
+      "level": 10,
+      "text": "Which particle is the gauge boson of the strong interaction?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Photon"
+        },
+        {
+          "key": "B",
+          "text": "Gluon"
+        },
+        {
+          "key": "C",
+          "text": "W boson"
+        },
+        {
+          "key": "D",
+          "text": "Higgs boson"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Particle Physics",
+      "difficulty": "medium",
+      "explanation": "Gluons mediate the strong force in QCD."
+    },
+    {
+      "id": "pack5-q11",
+      "level": 11,
+      "text": "Which algorithmic paradigm does Dijkstra\u2019s shortest path algorithm primarily use?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Divide and conquer"
+        },
+        {
+          "key": "B",
+          "text": "Greedy"
+        },
+        {
+          "key": "C",
+          "text": "Dynamic programming"
+        },
+        {
+          "key": "D",
+          "text": "Backtracking"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Computer Science",
+      "difficulty": "hard",
+      "explanation": "Dijkstra repeatedly chooses the nearest unvisited vertex."
+    },
+    {
+      "id": "pack5-q12",
+      "level": 12,
+      "text": "What is the name of the boundary around a black hole beyond which escape is impossible?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Photon sphere"
+        },
+        {
+          "key": "B",
+          "text": "Schwarzschild radius"
+        },
+        {
+          "key": "C",
+          "text": "Event horizon"
+        },
+        {
+          "key": "D",
+          "text": "Ergosphere"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Astrophysics",
+      "difficulty": "hard",
+      "explanation": "The event horizon marks the no-escape boundary."
+    },
+    {
+      "id": "pack5-q13",
+      "level": 13,
+      "text": "Which treaty in 1648 ended the Thirty Years\u2019 War?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Treaty of Utrecht"
+        },
+        {
+          "key": "B",
+          "text": "Peace of Westphalia"
+        },
+        {
+          "key": "C",
+          "text": "Treaty of Paris"
+        },
+        {
+          "key": "D",
+          "text": "Treaty of Vienna"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "History",
+      "difficulty": "hard",
+      "explanation": "The Peace of Westphalia ended the conflict in 1648."
+    },
+    {
+      "id": "pack5-q14",
+      "level": 14,
+      "text": "In abstract algebra, a group with a commutative operation is called?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Normal group"
+        },
+        {
+          "key": "B",
+          "text": "Cyclic group"
+        },
+        {
+          "key": "C",
+          "text": "Abelian group"
+        },
+        {
+          "key": "D",
+          "text": "Simple group"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Mathematics",
+      "difficulty": "hard",
+      "explanation": "Groups with commutative operation are Abelian."
+    },
+    {
+      "id": "pack5-q15",
+      "level": 15,
+      "text": "Which problem asks whether every problem verifiable in polynomial time is also solvable in polynomial time?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "P vs NP"
+        },
+        {
+          "key": "B",
+          "text": "Travelling Salesman"
+        },
+        {
+          "key": "C",
+          "text": "Halting Problem"
+        },
+        {
+          "key": "D",
+          "text": "Four Color Theorem"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Theoretical CS",
+      "difficulty": "hard",
+      "explanation": "P vs NP is a major open problem in computer science."
+    }
+  ]
+}

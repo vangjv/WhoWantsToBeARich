@@ -1,0 +1,412 @@
+{
+  "name": "General Knowledge Challenge Pack",
+  "description": "Classic trivia with a clear climb from easy to medium-hard.",
+  "creator": "Predefined Pack Generator",
+  "questions": [
+    {
+      "id": "pack2-q1",
+      "level": 1,
+      "text": "Which continent is Egypt in?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Europe"
+        },
+        {
+          "key": "B",
+          "text": "Africa"
+        },
+        {
+          "key": "C",
+          "text": "Asia"
+        },
+        {
+          "key": "D",
+          "text": "South America"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "easy",
+      "explanation": "Egypt is in northeastern Africa."
+    },
+    {
+      "id": "pack2-q2",
+      "level": 2,
+      "text": "Who wrote \"Harry Potter\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "J. K. Rowling"
+        },
+        {
+          "key": "B",
+          "text": "Suzanne Collins"
+        },
+        {
+          "key": "C",
+          "text": "C. S. Lewis"
+        },
+        {
+          "key": "D",
+          "text": "Roald Dahl"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Literature",
+      "difficulty": "easy",
+      "explanation": "J. K. Rowling wrote the Harry Potter series."
+    },
+    {
+      "id": "pack2-q3",
+      "level": 3,
+      "text": "What is the boiling point of water at sea level?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "80\u00b0C"
+        },
+        {
+          "key": "B",
+          "text": "90\u00b0C"
+        },
+        {
+          "key": "C",
+          "text": "100\u00b0C"
+        },
+        {
+          "key": "D",
+          "text": "120\u00b0C"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Science",
+      "difficulty": "easy",
+      "explanation": "Water boils at 100\u00b0C at standard pressure."
+    },
+    {
+      "id": "pack2-q4",
+      "level": 4,
+      "text": "Which country is famous for the maple leaf symbol?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Australia"
+        },
+        {
+          "key": "B",
+          "text": "Canada"
+        },
+        {
+          "key": "C",
+          "text": "Norway"
+        },
+        {
+          "key": "D",
+          "text": "Brazil"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Geography",
+      "difficulty": "easy",
+      "explanation": "The maple leaf is a key national symbol of Canada."
+    },
+    {
+      "id": "pack2-q5",
+      "level": 5,
+      "text": "Who painted \"Starry Night\"?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Claude Monet"
+        },
+        {
+          "key": "B",
+          "text": "Vincent van Gogh"
+        },
+        {
+          "key": "C",
+          "text": "Salvador Dal\u00ed"
+        },
+        {
+          "key": "D",
+          "text": "Rembrandt"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Art",
+      "difficulty": "easy",
+      "explanation": "Van Gogh painted Starry Night in 1889."
+    },
+    {
+      "id": "pack2-q6",
+      "level": 6,
+      "text": "What does \"www\" stand for in a website address?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "World Wide Web"
+        },
+        {
+          "key": "B",
+          "text": "Web World Wide"
+        },
+        {
+          "key": "C",
+          "text": "Wide World Web"
+        },
+        {
+          "key": "D",
+          "text": "World Web Window"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Technology",
+      "difficulty": "medium",
+      "explanation": "WWW expands to World Wide Web."
+    },
+    {
+      "id": "pack2-q7",
+      "level": 7,
+      "text": "Which blood type is known as the universal donor?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "AB+"
+        },
+        {
+          "key": "B",
+          "text": "O-"
+        },
+        {
+          "key": "C",
+          "text": "A+"
+        },
+        {
+          "key": "D",
+          "text": "B-"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Biology",
+      "difficulty": "medium",
+      "explanation": "O negative blood is the universal donor type."
+    },
+    {
+      "id": "pack2-q8",
+      "level": 8,
+      "text": "Which element has atomic number 1?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Helium"
+        },
+        {
+          "key": "B",
+          "text": "Hydrogen"
+        },
+        {
+          "key": "C",
+          "text": "Oxygen"
+        },
+        {
+          "key": "D",
+          "text": "Carbon"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Chemistry",
+      "difficulty": "medium",
+      "explanation": "Hydrogen is element 1."
+    },
+    {
+      "id": "pack2-q9",
+      "level": 9,
+      "text": "In music, how many notes are in a standard major scale?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "5"
+        },
+        {
+          "key": "B",
+          "text": "6"
+        },
+        {
+          "key": "C",
+          "text": "7"
+        },
+        {
+          "key": "D",
+          "text": "8"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Music",
+      "difficulty": "medium",
+      "explanation": "A major scale has seven unique notes."
+    },
+    {
+      "id": "pack2-q10",
+      "level": 10,
+      "text": "Which city hosted the 2012 Summer Olympics?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Beijing"
+        },
+        {
+          "key": "B",
+          "text": "London"
+        },
+        {
+          "key": "C",
+          "text": "Rio de Janeiro"
+        },
+        {
+          "key": "D",
+          "text": "Athens"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Sports",
+      "difficulty": "medium",
+      "explanation": "London hosted the 2012 Olympics."
+    },
+    {
+      "id": "pack2-q11",
+      "level": 11,
+      "text": "Who proposed the three laws of motion?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Galileo Galilei"
+        },
+        {
+          "key": "B",
+          "text": "Isaac Newton"
+        },
+        {
+          "key": "C",
+          "text": "Johannes Kepler"
+        },
+        {
+          "key": "D",
+          "text": "Nikola Tesla"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "Physics",
+      "difficulty": "hard",
+      "explanation": "Newton formulated the three laws of motion."
+    },
+    {
+      "id": "pack2-q12",
+      "level": 12,
+      "text": "What is the longest river in South America?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Amazon"
+        },
+        {
+          "key": "B",
+          "text": "Paran\u00e1"
+        },
+        {
+          "key": "C",
+          "text": "Orinoco"
+        },
+        {
+          "key": "D",
+          "text": "Magdalena"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Geography",
+      "difficulty": "hard",
+      "explanation": "The Amazon is South America\u2019s longest river."
+    },
+    {
+      "id": "pack2-q13",
+      "level": 13,
+      "text": "Which language has the most native speakers worldwide?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "English"
+        },
+        {
+          "key": "B",
+          "text": "Spanish"
+        },
+        {
+          "key": "C",
+          "text": "Mandarin Chinese"
+        },
+        {
+          "key": "D",
+          "text": "Hindi"
+        }
+      ],
+      "correctAnswer": "C",
+      "category": "Language",
+      "difficulty": "hard",
+      "explanation": "Mandarin Chinese has the most native speakers."
+    },
+    {
+      "id": "pack2-q14",
+      "level": 14,
+      "text": "Which treaty formally ended World War I?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Treaty of Paris"
+        },
+        {
+          "key": "B",
+          "text": "Treaty of Versailles"
+        },
+        {
+          "key": "C",
+          "text": "Treaty of Utrecht"
+        },
+        {
+          "key": "D",
+          "text": "Treaty of Tordesillas"
+        }
+      ],
+      "correctAnswer": "B",
+      "category": "History",
+      "difficulty": "hard",
+      "explanation": "The Treaty of Versailles was signed in 1919."
+    },
+    {
+      "id": "pack2-q15",
+      "level": 15,
+      "text": "What is the smallest unit of life?",
+      "choices": [
+        {
+          "key": "A",
+          "text": "Cell"
+        },
+        {
+          "key": "B",
+          "text": "Atom"
+        },
+        {
+          "key": "C",
+          "text": "Molecule"
+        },
+        {
+          "key": "D",
+          "text": "Organ"
+        }
+      ],
+      "correctAnswer": "A",
+      "category": "Biology",
+      "difficulty": "hard",
+      "explanation": "The cell is the basic unit of life."
+    }
+  ]
+}
