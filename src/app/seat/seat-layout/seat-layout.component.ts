@@ -4,6 +4,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { SyncService } from '../../services/sync.service';
 import { GameState } from '../../models/game-state.model';
 import { GamePhase } from '../../models/game-phase.model';
+import { SyncEventGameEnded } from '../../models/sync-event.model';
 import { Question } from '../../models/question.model';
 import { MoneyLadder } from '../../models/money-ladder.model';
 import { LifelineState } from '../../models/lifeline.model';
@@ -60,8 +61,11 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
   removedChoices = signal<ChoiceKey[]>([]);
   isConnected = signal<boolean>(false);
   // T065: Walk away state
-  walkAwayWinnings = signal<number>(0);
+  finalWinnings = signal<number>(0);
   didWalkAway = signal<boolean>(false);
+  didWin = computed(() =>
+    this.phase() === GamePhase.ENDED && !this.didWalkAway() && this.clearedLevel() === 15
+  );
   // T097: Question timer state
   questionTimer = signal<TimerState | null>(null);
   hideConnectionStatus = signal<boolean>(true);
@@ -174,15 +178,20 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
       .subscribe((event: any) => {
         console.log('[SeatLayout] Walk away', event.payload);
         this.didWalkAway.set(true);
-        this.walkAwayWinnings.set(event.payload.winnings);
+        this.finalWinnings.set(event.payload.winnings);
         this.phase.set(GamePhase.ENDED);
       });
 
     // Listen for GAME_ENDED
-    this.syncService.onEvent('GAME_ENDED')
+    this.syncService.onEvent<SyncEventGameEnded>('GAME_ENDED')
       .pipe(takeUntil(this.destroy$))
-      .subscribe((event: any) => {
+      .subscribe(event => {
         console.log('[SeatLayout] Game ended', event.payload);
+        this.didWalkAway.set(event.payload.walkAway);
+        this.finalWinnings.set(event.payload.winnings);
+        if (event.payload.reason === 'win') {
+          this.clearedLevel.set(15);
+        }
         this.phase.set(GamePhase.ENDED);
       });
 
@@ -231,6 +240,8 @@ export class SeatLayoutComponent implements OnInit, OnDestroy {
     this.questionVisible.set(state.questionVisible);
     this.currentLevel.set(state.currentLevel);
     this.clearedLevel.set(state.clearedLevel);
+    this.didWalkAway.set(state.walkAway);
+    this.finalWinnings.set(state.finalWinnings);
     this.selectedChoice.set(state.selectedChoice);
     this.finalAnswer.set(state.finalAnswer);
     this.correctAnswer.set(state.correctAnswer);

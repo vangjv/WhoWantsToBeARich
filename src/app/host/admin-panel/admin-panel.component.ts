@@ -9,8 +9,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { GameStateService } from '../../services/game-state.service';
 import { GamePhase } from '../../models/game-phase.model';
+import { WalkAwayConfirmationDialogComponent } from '../walk-away-confirmation-dialog/walk-away-confirmation-dialog.component';
 import { Subscription } from 'rxjs';
 
 /**
@@ -31,7 +33,8 @@ import { Subscription } from 'rxjs';
     MatFormFieldModule,
     MatCheckboxModule,
     MatDividerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatDialogModule
   ],
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.scss']
@@ -75,7 +78,10 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
    */
   public hideConnectionStatus = true;
 
-  constructor(private gameStateService: GameStateService) {}
+  constructor(
+    private gameStateService: GameStateService,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     // Subscribe to game state changes
@@ -115,9 +121,18 @@ export class AdminPanelComponent implements OnInit, OnDestroy {
    * T062: Trigger walk away - contestant keeps last cleared level winnings
    */
   public onWalkAway(): void {
-    if (!this.walkAwayDisabled) {
-      this.gameStateService.walkAway();
+    if (this.walkAwayDisabled) {
+      return;
     }
+
+    this.dialog
+      .open(WalkAwayConfirmationDialogComponent)
+      .afterClosed()
+      .subscribe(confirmed => {
+        if (confirmed && !this.walkAwayDisabled) {
+          this.gameStateService.walkAway();
+        }
+      });
   }
 
   /**

@@ -110,11 +110,17 @@ export class GameStateService {
       throw new Error(`Question pack must have exactly 15 questions, but has ${questionPack.questions.length}`);
     }
 
+    this.stopTimer();
+    this.stopQuestionTimer();
+
     const newState = createDefaultGameState();
     newState.contestantName = contestantName;
     newState.questionPack = questionPack;
     newState.questionTimerDuration = questionTimerDuration;
+    newState.hideConnectionStatus = this.getState().hideConnectionStatus;
     this.gameStateSubject.next(newState);
+    // Push the fresh state so the seat drops stale data from the previous game
+    this.sendFullStateSync();
     console.log('[GameStateService] Game setup complete, timer duration:', questionTimerDuration);
   }
 
@@ -359,6 +365,7 @@ export class GameStateService {
 
     this.updateState({
       phase: GamePhase.ENDED,
+      clearedLevel: reason === 'win' ? state.currentLevel : state.clearedLevel,
       finalWinnings: winnings
     });
 
@@ -682,7 +689,10 @@ export class GameStateService {
   public resetGame(): void {
     this.stopTimer();
     this.stopQuestionTimer();
-    this.gameStateSubject.next(createDefaultGameState());
+    const newState = createDefaultGameState();
+    newState.hideConnectionStatus = this.getState().hideConnectionStatus;
+    this.gameStateSubject.next(newState);
+    this.sendFullStateSync();
     console.log('[GameStateService] Game reset');
   }
 

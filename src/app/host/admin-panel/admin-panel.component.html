@@ -6,26 +6,6 @@
   </mat-card-header>
   <mat-card-content>
     <div class="controls-container">
-      <!-- T061: Walk Away Button -->
-      <button
-        mat-raised-button
-        color="warn"
-        class="walk-away-btn"
-        [disabled]="walkAwayDisabled"
-        (click)="onWalkAway()"
-        [attr.aria-label]="'Walk away from current question'"
-      >
-        <mat-icon>exit_to_app</mat-icon>
-        <span>Walk Away</span>
-      </button>
-
-      <!-- Status indicator when disabled -->
-      <div class="status-hint" *ngIf="walkAwayDisabled">
-        <small *ngIf="currentPhase === 'SETUP'">Start a question to enable Walk Away</small>
-        <small *ngIf="currentPhase === 'FINAL_LOCKED' || currentPhase === 'REVEAL'">Cannot walk away after locking answer</small>
-        <small *ngIf="currentPhase === 'ENDED'">Game has ended</small>
-      </div>
-
       <!-- T099: Question Timer Controls -->
       <div class="timer-controls" *ngIf="hasQuestionTimer">
         <h4 class="controls-label">Question Timer</h4>
@@ -66,6 +46,26 @@
         <div class="timer-status" *ngIf="questionTimerExpired">
           <small class="timer-expired-msg">⏰ Time's Up</small>
         </div>
+      </div>
+
+      <!-- T061: Walk Away Button -->
+      <button
+        mat-raised-button
+        color="warn"
+        class="walk-away-btn"
+        [disabled]="walkAwayDisabled"
+        (click)="onWalkAway()"
+        [attr.aria-label]="'Walk away from current question'"
+      >
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Walk Away</span>
+      </button>
+
+      <!-- Status indicator when disabled -->
+      <div class="status-hint" *ngIf="walkAwayDisabled">
+        <small *ngIf="currentPhase === 'SETUP'">Start a question to enable Walk Away</small>
+        <small *ngIf="currentPhase === 'FINAL_LOCKED' || currentPhase === 'REVEAL'">Cannot walk away after locking answer</small>
+        <small *ngIf="currentPhase === 'ENDED'">Game has ended</small>
       </div>
 
       <mat-divider class="section-divider"></mat-divider>

@@ -16,6 +16,7 @@ A browser-based **"Who Wants to Be a Millionaire"-style game show application** 
 - **Question Pack import** — Load custom question sets from JSON files validated against a built-in schema
 - **Soundboard** — In-game audio controls for the host
 - **Seat reconnection** — Contestant display auto-syncs full game state on reload or reconnect
+- **Victory summary** — Clearing all 15 questions shows 15/15 on the Host and "You've won!" with final winnings on the Seat, including after a Seat reload
 - **Session persistence** — Game state is saved to `sessionStorage` so the host can survive a page refresh
 
 ---
@@ -189,4 +190,3 @@ The BroadcastChannel API is required for cross-window sync. This is supported in
 - [Angular Material](https://material.angular.io/)
 - [BroadcastChannel API (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/BroadcastChannel_API)
 - [Cloudflare Pages](https://pages.cloudflare.com/)
-

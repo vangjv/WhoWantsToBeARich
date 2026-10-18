@@ -61,14 +61,19 @@
     <div class="ended-content">
       <!-- T065: Walk away message display -->
       <h2 *ngIf="didWalkAway()">{{ contestantName() }} Walked Away!</h2>
-      <h2 *ngIf="!didWalkAway()">Game Over</h2>
+      <h2 *ngIf="didWin()">You've won!</h2>
+      <h2 *ngIf="!didWalkAway() && !didWin()">Game Over</h2>
 
-      <div class="winnings-display" *ngIf="didWalkAway()">
-        <p class="winnings-label">You're taking home:</p>
-        <p class="winnings-amount">${{ walkAwayWinnings().toLocaleString() }}</p>
+      <div class="winnings-display" *ngIf="didWalkAway() || didWin()">
+        <p class="winnings-label">{{ didWin() ? "You've won:" : "You're taking home:" }}</p>
+        <p class="winnings-amount">${{ finalWinnings().toLocaleString() }}</p>
       </div>
 
-      <p class="congratulations" *ngIf="contestantName() && !didWalkAway()">
+      <p class="congratulations" *ngIf="contestantName() && didWin()">
+        Congratulations, {{ contestantName() }}!
+      </p>
+
+      <p class="congratulations" *ngIf="contestantName() && !didWalkAway() && !didWin()">
         Thank you for playing, {{ contestantName() }}!
       </p>
 
